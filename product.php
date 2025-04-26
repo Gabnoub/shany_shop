@@ -48,7 +48,7 @@ $count_related = mysqli_num_rows($relatedProducts);
         <div class="first__infos">
             <div id="prd_title">
               <?php if (!empty($product["title"])): ?>
-                  <p><?= htmlspecialchars($product["title"]) ?></p>
+                  <p><?= html_entity_decode(htmlspecialchars($product["title"]), ENT_QUOTES, 'UTF-8') ?></p>
               <?php endif; ?>
               <!-- <div id="clone_review">clone review</div>  -->
             </div>
@@ -67,13 +67,13 @@ $count_related = mysqli_num_rows($relatedProducts);
         <div class="specific__infos">
             <ul>
                 <?php if (!empty($product["material"])): ?>
-                <li><strong>Matière: </strong><?= htmlspecialchars($product["material"]) ?></li>
+                <li><strong>Matière: </strong><?= html_entity_decode(htmlspecialchars($product["material"]), ENT_QUOTES, 'UTF-8') ?></li>
                 <?php endif; ?>
                 <?php if (!empty($product["color"])): ?>
-                <li><strong>Couleur: </strong><?= htmlspecialchars($product["color"]) ?></li>
+                <li><strong>Couleur: </strong><?= html_entity_decode(htmlspecialchars($product["color"]), ENT_QUOTES, 'UTF-8') ?></li>
                 <?php endif; ?>
                 <?php if (!empty($product["size"])): ?>
-                <li><strong>Taille: </strong><?= htmlspecialchars($product["size"]) ?></li>
+                <li><strong>Taille: </strong><?= html_entity_decode(htmlspecialchars($product["size"]), ENT_QUOTES, 'UTF-8') ?></li>
                 <?php endif; ?>
 
             </ul>
@@ -84,19 +84,19 @@ $count_related = mysqli_num_rows($relatedProducts);
 
         <div class="bullets">
             <?php if (!empty($product["description1"])): ?>
-                <p class="bullets__start"><?= htmlspecialchars($product["description1"]) ?></p>
+                <p class="bullets__start"><?= html_entity_decode(htmlspecialchars($product["description1"]), ENT_QUOTES, 'UTF-8') ?></p>
             <?php endif; ?>
             <div class="bullets__items">
                 <ul>
                     <?php for ($i = 1; $i <= 4; $i++): ?>
                       <?php if (!empty($product["bulletpoint$i"])): ?>
-                        <li><?= htmlspecialchars($product["bulletpoint$i"]) ?></li>
+                        <li><?= html_entity_decode(htmlspecialchars($product["bulletpoint$i"]), ENT_QUOTES, 'UTF-8') ?></li>
                       <?php endif; ?>
                     <?php endfor; ?>
                 </ul>
             </div>
             <?php if (!empty($product["description2"])): ?>
-                <p class="bullets__end"><?= htmlspecialchars($product["description2"]) ?></p>
+                <p class="bullets__end"><?= html_entity_decode(htmlspecialchars($product["description2"]), ENT_QUOTES, 'UTF-8')  ?></p>
             <?php endif; ?>
         </div>
 

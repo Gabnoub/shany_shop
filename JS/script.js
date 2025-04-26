@@ -234,12 +234,12 @@ function renderCart() {
 document.addEventListener("DOMContentLoaded", () => {
   
 // New products Slider
-
 const newProductContainer = document.querySelector('.new__products-container');
 const prevButton = document.querySelector('.prev-button');
 const nextButton = document.querySelector('.next-button');
 const dots = document.querySelectorAll('.dot');
-
+if (newProductContainer && prevButton && nextButton) {
+  
 function getProductsToShow() {
   if (window.innerWidth <= 480) {
     return 1;
@@ -258,7 +258,7 @@ function calculateScrollAmount() {
 
 let currentIndex = 0;
 
-function updatedots() {
+function updateDots() {
   const productsToShow = getProductsToShow();
   const maxIndex = Math.ceil(newProductContainer.children.length / productsToShow) - 1;
   
@@ -277,7 +277,7 @@ nextButton.addEventListener('click', function() {
   if ((currentIndex + 1) * productsToShow < newProductContainer.children.length) {
     currentIndex++;
     newProductContainer.scrollLeft = calculateScrollAmount() * currentIndex;
-    updatedots();
+    updateDots();
     updateButtonVisibility();
   }
 });
@@ -286,7 +286,7 @@ prevButton.addEventListener('click', function() {
   if (currentIndex > 0) {
     currentIndex--;
     newProductContainer.scrollLeft = calculateScrollAmount() * currentIndex;
-    updatedots();
+    updateDots();
     updateButtonVisibility();
   }
 });
@@ -295,7 +295,7 @@ dots.forEach((dot, index) => {
   dot.addEventListener('click', function() {
     currentIndex = index;
     newProductContainer.scrollLeft = calculateScrollAmount() * index;
-    updatedots();
+    updateDots();
     updateButtonVisibility();
   });
 });
@@ -310,7 +310,7 @@ function updateButtonVisibility() {
   nextButton.style.pointerEvents = currentIndex >= maxIndex ? 'none' : 'auto';
 }
 
-updatedots();
+updateDots();
 updateButtonVisibility();
 
 window.addEventListener('resize', function() {
@@ -337,14 +337,16 @@ newProductContainer.addEventListener('touchend', function(e) {
   }
 });
 
+}
+
 // Bestsellers Slider
-
-
   const bestsellerContainer = document.querySelector('.best__sellers-container');
   const prevButtonBestseller = document.querySelector('.prev-button-bestseller');
   const nextButtonBestseller = document.querySelector('.next-button-bestseller');
   const dotsBestseller = document.querySelectorAll('.dot-bestseller');
-  
+  if (bestsellerContainer && prevButtonBestseller && nextButtonBestseller) {
+    // restlicher Code
+    
   function getProductsToShowBestseller() {
     if (window.innerWidth <= 480) {
       return 1;
@@ -419,11 +421,12 @@ newProductContainer.addEventListener('touchend', function(e) {
   updateButtonVisibilityBestseller();
   
   window.addEventListener('resize', function() {
-    const scrollAmount = calculateScrollAmountBestseller();
-    bestsellerContainer.scrollLeft = scrollAmount * currentIndexBestseller;
+    const scrollAmountBestseller = calculateScrollAmountBestseller();
+    bestsellerContainer.scrollLeft = scrollAmountBestseller * currentIndexBestseller;
     updateDotsBestseller();
     updateButtonVisibilityBestseller();
   });
+  
   
   // Optional: Swipe Support für Bestseller
   let touchStartXBestseller = 0;
@@ -443,40 +446,45 @@ newProductContainer.addEventListener('touchend', function(e) {
   });
 
 
+  }
+  
+//
+  renderCart();
 //
 
-
-  renderCart();
-
+  cartbtns = document.querySelectorAll(".add-to-cart-btn");
+  if (cartbtns) {
+    cartbtns.forEach(btn =>
+      btn.addEventListener("click", () => {
+        const product = btn.closest(".product-card");
+        addToCart({
+          id: product.dataset.id,
+          title: product.dataset.title,
+          price: parseInt(product.dataset.price),
+          image: product.dataset.image,
+          _slug: product.dataset.slug
+        });
+      })
+    );
+  }
   
 
-  document.querySelectorAll(".add-to-cart-btn").forEach(btn =>
-    btn.addEventListener("click", () => {
-      const product = btn.closest(".product-card");
-      addToCart({
-        id: product.dataset.id,
-        title: product.dataset.title,
-        price: parseInt(product.dataset.price),
-        image: product.dataset.image,
-        _slug: product.dataset.slug
+  const section_animation = document.querySelectorAll(".animation");
+  if (section_animation){
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+        }
       });
-    })
-  );
-
-  const lifestyleImages = document.querySelectorAll(".animation");
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("visible");
-      }
+    }, {
+      threshold: 0.3 // wenn 20% sichtbar, animieren
     });
-  }, {
-    threshold: 0.3 // wenn 20% sichtbar, animieren
-  });
-
-  lifestyleImages.forEach(image => observer.observe(image));
-
+  
+    section_animation.forEach(image => observer.observe(image));
+  
+  }
+  
 // clone reiew under product title
   const prdTitle = document.getElementById("prd_title");
   const reviews = document.getElementById("rev_stars");
