@@ -1,0 +1,3 @@
+RewriteEngine On
+RewriteRule ^products/([a-zA-Z0-9\-]+)$ product.php?slug=$1 [L,QSA]
+RewriteRule ^categories/([a-zA-Z0-9\-]+)$ category.php?cat_slug=$1 [L,QSA]
