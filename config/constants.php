@@ -1,14 +1,16 @@
 <?php
-define ('ROOT_URL', 'http://localhost/Shanyshop/');
-define ('DB_HOST', 'localhost');
-define ('DB_USER', 'Shany');
-define ('DB_PASS', 'Admin1234');
-define ('DB_NAME', 'shany-shop');
+// define ('ROOT_URL', 'http://localhost/Shanyshop/');
+// define ('DB_HOST', 'localhost');
+// define ('DB_USER', 'Shany');
+// define ('DB_PASS', 'Admin1234');
+// define ('DB_NAME', 'shany-shop');
 
-// define ('DB_HOST', 'sql306.infinityfree.com');
-// define ('DB_USER', 'if0_38839063 ');
-// define ('DB_PASS', 'ZW5hrqKhKvBNOmF ');
-// define ('DB_NAME', 'if0_38839063_shany_shop');
+define ('ROOT_URL', 'creativix.42web.io');
+define ('DB_HOST', 'sql310.infinityfree.com');
+define ('DB_USER', 'if0_38587612');
+define ('DB_PASS', 'dpwy3ei191Y7');
+define ('DB_NAME', 'if0_38587612_shany_shop');
+
 $shany_en_stock = ["Oui", "Non"];
 
 // $shany_categories = ["Bracelets", "Boucles d’oreilles", "Colliers", "Accessoires", "Tous les produits"];

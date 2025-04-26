@@ -1,9 +1,11 @@
 /*=====================================================================================================================
 ==================================== Root Variables ===================================================================
 ===============*/
+/* --color-primary: rgb(82, 7, 56); */
+
 :root{
     --color-primary: rgb(82, 7, 56);
-    --color-primary-light: #d3714b;
+    --color-primary-light: rgb(82, 7, 56);
     --color-primary-variant: #743f2a;
     --color-red: #da0f3f;
     --color-red-light: hsl(346, 87%, 46%, 15%);
@@ -109,7 +111,7 @@ img{
     /* grid-template-columns: auto 50% auto auto; */
     width: 100%;
     height: 68px;
-    background-color: rgb(82, 7, 56);
+    background-color: var(--color-primary);
     /* background-color: var(--color-primary); */
     /* background:  linear-gradient(to right, #8a2b06, #e89f71); */
     align-items: center;
@@ -296,13 +298,15 @@ a.nav__link:hover::after {
 .quantity{
     display: flex;
     padding-bottom: 0.2rem;
+    color: var(--color-white);
 
 }
 .quantity button{
     font-size: medium;
     font-weight: 500;
     padding: 0.2rem 0.5rem;
-    background-color: var(--color-primary-light)
+    background-color: var(--color-primary-light);
+    color: var(--color-white);
 }
 .cart_description{
     display: flex;
@@ -1492,7 +1496,7 @@ table, th, td {
         justify-content: center;
         gap: 0px;
         text-align: center;
-        box-shadow: -2rem 3rem 7rem rgba(0, 0, 0, 0.7);
+        /* box-shadow: -2rem 3rem 7rem rgba(0, 0, 0, 0.7); */
     }
     .nav__links.active {
         display: flex;
@@ -1503,7 +1507,7 @@ table, th, td {
         display: flex;
         align-items: center;
         background: var(--color-primary-light);
-        border-top: 1px solid var(--color-primary);
+        border-top: 0.1px solid var(--color-white);
         transform: rotateX(90deg);
         transform-origin: top;
         opacity: 0;
@@ -2163,7 +2167,7 @@ table, th, td {
     top: 0;
     width: 100%;
     height: 100%;
-    overflow: visible;
+    overflow: auto;
     background-color: rgba(0,0,0,0.8);
     justify-content: center;
     align-items: center;
