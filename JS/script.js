@@ -563,3 +563,24 @@ review.addEventListener("click", () => {
   form.classList.toggle("active");
 });
 //---------------------------------------------------------  ----------------------------------------------------------------//
+const zoomButton = document.querySelector('.zoom-button');
+const zoomModal = document.getElementById('zoom-modal');
+const zoomedImage = document.querySelector('.zoomed-image');
+const closeModal = document.querySelector('.close-modal');
+const mainImage = document.querySelector('.main-product-image');
+
+zoomButton.addEventListener('click', () => {
+  zoomedImage.src = mainImage.src; // Bild kopieren
+  zoomModal.style.display = 'flex'; // Modal sichtbar machen
+});
+
+closeModal.addEventListener('click', () => {
+  zoomModal.style.display = 'none';
+});
+
+// Optional: Modal schließen, wenn Benutzer auf den dunklen Bereich klickt
+zoomModal.addEventListener('click', (e) => {
+  if (e.target === zoomModal) {
+    zoomModal.style.display = 'none';
+  }
+});

@@ -28,13 +28,18 @@ $count_related = mysqli_num_rows($relatedProducts);
 ?>
 <!----========================================== Product Info Section ============================================---->
 <div class="product__container">
-
+<div id="zoom-modal" class="zoom-modal">
+  <span class="close-modal">&times;</span>
+  <img class="zoomed-image" src="" alt="Zoomed Image">
+</div>
     <!-- Produktdetails -->
     <div class="product-section product-card" data-id="<?= htmlspecialchars($product["id"]) ?>" data-title="<?= htmlspecialchars($product["title"]) ?>" data-price="<?= htmlspecialchars($product["final_price"]) ?>" data-image="<?= ROOT_URL . 'admin/images/' . htmlspecialchars($product['image1']) ?>" data-slug="<?= ($product['slug']) ?>">
-      <div class="product-image">
+  
+    <div class="product-image product-image-wrapper">
         <!-- <img class="main__prImage" src="images/1.jpg"> -->
         <?php if (!empty($product["image1"])): ?>
-                <img class="main__prImage" src="<?= ROOT_URL . 'admin/images/' . htmlspecialchars($product['image1']) ?>">
+                <img class="main__prImage main-product-image" src="<?= ROOT_URL . 'admin/images/' . htmlspecialchars($product['image1']) ?>">
+                <button class="zoom-button"><i class="uil uil-search"></i></button>
         <?php endif; ?>
         <div class="thumbnail">
           <?php for ($i = 1; $i <= 4; $i++): ?>
@@ -44,6 +49,7 @@ $count_related = mysqli_num_rows($relatedProducts);
           <?php endfor; ?>
         </div>
       </div>
+      <!-- Fullscreen Modal -->
       <div class="product-info">
         <div class="first__infos">
             <div id="prd_title">
