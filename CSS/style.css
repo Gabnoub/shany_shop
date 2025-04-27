@@ -4,9 +4,9 @@
 /* --color-primary: rgb(82, 7, 56); */
 
 :root{
-    --color-primary: rgb(82, 7, 56);
-    --color-primary-light: rgb(82, 7, 56);
-    --color-primary-variant: #743f2a;
+    --color-primary: #301941;
+    --color-primary-light: #EA338D;
+    --color-primary-variant: #E6E1F9;
     --color-red: #da0f3f;
     --color-red-light: hsl(346, 87%, 46%, 15%);
     --color-green: #00c476;
@@ -178,8 +178,8 @@ a.nav__link:hover::after {
     position: absolute;
     top: -0.7rem;
     right: -0.7rem;
-    background-color: var(--color-white);
-    color: var(--color-primary);
+    background-color: var(--color-primary-light);
+    color: var(--color-white);
     font-size: small;
     font-weight: 600;
     padding: 0;
@@ -217,8 +217,8 @@ a.nav__link:hover::after {
     position: absolute;
     top: -0.7rem;
     right: -0.7rem;
-    background-color: white;
-    color: black;
+    background-color: var(--color-primary-light);
+    color: var(--color-white);
     font-size: small;
     font-weight: 600;
     padding: 0;
@@ -355,9 +355,9 @@ a.nav__link:hover::after {
 #commander .uil-whatsapp{
     font-size: 1.5rem;
 }
-.cart__product-items #commander:hover{
-    background-color: var(--color-green);
-    color: var(--color-black);
+#whatsappCheckout:hover{
+    background-color: var(--color-primary);
+    color: var(--color-white);
 }
 .uil-trash-alt{
     background-color: transparent;
@@ -380,14 +380,13 @@ a.nav__link:hover::after {
 }
 
 .call__to-action{
-    color: var(--color-bg);
     position: absolute;
     bottom: 60px;
     left: 50%;
     transform: translate(-50%, 0);
     border-radius: 0.2rem;
-    background-color:  var(--color-white);
-    color: var(--color-black);
+    background-color:  var(--color-primary-light);
+    color: var(--color-white);
     padding: 1rem 2rem;
     text-align: center;
     place-content: center;
@@ -395,8 +394,8 @@ a.nav__link:hover::after {
     font-size: 1.1rem;
 }
 .call__to-action:hover{
-    background-color: var(--color-green);
-    color: var(--color-bg);
+    background-color: var(--color-primary);
+    color: var(--color-white);
 }
 .caroussel__container{
     display: block;
@@ -496,7 +495,8 @@ a.nav__link:hover::after {
     transition: box-shadow 0.3s ease;   
 }
 .new__product-item:hover{
-     transform: scale(1.03);
+     transform: scale(1.01);
+     /* border-radius: 20px 0 0 0; */
 }
 
 
@@ -576,7 +576,7 @@ a.nav__link:hover::after {
     position: absolute;
     top: 0rem;
     left: 0rem;
-    background-color: #c5091c;
+    background-color: #EA338D;
     padding: 0.5rem 0;
     z-index: 20;
     width: 4rem;
@@ -594,7 +594,7 @@ a.nav__link:hover::after {
     padding: 0px;
     display: flex;
     flex-direction: column;
-    background-color: rgb(248, 237, 244);
+    background-color: var(--color-primary-variant);
     /* background: linear-gradient(180deg,rgba(242, 242, 254, 1) 0%, rgba(255, 255, 255, 1) 75%); */
     padding-bottom: 4rem;
     
@@ -647,7 +647,7 @@ a.nav__link:hover::after {
   }
 
   .gallery-image:hover img {
-    transform: scale(1.03);
+    transform: scale(1.01);
   }
 
   .gallery-navigation {
@@ -721,7 +721,7 @@ a.nav__link:hover::after {
     transition: box-shadow 0.3s ease;
 }
 .best__sellers-item:hover{
-    transform: scale(1.03);
+    transform: scale(1.01);
 }
 
 .carousel-container-bestseller {
@@ -786,7 +786,7 @@ a.nav__link:hover::after {
 .about{
     width: 100%;
     place-content: center;
-    background-color: rgb(248, 237, 244); 
+    background-color: var(--color-primary-variant); 
     /* background: linear-gradient(180deg,rgba(242, 242, 254, 1) 0%, rgba(255, 255, 255, 1) 75%); */
     padding: 3rem 0;
     margin-top: 3rem;
@@ -895,7 +895,7 @@ a.nav__link:hover::after {
     transition: box-shadow 0.3s ease;   
 }
 .product-item:hover{
-    transform: scale(1.03);
+    transform: scale(1.01);
 }
 .product-item img{
     overflow: hidden;
@@ -912,13 +912,13 @@ a.nav__link:hover::after {
     font-size: 1.1rem;
     border-radius: 0.3rem;
     margin-top: 2rem;
-    background: var(--color-black);
+    background: var(--color-primary-light);
     padding: 1rem 2rem;
     cursor: pointer;
 }
 .open__product:hover{
-    background-color: var(--color-green);
-    color: var(--color-bg);
+    background-color: var(--color-primary);
+    color: var(--color-white);
 }
 /*=====================================================================================================================
 ==================================== Info Section ===================================================================
@@ -951,14 +951,14 @@ footer{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0rem 1rem;
+    padding: 0.5rem 1rem;
     /* height: 34px; */
     text-decoration: solid 2px;
     text-underline-offset: 0px;
 }
 .footer a{
-    color: var(--color-primary-light);
-    font-weight: 500;
+    color: var(--color-white);
+    /* font-weight: 400; */
 }
 /*=====================================================================================================================
 ==================================== Products Page Style ===================================================================
@@ -1067,7 +1067,7 @@ footer{
     transition: box-shadow 0.3s ease;   
 }
 .cat__product-item:hover{
-    transform: scale(1.03);
+    transform: scale(1.01);
 }
 /*=====================================================================================================================
 ==================================== Single Product Page ===================================================================
@@ -1076,7 +1076,8 @@ footer{
     position: absolute;
     top: 0rem;
     right: 0rem;
-    background-color: #c5091c;
+    background-color: #EA338D;
+    /* background-color: #c5091c; */
     padding: 0.5rem 0;
     width: 5rem;
     color: var(--color-white);
@@ -1203,7 +1204,7 @@ footer{
     transition: box-shadow 0.3s ease;   
 }
 .related-item:hover {
-    transform: scale(1.03);
+    transform: scale(1.01);
 }
 .related-item img {
     width: 330px;
@@ -1223,7 +1224,7 @@ footer{
     justify-content: center;
 }
 .add-to-cart-btn:hover{
-    background-color: var(--color-green);
+    background-color: var(--color-primary);
 }
 /*=====================================================================================================================
 ==================================== Add product Page ===================================================================
@@ -1469,6 +1470,11 @@ table, th, td {
     h5{
         font-size: 0.8rem;
     }
+    /*======== caroussel style ==========*/
+    .caroussel{
+        width: 100vw;
+        aspect-ratio: 16/16;
+    }
     /*======== Nav style ==========*/
     #menu__icon{
         display: inline-block;
@@ -1544,9 +1550,8 @@ table, th, td {
     }
     /*======== Caroussel ==========*/
     .call__to-action{
-
         border-radius: 0.2rem;
-        padding: 0.5rem 1rem;
+        padding: 1rem 2rem;
         font-weight: 650;
         font-size: 0.8rem;
     }
@@ -1623,18 +1628,10 @@ table, th, td {
         transition: all 0.3s ease-in-out;
     }
     .open__product {
-        padding: 0px;
-        color: var(--color-white);
-        font-weight: 700;
-        font-size: 1.1rem;
-        border-radius: 0.3rem;
-        margin-top: 1rem;
-        background: var(--color-black);
+        border-radius: 0.2rem;
         padding: 1rem 2rem;
-    }
-    .open__product:hover{
-        background-color: var(--color-green);
-        color: var(--color-bg);
+        font-weight: 650;
+        font-size: 0.8rem;
     }
     .product-container{
         gap: 15px;
@@ -1883,7 +1880,7 @@ table, th, td {
 }
 
 .submit-rating-btn:hover {
-    background-color: #45a049;
+    background-color: var(--color-primary);
 }
 
 /* Kommentarliste */

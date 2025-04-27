@@ -216,8 +216,16 @@ function renderCart() {
     }
   }
 
-  qtyCounter.textContent = totalItems;
-  qtyCounter_new.textContent = totalItems;
+  if (totalItems === 0) {
+    qtyCounter.style.display = "none";
+    qtyCounter_new.style.display = "none";
+  } else {
+    qtyCounter.textContent = totalItems;
+    qtyCounter_new.textContent = totalItems;
+    qtyCounter.style.display = "block";
+    qtyCounter_new.style.display = "block";
+  }
+  
 
   // Buttons registrieren
   document.querySelectorAll(".qty-plus").forEach(btn =>
