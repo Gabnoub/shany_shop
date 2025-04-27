@@ -243,7 +243,7 @@ a.nav__link:hover::after {
     position: fixed;
     overflow-y: auto;
     overflow-x: hidden;
-    background-color: var(--color-white);
+    background-color: var(--color-primary-variant);
     /* color: var(--color-white); */
     display: flex;
     flex-direction: column;
@@ -305,7 +305,7 @@ a.nav__link:hover::after {
     font-size: medium;
     font-weight: 500;
     padding: 0.2rem 0.5rem;
-    background-color: var(--color-primary-light);
+    background-color: var(--color-primary);
     color: var(--color-white);
 }
 .cart_description{
@@ -317,6 +317,7 @@ a.nav__link:hover::after {
 .cart_delete{
     font-size: medium;
     width: 2rem;
+    background-color: var(--color-primary-variant);
     cursor: pointer;
 }
 
@@ -356,7 +357,7 @@ a.nav__link:hover::after {
     font-size: 1.5rem;
 }
 #whatsappCheckout:hover{
-    background-color: var(--color-primary);
+    background-color: var(--color-primary-light);
     color: var(--color-white);
 }
 .uil-trash-alt{
