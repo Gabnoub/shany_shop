@@ -73,7 +73,7 @@ echo "<script>const products = " . json_encode($cat_products) . ";</script>";
             <p class="pr__title"><?= htmlspecialchars($product['title']) ?></p>
             <p class="pr__price">
               <?php if ($product['price'] !== $product['final_price']): ?>
-                <del style="text-decoration: line-through;"><?= number_format($product['price'], 0, ',', '.') ?></del>
+                <del style="text-decoration: 1.1px line-through;"><?= number_format($product['price'], 0, ',', '.') ?></del>
                 <strong><?= number_format($product['final_price'], 0, ',', '.') ?> CFA</strong>
                 <button class="rabatt">- <?= round(100 - (($product['final_price'] * 100) / $product['price'])) ?> %</button>   
               <?php else: ?>
@@ -147,7 +147,7 @@ echo "<script>const products = " . json_encode($cat_products) . ";</script>";
             <p class="pr__title"><?= htmlspecialchars($product['title']) ?></p>
             <p class="pr__price">
               <?php if ($product['price'] !== $product['final_price']): ?>
-                <del style="text-decoration: line-through;"><?= number_format($product['price'], 0, ',', '.') ?></del>
+                <del style="text-decoration: 1.1px line-through;"><?= number_format($product['price'], 0, ',', '.') ?></del>
                 <strong><?= number_format($product['final_price'], 0, ',', '.') ?> CFA</strong>
                 <button class="rabatt">- <?= round(100 - (($product['final_price'] * 100) / $product['price'])) ?> %</button>   
               <?php else: ?>

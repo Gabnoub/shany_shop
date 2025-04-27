@@ -59,7 +59,7 @@ $count_related = mysqli_num_rows($relatedProducts);
               <!-- <div id="clone_review">clone review</div>  -->
             </div>
             <?php if ($product['price'] !== $product['final_price']): ?>
-              <p style="text-decoration: line-through;"><del><?= number_format($product['price'], 0, ',', '.') ?> CFA</del></p>
+              <p style="text-decoration: 1.1px line-through;"><del><?= number_format($product['price'], 0, ',', '.') ?></del></p>
               <p><strong><?= number_format($product['final_price'], 0, ',', '.') ?> CFA</strong></p>
               <p class="rabatt_pp"><strong>- <?= round(100 - (($product['final_price'] * 100) / $product['price'])) ?> %</strong></p>
             <?php else: ?>

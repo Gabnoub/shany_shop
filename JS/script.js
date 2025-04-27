@@ -108,7 +108,7 @@ function changeQty(id, delta) {
   }
 }
 
-
+const rootUrl = document.getElementById("app").dataset.rootUrl;
 // Warenkorb rendern
 function renderCart() {
   const cart = getCart();
@@ -140,7 +140,7 @@ function renderCart() {
       el.className = "cart__product-item";
       el.innerHTML = `
          
-            <a class="cart__pr_link" href="${p._slug}"><img src="${p.image}"></a>
+            <a class="cart__pr_link" href="${rootUrl}products/${p._slug}"><img src="${p.image}"></a>
             <div class="cart__right">
                 <div class="cart_description">
                     <p class="cart__pr__title"><strong>${p.title}</strong></p>
@@ -192,8 +192,6 @@ function renderCart() {
     message: message,
   };
 
-
-  const rootUrl = document.getElementById("app").dataset.rootUrl;
   fetch(`${rootUrl}admin/save_orders.php`, {
     method: "POST",
     headers: {
