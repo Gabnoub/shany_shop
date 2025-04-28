@@ -1,14 +1,12 @@
 <?php
 Require 'config/database.php';
-
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="<?= ROOT_URL ?>css/style.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="<?= ROOT_URL ?>CSS/style.css?v=<?php echo time(); ?>">
     <!--  Iconscout CDN-->
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
     <!--  Google Fonts CDN-->
@@ -20,6 +18,10 @@ Require 'config/database.php';
 </head>
 <body>
 <div id="app" data-root-url=<?= ROOT_URL ?>></div>
+<div id="catslug" data-cat-slug=<?= $cat_slug[0] ?>></div>
+<div id="catslug1" data-cat-slug=<?= $cat_slug[1] ?>></div>
+<div id="catslug2" data-cat-slug=<?= $cat_slug[2] ?>></div>
+<div id="catslug3" data-cat-slug=<?= $cat_slug[3] ?>></div>
 <!----========================================== first Section - promo/NAV/Caroussel ============================================---->
 <section class="first">
   <!------------------------------------------------------------ Promotion text -------------------------------------------------------------->

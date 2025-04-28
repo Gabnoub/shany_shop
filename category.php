@@ -78,29 +78,33 @@ if (!$fetch_products_result) {
             <a style="color:black" href="<?= ROOT_URL ?>">Accueil</a>
             <strong><?=  $cat_title ?></strong>
     </div>    
-    <div class="category__description">
-        <h2><?= $cat_title ?></h2>
-        <p><?= $cat_text ?></p>
-        <div class="cat_filter">
-            <?php if ($count === 1): ?>
-                <p class="num__products"><?= $count ?> produit</p>
-            <?php else: ?>
-                <p class="num__products"><?= $count ?> produits</p>    
-            <?php endif; ?>
-            <form class="form__category" method="GET" action="">
-                <input type="hidden" name="id" value="<?= $id ?>">
-                <label for="sort">Trier par:</label>
-                <select name="sort" id="sort" onchange="this.form.submit()">
-                    <option value="default" <?= (!isset($_GET['sort']) || $_GET['sort'] == 'default') ? 'selected' : '' ?>>Standard</option>
-                    <option value="discount_desc" <?= (isset($_GET['sort']) && $_GET['sort'] == 'discount_desc') ? 'selected' : '' ?>>En promotion</option>
-                    <option value="price_asc" <?= (isset($_GET['sort']) && $_GET['sort'] == 'price_asc') ? 'selected' : '' ?>>Prix: faible à élévé</option>
-                    <option value="price_desc" <?= (isset($_GET['sort']) && $_GET['sort'] == 'price_desc') ? 'selected' : '' ?>>Prix: élévé à faible</option>
-                    <option value="title_asc" <?= (isset($_GET['sort']) && $_GET['sort'] == 'title_asc') ? 'selected' : '' ?>>Titre A-Z</option>
-                    <option value="title_desc" <?= (isset($_GET['sort']) && $_GET['sort'] == 'title_desc') ? 'selected' : '' ?>>Titre Z-A</option>
-                </select>
-            </form>
+    <?php if ($count === 0): ?>
+                <p class="num__products_null">Bientôt ici : des produits que vous allez adorer !</p>
+    <?php else: ?>
+        <div class="category__description">
+            <h2><?= $cat_title ?></h2>
+            <p><?= $cat_text ?></p>
+            <div class="cat_filter">
+                    <?php if ($count === 1): ?>
+                        <p class="num__products"><?= $count ?> produit</p>
+                    <?php else: ?>
+                        <p class="num__products"><?= $count ?> produits</p>    
+                    <?php endif; ?>
+                    <form class="form__category" method="GET" action="">
+                        <input type="hidden" name="id" value="<?= $id ?>">
+                        <label for="sort">Trier par:</label>
+                        <select name="sort" id="sort" onchange="this.form.submit()">
+                            <option value="default" <?= (!isset($_GET['sort']) || $_GET['sort'] == 'default') ? 'selected' : '' ?>>Standard</option>
+                            <option value="discount_desc" <?= (isset($_GET['sort']) && $_GET['sort'] == 'discount_desc') ? 'selected' : '' ?>>En promotion</option>
+                            <option value="price_asc" <?= (isset($_GET['sort']) && $_GET['sort'] == 'price_asc') ? 'selected' : '' ?>>Prix: faible à élévé</option>
+                            <option value="price_desc" <?= (isset($_GET['sort']) && $_GET['sort'] == 'price_desc') ? 'selected' : '' ?>>Prix: élévé à faible</option>
+                            <option value="title_asc" <?= (isset($_GET['sort']) && $_GET['sort'] == 'title_asc') ? 'selected' : '' ?>>Titre A-Z</option>
+                            <option value="title_desc" <?= (isset($_GET['sort']) && $_GET['sort'] == 'title_desc') ? 'selected' : '' ?>>Titre Z-A</option>
+                        </select>
+                    </form>            
+            </div>
         </div>
-    </div>
+    <?php endif; ?>
     
 
     <div class="cat__products-container">

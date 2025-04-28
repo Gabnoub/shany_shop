@@ -5,7 +5,8 @@ define ('DB_USER', 'Shany');
 define ('DB_PASS', 'Admin1234');
 define ('DB_NAME', 'shany-shop');
 
-// define ('ROOT_URL', 'creativix.42web.io');
+// define('ROOT_URL', 'https://creativix.42web.io/');
+// define('ROOT_PATH', '/home/vol1_3/infinityfree.com/if0_38587612/');
 // define ('DB_HOST', 'sql310.infinityfree.com');
 // define ('DB_USER', 'if0_38587612');
 // define ('DB_PASS', 'dpwy3ei191Y7');

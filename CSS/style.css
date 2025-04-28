@@ -1036,7 +1036,14 @@ footer{
     color: black;
 }
 /*========  category Listing ==========*/
-
+.num__products_null{
+    /* font-size: 1.5rem; */
+    font-weight: 500;
+    padding: 150px;
+    justify-self: center;
+    color: black;
+   
+}
 .cat__pr__title{
     margin-top: 10px;
     color: var(--color-black);
@@ -1514,7 +1521,7 @@ table, th, td {
         height: 3.5rem;
         display: flex;
         align-items: center;
-        background: var(--color-primary-light);
+        background: var(--color-primary);
         border-top: 0.1px solid var(--color-white);
         transform: rotateX(90deg);
         transform-origin: top;
@@ -1646,7 +1653,7 @@ table, th, td {
     /*======== Info section style ==========*/
     .info__section{
         width: 100%;
-        height: 410px;
+        /* height: 410px; */
         display: flex;
         flex-direction: column;
         text-align: center;
@@ -1671,11 +1678,7 @@ table, th, td {
         display: block;
         align-items: center;
         text-align: center;
-        height: 50px;
-    }
-    .footer a{
-        color: var(--color-primary-light);
-        font-weight: 500;
+        /* height: 50px; */
     }
     /*======== new products style ==========*/
     .home__category{
@@ -1699,7 +1702,7 @@ table, th, td {
     .cat__products-container{
         display: grid;
         grid-template-columns: auto auto;
-        gap: 1.5rem;
+        gap: 0.5rem;
         text-align: center;
         /* padding: 0rem 2rem; */
         align-items: center;

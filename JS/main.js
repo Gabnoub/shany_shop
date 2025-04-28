@@ -31,6 +31,11 @@ progressBars[index].classList.add("active");
 // Sélection de la barre de progression
 const pb = document.getElementById("pbc");
 const productContainer = document.getElementById("productContainer");
+const _catslug = document.getElementById("catslug").dataset.catSlug;
+const _catslug1 = document.getElementById("catslug1").dataset.catSlug;
+const _catslug2 = document.getElementById("catslug2").dataset.catSlug;
+const _catslug3 = document.getElementById("catslug3").dataset.catSlug;
+const _cat_slug = [_catslug, _catslug1, _catslug2, _catslug3];
 let currentCategory = ""; // Standard: Colliers
 
 currentCat(0);
@@ -44,11 +49,11 @@ function currentCat(index) {
     pb.style.transform = `translateX(${index_cat * breite}px)`;
 
     // Mettre à jour le contenu des produits
-    
+    currentCategory = _cat_slug[index];
 
     const itemsHTML = products[index].map(item => {
         const hasDiscount = item.price !== item.finalprice;
-        currentCategory = item.catSlug;
+        // currentCategory = _cat_slug[index];
         const discount = hasDiscount 
         ? Math.round(100 - (item.finalprice * 100) / item.price)
         : 0;

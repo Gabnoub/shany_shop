@@ -1,16 +1,19 @@
 <?php
 session_start();
-// define ('ROOT_URL', 'http://localhost/Shany/');
-// define ('DB_HOST', 'localhost');
-// define('DB_USER', 'shany');
-// define ('DB_PASS', 'Admin1234');
-// define ('DB_NAME', 'shany');
-
 define ('ROOT_URL', 'http://localhost/Shanyshop/');
 define ('DB_HOST', 'localhost');
 define ('DB_USER', 'Shany');
 define ('DB_PASS', 'Admin1234');
 define ('DB_NAME', 'shany-shop');
+
+// define('ROOT_URL', 'https://creativix.42web.io/');
+// define('ROOT_PATH', '/home/vol1_3/infinityfree.com/if0_38587612/');
+// define ('DB_HOST', 'sql310.infinityfree.com');
+// define ('DB_USER', 'if0_38587612');
+// define ('DB_PASS', 'dpwy3ei191Y7');
+// define ('DB_NAME', 'if0_38587612_shany_shop');
+
+
 
 $shany_en_stock = ["Oui", "Non"];
 
@@ -23,8 +26,8 @@ $shany_en_stock = ["Oui", "Non"];
 //     "Envie d'originalité ? Explorez nos créations uniques : bagues, chaînes de cheville et plus encore pour révéler votre style sans limite.",
 //     "Découvrez notre sélection complète de bijoux élégants."
 //   ];
-  
-// 
+
+//
 // $shany_promo = "Livraison offerte à Yaoundé dès 25.000 FCFA d'achat ✨";
 
 ?>
