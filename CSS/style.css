@@ -592,6 +592,7 @@ a.nav__link:hover::after {
 .lifestyle{
     text-align: center;
     place-content: center;
+    width: 100%;
     margin: 0px;
     padding: 0px;
     display: flex;
@@ -789,28 +790,24 @@ a.nav__link:hover::after {
     width: 100%;
     place-content: center;
     background-color: var(--color-primary-variant); 
-    /* background: linear-gradient(180deg,rgba(242, 242, 254, 1) 0%, rgba(255, 255, 255, 1) 75%); */
     padding: 3rem 0;
     margin-top: 3rem;
-    /* max-width: 2000px; */
 }
 .about__container{
     display: flex;
     text-align: center;
     align-items: center;
     justify-content: center;
+    width: 100%;
     gap: 2rem;
     padding: 0 2rem;
     color: var(--color-black);
 }
 .about__image{
-    margin: 1rem 3rem;
     flex: 1 1;
-    max-width: 800px;
 }
 .about__text{
     flex: 1 1;
-    max-width: 800px;
 }
 .about__container img {
     width: 460px;
@@ -838,7 +835,7 @@ a.nav__link:hover::after {
     width: 100%;
     text-align : center;
     position: relative;
-    padding: 2rem;
+    padding: 1rem;
 }
 .caterogies h2{
     /* padding-bottom: 1rem; */
@@ -866,16 +863,10 @@ a.nav__link:hover::after {
     /* text-align: start; */
 }
 .progress-bar__cat{
-    width: 80px;
-    height: 0.2rem;
-    /* border: solid 1px green; */
     display: flex;
     position: relative;
     top: 2rem;
-    left: -280px;
-    display: flex;
     background: var(--color-primary);
-    border-radius: 5px;
     transition: all 0.3s ease-in-out;
 }
 .product-container{
@@ -1585,8 +1576,15 @@ table, th, td {
         justify-content: space-between;
         gap: 0.5rem;
         margin: 0;
-        padding: 0 1rem;
+        padding: 0.5 rem;
         color: var(--color-black);
+    }
+    .about__container img {
+        width: 380px;
+        aspect-ratio: 1/1;
+        object-fit: cover;
+        overflow: hidden;
+        border-radius: 10px;
     }
 
 /*======== Categories style ==========*/
@@ -1594,8 +1592,8 @@ table, th, td {
         width: 100%;
         text-align: center;
         position: relative;
-        padding: 0rem;
         padding: 0;
+        margin: 0;
         place-content: center;
         margin-top: 2rem;
     }
@@ -1608,7 +1606,7 @@ table, th, td {
         display: flex;
         align-items: center;
         justify-content: center;
-        padding-left: 30px;
+        /* padding-left: 30px; */
     }
     .categories__item{
         width: 100px;
@@ -1620,21 +1618,8 @@ table, th, td {
         /* border: solid 2px red; */
     }
     .product-item img{
-        width: 200px;
-        height: 200px;
-    }
-    .progress-bar__cat{
-        width: 60px;
-        height: 0.2rem;
-        /* border: solid 1px green; */
-        display: flex;
-        position: relative;
-        top: 2rem;
-        left: -178px;
-        display: flex;
-        background: var(--color-primary);
-        border-radius: 5px;
-        transition: all 0.3s ease-in-out;
+        width: 170px;
+        height: 170px;
     }
     .open__product {
         border-radius: 0.2rem;
@@ -1643,8 +1628,8 @@ table, th, td {
         font-size: 0.8rem;
     }
     .product-container{
-        gap: 15px;
-        padding: 1rem;
+        gap: 0.5rem;
+        padding: 0.5rem;
     }  
     .related-grid {
         gap: 15px;
@@ -1714,17 +1699,28 @@ table, th, td {
 
     }
     .cat__product-item img{
-        width: 230px;
-        height: 230px;
+        width: 170px;
+        height: 170px;
     }
     .rabatt{
         width: 3rem;
     }
     .related-item img {
-        width: 220px;
-        height: 220px;
+        width: 180px;
+        height: 180px;
     }
-
+    .cat_filter{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 1rem 0rem;
+    }
+    .num__products{
+        display: flex;
+        align-self: center;
+        position: relative;
+    }
 }
 
 /*------------------------------------------------------ Reviews Section in product page ------------------------------------------------------ */

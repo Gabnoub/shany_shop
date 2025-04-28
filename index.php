@@ -192,7 +192,7 @@ echo "<script>const products = " . json_encode($cat_products) . ";</script>";
             <button onclick="currentCat(1)" class="categories__item"><?= $category_2 ?></button>
             <button onclick="currentCat(2)" class="categories__item"><?= $category_3 ?></button>
             <button onclick="currentCat(3)" class="categories__item"><?= $category_4 ?></button>
-        <div ID="pbc" class="progress-bar__cat"></div>
+        <div ID="pbc" class="progress-bar__cat"><i class="uil uil-angle-double-down"></i></div>
     </div>
     <div class="product-container" id="productContainer"></div>
     <button id="exploreBtn" class="open__product">Explorer</button>

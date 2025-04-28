@@ -30,7 +30,11 @@ progressBars[index].classList.add("active");
 // =======================================  Activate and desactivate category  ==========================================//
 // Sélection de la barre de progression
 const pb = document.getElementById("pbc");
+const pb_breite = pb.offsetWidth;
 const productContainer = document.getElementById("productContainer");
+const cat_el = document.querySelector('.categories__item:nth-child(1)');
+const breite = cat_el.offsetWidth;
+
 const _catslug = document.getElementById("catslug").dataset.catSlug;
 const _catslug1 = document.getElementById("catslug1").dataset.catSlug;
 const _catslug2 = document.getElementById("catslug2").dataset.catSlug;
@@ -41,8 +45,7 @@ let currentCategory = ""; // Standard: Colliers
 currentCat(0);
 function currentCat(index) {
     // Déplacer la barre progressive sous le bouton sélectionné
-    const test = document.querySelector('.categories__item:nth-child(1)');
-    const breite = test.offsetWidth;
+    
     
     const index_cat = (index-2) % 4;
     // pb.style.transform = `translateX(${index * 100}%)`;
@@ -88,3 +91,10 @@ document.getElementById("exploreBtn").addEventListener("click", function () {
     // Weiterleitung zur passenden Seite (z. B. category.php?id=...)
     window.location.href = `categories/${currentCategory}`;
   });
+// =======================================  Activate and desactivate category  ==========================================//
+document.addEventListener("DOMContentLoaded", () => {
+  
+  // category 
+  pb.style.left = `-${(breite + breite/2 + pb_breite/2)}px`;
+
+})
