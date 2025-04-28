@@ -491,13 +491,15 @@ newProductContainer.addEventListener('touchend', function(e) {
   
   }
   
-// clone reiew under product title
+// clone review under product title
   const prdTitle = document.getElementById("prd_title");
-  const reviews = document.getElementById("rev_stars");
+  const reviews = document.getElementById("rev_stars").innerHTML;
   const prd_el = document.createElement("div");
-    prd_el.className = "clone_review";
-    prd_el.innerHTML = reviews.innerHTML;
-    prdTitle.appendChild(prd_el);
+  prd_el.className = "clone_review";
+  const rat_count = document.querySelector(".rating-count").innerHTML;
+  prd_el.innerHTML = reviews+rat_count.replace(" avis","");
+  rat_html = `<div  class="rating-count">${reviews} ${rat_count}</div>`;
+  prdTitle.appendChild(prd_el);
 
 //
 

@@ -205,9 +205,9 @@ unset($_SESSION['review_data']);
         </div>
     </div>
     <h3 ID="review">Laissez votre avis</h3>  
-    <?php if (isset($_GET['rating_success'])): ?>
+    <!-- <?php if (isset($_GET['rating_success'])): ?> -->
             <div class="success-message">Merci pour votre avis!</div>
-        <?php endif; ?>
+        <!-- <?php endif; ?> -->
         
         <?php if ($ratingError): ?>
             <div class="error-message"><?= $ratingError ?></div>

@@ -1079,6 +1079,7 @@ footer{
     width: 5rem;
     color: var(--color-white);
     text-align: center;
+    font-family: "Montserrat", sans-serif;
 }
 
 .product__container {
@@ -1470,7 +1471,7 @@ table, th, td {
     /*======== caroussel style ==========*/
     .caroussel{
         width: 100vw;
-        aspect-ratio: 16/16;
+        aspect-ratio: 16/24;
     }
     /*======== Nav style ==========*/
     #menu__icon{
@@ -1775,6 +1776,10 @@ table, th, td {
 }
 
 /* Bewertungsformular */
+.clone_review{
+    display: flex;
+    font-family: Arial, Helvetica, sans-serif;
+}
 #review{
     justify-self: center;
     padding: 0.5rem 7rem;
@@ -1787,15 +1792,12 @@ table, th, td {
     
 }
 .success-message{
-    position: absolute;
-    top: 13rem;
-    left: 50%;
-    transform: translate(-50%, 0);
     background-color: #dff0d8;
     color: #3c763d;
     padding: 10px;
     margin-bottom: 15px;
     border-radius: 4px;
+    text-align: center;
 }
 
 .rating-form {
