@@ -160,7 +160,7 @@ function renderCart() {
     const el1 = document.createElement("div");
       el1.className = "cart_bottom";
       el1.innerHTML = `
-      <div id="total" style="margin-top:1rem; color:black; width:250px; text-align:center; font-size:small; font-weight:600;">Total de votre commande</div>
+      <div id="cart_total">Total de votre commande</div>
       <p id="cart__total" style="color:black; text-align:center; font-size:small"></p>
       <button id="whatsappCheckout">Commander via <i class="uil uil-whatsapp"></i> Whatsapp</button>
       `;

@@ -89,15 +89,6 @@ echo "<script>const products = " . json_encode($cat_products) . ";</script>";
       <i class="uil uil-angle-double-right"></i>
     </button>
   </div>
-  <div class="carousel-dots">
-    <?php 
-    $total = mysqli_num_rows($last_products_result);
-    $total_pages = ceil($total / 4);
-    for($i = 0; $i < $total_pages; $i++): 
-    ?>
-      <span class="dot <?= $i === 0 ? 'active' : '' ?>" data-index="<?= $i ?>"></span>
-    <?php endfor; ?>
-  </div>
 </section>
 
 <!----========================================== Lifestyle section ============================================---->
@@ -162,16 +153,6 @@ echo "<script>const products = " . json_encode($cat_products) . ";</script>";
     <button class="carousel-button-bestseller next-button-bestseller" aria-label="Produits suivants">
       <i class="uil uil-angle-double-right"></i>
     </button>
-  </div>
-  
-  <div class="carousel-dots-bestseller">
-    <?php 
-    $total_bestsellers = mysqli_num_rows($best_products_result);
-    $total_pages_bestseller = ceil($total_bestsellers / 4);
-    for($i = 0; $i < $total_pages_bestseller; $i++): 
-    ?>
-      <span class="dot-bestseller <?= $i === 0 ? 'active' : '' ?>" data-index="<?= $i ?>"></span>
-    <?php endfor; ?>
   </div>
 </section>
 <!----============================================== About section ============================================----------->
