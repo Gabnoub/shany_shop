@@ -490,7 +490,38 @@ newProductContainer.addEventListener('touchend', function(e) {
     section_animation.forEach(image => observer.observe(image));
   
   }
-  
+
+// Manage product variants
+const colorMap = {
+  noir: "#000000",
+  blanc: "#ffffff",
+  rouge: "#ff0000",
+  bleu: "#0000ff",
+  vert: "#008000",
+  gris: "#808080",
+  beige: "#f5f5dc",
+  doré: "#E8C06D",
+  argenté: "#C0C0C0",
+};
+const colorDots = document.querySelectorAll("#color-dot");
+colorDots.forEach(dot => {
+  if (dot.dataset.id) {
+    const productColorName = dot.dataset.id;
+    const hexColor = colorMap[productColorName.toLowerCase()] || "#ccc";
+
+    dot.style = `
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background-color: ${hexColor};
+      margin-bottom: 10px;
+      outline: 3px solid black;
+      outline-offset: 4px;
+    `;  
+  }
+})
+
+
 // clone review under product title
   const prdTitle = document.getElementById("prd_title");
   const reviews = document.getElementById("rev_stars").innerHTML;

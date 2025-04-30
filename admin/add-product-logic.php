@@ -21,17 +21,18 @@ if (isset($_POST['add_submit'])) {
     $slug = preg_replace('/[^a-zA-Z0-9\-_]/', '-', $title);
     $catslug = $cat_slug[$category];
 
-    // if (!$title || !$price || !$description1 || $category === 'null' || $en_stock === 'null') {
-    //     $_SESSION['add'] = "please fill in all required fields";
-    //     $_SESSION['add-data'] = $_POST;
-    //     header("location: addproduct.php");
-    //     exit;
-    // }
+    
+    // check if product name already exists
+    $product_check_query = "SELECT * FROM products WHERE slug='$slug'";
+    $product_check_result = mysqli_query($connection, $product_check_query);
+
     // validate input
     if ($category === 'null') {
         $_SESSION['add'] = "Category is required"; 
     } elseif ($en_stock === 'null') {
         $_SESSION['add'] = "Stock status is required";
+    } elseif ($color === 'null') {
+        $_SESSION['add'] = "Color is required";
     } elseif (!$title) {
         $_SESSION['add'] = "Title is required";
     } elseif (!$description1) {
@@ -40,6 +41,8 @@ if (isset($_POST['add_submit'])) {
         $_SESSION['add'] = "Price is required";
     } elseif (!$image1['name']) {
         $_SESSION['add'] = "Image 1 is required";
+    } elseif (mysqli_num_rows($product_check_result) > 0) {
+        $_SESSION['add'] = "product name already exists";  
     } else {
 
     // Finaler Preis
@@ -74,7 +77,7 @@ if (isset($_POST['add_submit'])) {
     }
     
 
-
+    
     // Prepared SQL
     $sql = "INSERT INTO products (
         category, en_stock, title, material, color, size,
@@ -106,6 +109,7 @@ if (isset($_POST['add_submit'])) {
     }
     if (isset($_SESSION['add'])) {
         header("Location: addproduct.php");
+        $_SESSION['add-data'] = $_POST;
         exit;
     }
 }

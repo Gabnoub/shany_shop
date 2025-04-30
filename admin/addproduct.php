@@ -54,12 +54,20 @@ unset($_SESSION['add-data']);
                     <option value=1 <?= $en_stock === 1 ? 'selected' : '' ?>>Non</option>
                 </select>
             </div>
+            <div>
+                <label class="required-label" for="color">Couleur *</label>
+                <select name="color" value="<?= $color ?>">
+                    <option value='null' <?= $color === null ? 'selected' : '' ?>></option>
+                    <option value="doré" <?= $color === "argenté" ? 'selected' : '' ?>>Argenté</option>
+                    <option value="argenté" <?= $color === "doré" ? 'selected' : '' ?>>Doré</option>
+                </select>
+            </div>
             <label class="required-label" for="title">Titre *</label>
             <input type="text" name="title" value="<?= htmlspecialchars($title) ?>" placeholder="Titre">
             <label for="material">Material</label>
             <input type="text" name="material" value="<?= htmlspecialchars($material) ?>" placeholder="Material">
-            <label for="color">Couleur</label>
-            <input type="text" name="color" value="<?= htmlspecialchars($color) ?>" placeholder="Couleur">
+            <!-- <label for="color">Couleur</label>
+            <input type="text" name="color" value="<?= htmlspecialchars($color) ?>" placeholder="Couleur"> -->
             <label for="size">Taille</label>
             <input type="text" name="size" value="<?= htmlspecialchars($size) ?>" placeholder="Taille">
             <label class="required-label" for="description1">Description 1 *</label>

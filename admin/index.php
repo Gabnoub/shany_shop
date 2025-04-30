@@ -119,6 +119,11 @@ if (isset($_GET['admin_choices'])) {
                         <button style="background-color:rgb(232, 51, 51);; color:white; cursor:pointer; padding:0.5rem 1rem; border-radius:0.3rem;">Supprimer</button>
                     </a>
                     </td>
+                    <td>
+                    <a href="add-product-variant.php?id=<?= $row['id'] ?>">
+                        <button style="background-color:rgb(21, 203, 94);; color:white; cursor:pointer; padding:0.5rem 1rem; border-radius:0.3rem;">Créer une variante</button>
+                    </a>
+                    </td>
                 </tr>
                 <?php endwhile; ?>
             </tbody>
@@ -126,7 +131,6 @@ if (isset($_GET['admin_choices'])) {
     </div>
     
 </section>
-
 <?php
 Include '../partials/footer.php';
 ?>

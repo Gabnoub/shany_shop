@@ -59,12 +59,20 @@ if (!$product) {
                     <option value=1 <?= $product['en_stock'] === 1 ? 'selected' : '' ?>>Non</option>
                 </select>
             </div>
+            <div>
+                <label class="required-label" for="color">Couleur *</label>
+                <select name="color">
+                    <option value='null' <?= $product['color'] === null ? 'selected' : '' ?>></option>
+                    <option value="argenté" <?= $product['color'] === "argenté" ? 'selected' : '' ?>>Argenté</option>
+                    <option value="doré" <?= $product['color'] === "doré" ? 'selected' : '' ?>>Doré</option>
+                </select>
+            </div>
             <label class="required-label" for="title">Titre *</label>
             <input type="text" name="title" value="<?= htmlspecialchars($product['title']) ?>">
             <label for="material">Material</label>
             <input type="text" name="material" value="<?= htmlspecialchars($product['material']) ?>">
-            <label for="color">Couleur</label>
-            <input type="text" name="color" value="<?= htmlspecialchars($product['color']) ?>">
+            <!-- <label for="color">Couleur</label>
+            <input type="text" name="color" value="<?= htmlspecialchars($product['color']) ?>"> -->
             <label for="size">Taille</label>
             <input type="text" name="size" value="<?= htmlspecialchars($product['size']) ?>">
             <label class="required-label" for="description1">Description 1 *</label>

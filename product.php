@@ -1,8 +1,15 @@
 <?php
 Include 'partials/header.php';
 $slug = $_GET['slug'] ?? '';
+$variant = $_GET['variant'] ?? null;
+
+if($variant) {
+    header("Location: " . ROOT_URL);
+}
+
 $_en_stock = 0;
 
+// Fetch product details based on the slug
 if ($slug) {
     $stmt = $connection->prepare("SELECT * FROM products WHERE slug = ?");
     $stmt->bind_param("s", $slug);
@@ -59,9 +66,9 @@ $count_related = mysqli_num_rows($relatedProducts);
               <!-- <div id="clone_review">clone review</div>  -->
             </div>
             <?php if ($product['price'] !== $product['final_price']): ?>
-              <p style="text-decoration: 1.1px line-through;"><del><?= number_format($product['price'], 0, ',', '.') ?></del></p>
-              <p><strong><?= number_format($product['final_price'], 0, ',', '.') ?> CFA</strong></p>
-              <p class="rabatt_pp"><strong>- <?= round(100 - (($product['final_price'] * 100) / $product['price'])) ?> %</strong></p>
+              <p style="text-decoration: 1.5px line-through; font-size:1.3rem"><del><?= number_format($product['price'], 0, ',', '.') ?></del></p>
+              <p style="font-size:1.5rem"><strong><?= number_format($product['final_price'], 0, ',', '.') ?> CFA</strong></p>
+              <p style="font-size:1.3rem" class="rabatt_pp"><strong>- <?= round(100 - (($product['final_price'] * 100) / $product['price'])) ?> %</strong></p>
             <?php else: ?>
               <p><strong><?= number_format($product['price'], 0, ',', '.') ?> CFA</strong></p>
             <?php endif; ?>
@@ -70,17 +77,27 @@ $count_related = mysqli_num_rows($relatedProducts);
                 <h4><?= htmlspecialchars($product["final_price"]) ?></h4>
             <?php endif; ?> -->
         </div>
+        <?php if (!empty($product["color"])): ?>
+            <div class="prd_variant">
+                <div class="variant_item">
+                    <p>Couleur: <?= html_entity_decode(htmlspecialchars($product["color"])) ?></p> 
+                    <a href="<?= ROOT_URL ?>products/<?= $product['slug'] ?>/variant/<?= urlencode($product['id']) ?>">    
+                        <div id="color-dot" data-id="<?= html_entity_decode(htmlspecialchars($product["color"])) ?>"></div>
+                    </a>                                                
+                </div>
+            </div>
+        <?php endif; ?>
         <div class="specific__infos">
             <ul>
-                <?php if (!empty($product["material"])): ?>
+                <!-- <?php if (!empty($product["color"])): ?>
+                <li class="color_prd"><strong>Couleur: </strong><?= html_entity_decode(htmlspecialchars($product["color"]), ENT_QUOTES, 'UTF-8') ?></li>
+                <?php endif; ?> -->
+                <!-- <?php if (!empty($product["material"])): ?>
                 <li><strong>Matière: </strong><?= html_entity_decode(htmlspecialchars($product["material"]), ENT_QUOTES, 'UTF-8') ?></li>
-                <?php endif; ?>
-                <?php if (!empty($product["color"])): ?>
-                <li><strong>Couleur: </strong><?= html_entity_decode(htmlspecialchars($product["color"]), ENT_QUOTES, 'UTF-8') ?></li>
                 <?php endif; ?>
                 <?php if (!empty($product["size"])): ?>
                 <li><strong>Taille: </strong><?= html_entity_decode(htmlspecialchars($product["size"]), ENT_QUOTES, 'UTF-8') ?></li>
-                <?php endif; ?>
+                <?php endif; ?> -->
 
             </ul>
         </div>

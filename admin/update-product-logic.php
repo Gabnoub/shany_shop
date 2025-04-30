@@ -21,20 +21,26 @@ if (isset($_POST['edit_submit']) && isset($_POST['id'])) {
     $catslug = $cat_slug[$category];
 
 
+// check if product name already exists
+$product_check_query = "SELECT * FROM products WHERE slug='$slug'";
+$product_check_result = mysqli_query($connection, $product_check_query);
 
     // validate input
     if ($category === 'null') {
         $_SESSION['edit'] = "Category is required"; 
     } elseif ($en_stock === 'null') {
         $_SESSION['edit'] = "Stock status is required";
+    } elseif ($color === 'null') {
+        $_SESSION['add'] = "Color is required";
     } elseif (!$title) {
         $_SESSION['edit'] = "Title is required";
     } elseif (!$description1) {
         $_SESSION['edit'] = "Description is required";
     } elseif (!$price) {
         $_SESSION['edit'] = "Price is required";
+    } elseif (mysqli_num_rows($product_check_result) > 0) {
+        $_SESSION['edit'] = "product name already exists";
     } else {
-
         // Calculate final price
         $final_price = is_numeric($discount) ? $price - $discount : $price;
         $final_price = max($final_price, 0);
@@ -107,7 +113,7 @@ if (isset($_POST['edit_submit']) && isset($_POST['id'])) {
             $price, $discount, $final_price, $slug, $catslug,
             $id
         );
-
+    
         if ($stmt->execute()) {
             $_SESSION['add-success'] = "Product successfully updated.";
             header('Location: index.php');
