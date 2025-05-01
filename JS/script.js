@@ -541,7 +541,7 @@ colorDots.forEach(dot => {
   prd_el.className = "clone_review";
   const rat_count = document.querySelector(".rating-count").innerHTML;
   prd_el.innerHTML = reviews+rat_count.replace(" avis","");
-  rat_html = `<div  class="rating-count">${reviews} ${rat_count}</div>`;
+  // rat_html = `<div  class="rating-count">${reviews} ${rat_count}</div>`;
   prdTitle.appendChild(prd_el);
 
 //

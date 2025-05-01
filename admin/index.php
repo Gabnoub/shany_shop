@@ -42,6 +42,10 @@ $fetch_products_result = mysqli_query($connection, $fetch_products_query);
 <?php if (isset($_SESSION['variant-success'])): ?>
     <div class="alert success"><?= $_SESSION['variant-success']; unset($_SESSION['variant-success']); ?></div>
 <?php endif; ?>
+
+<?php if (isset($_SESSION['delete-success'])): ?>
+    <div class="alert success"><?= $_SESSION['delete-success']; unset($_SESSION['delete-success']); ?></div>
+<?php endif; ?>
 <!----==========================================  Dashboard Section ============================================---->
 <section class="dashboard">
     <p style="font-size: large;"><strong>Admin-Dashboard</strong></p>

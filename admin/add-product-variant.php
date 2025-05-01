@@ -23,16 +23,24 @@ if (!$product) {
 ?>
 
 <!----==========================================  Add product Section ============================================---->
+
 <section class="form__section">
     <div class="add__products">
         <a href="index.php" style="margin-left: 10px;">
             <button type="button" class="sub__btn cancel"><i class="uil uil-arrow-left"></i></button>
         </a>    
-        <h2>Créer une variante</h2>
+        <h2>Créer/Modifier une variante</h2>
             <?php if (!empty($_SESSION['variant'])): ?> 
                 <div class="alert">
                     <?= $_SESSION['variant'];
                     unset($_SESSION['variant']);
+                    ?>
+                </div>
+            <?php endif; ?>
+            <?php if (!empty($_SESSION['delete-error'])): ?> 
+                <div class="alert">
+                    <?= $_SESSION['delete-error'];
+                    unset($_SESSION['delete-error']);
                     ?>
                 </div>
             <?php endif; ?>
@@ -59,7 +67,9 @@ if (!$product) {
             <button type="submit" name="variant_submit" class="sub__btn">Ajouter</button>
         </form>
     </div>
+    
 </section>
+<a class="del_variant" href="delete-variant.php?id=<?= $id ?>">Supprimer la variante</a>
 <?php
 Include '../partials/footer.php';
 ?>
