@@ -3,9 +3,6 @@ Include 'partials/header.php';
 $slug = $_GET['slug'] ?? '';
 $variant = $_GET['variant'] ?? null;
 
-if($variant) {
-    header("Location: " . ROOT_URL);
-}
 
 $_en_stock = 0;
 
@@ -15,7 +12,24 @@ if ($slug) {
     $stmt->bind_param("s", $slug);
     $stmt->execute();
     $product = $stmt->get_result()->fetch_assoc();
-
+    // check if product variant is available
+    
+    if ($product['id']) {
+        $stmtVariant = $connection->prepare("SELECT * FROM product_variants WHERE product_id = ?");
+        $stmtVariant->bind_param("i", $product['id']);
+        $stmtVariant->execute();
+        $variantProduct = $stmtVariant->get_result()->fetch_assoc();
+        $productColor = $product['color'];
+        $productId = $product['id'];
+        if($variant && $variantProduct) {
+            $product["image1"] = $product["image4"];
+            $product["image2"] = $product["image5"];
+            $product["image3"] = $product["image6"];
+            $productColor = $variantProduct['color'];
+            $productId = intval($product['id']) * 10000;
+        } 
+        
+    }
     if (!$product) {
         echo "Produkt nicht gefunden.";
         exit;
@@ -40,7 +54,7 @@ $count_related = mysqli_num_rows($relatedProducts);
   <img class="zoomed-image" src="" alt="Zoomed Image">
 </div>
     <!-- Produktdetails -->
-    <div class="product-section product-card" data-id="<?= htmlspecialchars($product["id"]) ?>" data-title="<?= htmlspecialchars($product["title"]) ?>" data-price="<?= htmlspecialchars($product["final_price"]) ?>" data-image="<?= ROOT_URL . 'admin/images/' . htmlspecialchars($product['image1']) ?>" data-slug="<?= ($product['slug']) ?>">
+    <div class="product-section product-card" data-id="<?= htmlspecialchars($productId) ?>" data-title="<?= html_entity_decode(htmlspecialchars($product["title"])) ?>" data-color="<?= html_entity_decode(htmlspecialchars($productColor)) ?>" data-price="<?= htmlspecialchars($product["final_price"]) ?>" data-image="<?= ROOT_URL . 'admin/images/' . htmlspecialchars($product['image1']) ?>" data-slug="<?= ($product['slug']) ?>">
   
     <div class="product-image product-image-wrapper">
         <!-- <img class="main__prImage" src="images/1.jpg"> -->
@@ -49,7 +63,7 @@ $count_related = mysqli_num_rows($relatedProducts);
                 <button class="zoom-button"><i class="uil uil-search"></i></button>
         <?php endif; ?>
         <div class="thumbnail">
-          <?php for ($i = 1; $i <= 4; $i++): ?>
+          <?php for ($i = 1; $i < 4; $i++): ?>
             <?php if (!empty($product["image$i"])): ?>
               <img class="tn__image" src="<?= ROOT_URL . 'admin/images/' . htmlspecialchars($product["image$i"]) ?>" style="cursor:pointer;">
             <?php endif; ?>
@@ -78,13 +92,20 @@ $count_related = mysqli_num_rows($relatedProducts);
             <?php endif; ?> -->
         </div>
         <?php if (!empty($product["color"])): ?>
+            <p class="variant-color">Couleur: <?= html_entity_decode(htmlspecialchars($productColor), ENT_QUOTES, 'UTF-8') ?></p>
             <div class="prd_variant">
-                <div class="variant_item">
-                    <p>Couleur: <?= html_entity_decode(htmlspecialchars($product["color"])) ?></p> 
-                    <a href="<?= ROOT_URL ?>products/<?= $product['slug'] ?>/variant/<?= urlencode($product['id']) ?>">    
-                        <div id="color-dot" data-id="<?= html_entity_decode(htmlspecialchars($product["color"])) ?>"></div>
+                <div class="variant_item">                 
+                    <a class="prd-main" href="<?= ROOT_URL ?>products/<?= $product['slug'] ?>">    
+                        <div class="color-dot" data-id="<?= html_entity_decode(htmlspecialchars($product["color"])) ?>"></div>
                     </a>                                                
                 </div>
+                <?php if (!empty($variantProduct)): ?>
+                    <div class="variant_item">
+                        <a class="prd-variant" href="<?= ROOT_URL ?>products/<?= $product['slug'] ?>/variant/<?= urlencode($variantProduct['id']) ?>">    
+                            <div class="color-dot" data-id="<?= html_entity_decode(htmlspecialchars($variantProduct["color"])) ?>"></div>
+                        </a>                                                
+                    </div>
+                <?php endif; ?>
             </div>
         <?php endif; ?>
         <div class="specific__infos">

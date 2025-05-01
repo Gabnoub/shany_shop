@@ -12,7 +12,7 @@ if (isset($_POST['variant_submit']) && isset($_POST['id'])) {
     } else {
 
         // Prepare SQL Update
-        $sql = "INSERT INTO products_variants (product_id,color) VALUES (?,?)";
+        $sql = "INSERT INTO product_variants (product_id, color) VALUES (?, ?)";
     
         $stmt = $connection->prepare($sql);
         $stmt->bind_param(

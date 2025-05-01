@@ -91,6 +91,10 @@ unset($_SESSION['add-data']);
                 <input type="file" id="prImg3" name="image3">
                 <label for="thumbnail">Add Image 4</label>
                 <input type="file" id="prImg4" name="image4">
+                <label for="thumbnail">Add Image 5</label>
+                <input type="file" id="prImg5" name="image5">
+                <label for="thumbnail">Add Image 6</label>
+                <input type="file" id="prImg6" name="image6">
             </div>
             <label>Prix en Fcfa *</label>
             <input type="number" step="1" name="price" value="<?= htmlspecialchars($price) ?>" placeholder="Prix">

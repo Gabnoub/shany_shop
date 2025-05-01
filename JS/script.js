@@ -134,7 +134,7 @@ function renderCart() {
       totalItems += p.qty;
       const lineTotal = p.qty * p.price;
       totalPrice += lineTotal;
-      message += `• ${p.title} x${p.qty} = ${lineTotal.toLocaleString('de-DE')} CFA\n`;
+      message += `• (${p.title}, ${p.color}) x${p.qty} = ${lineTotal.toLocaleString('de-DE')} CFA\n`;
 
       const el = document.createElement("div");
       el.className = "cart__product-item";
@@ -145,14 +145,17 @@ function renderCart() {
                 <div class="cart_description">
                     <p class="cart__pr__title"><strong>${p.title}</strong></p>
                     <p class="cart__pr__price">${p.price} CFA</p>
+                    <p class="">${p.color}</p>
                 </div>
                 <div class="quantity">
-
+                  <div class="qty_btns">
                     <button style="cursor:pointer;" class="qty-minus" data-id="${p.id}">-</button>
                     <button style="cursor:pointer;" class="qty-display" data-id="${p.id}">${p.qty}</button>
                     <button style="cursor:pointer;" class="qty-plus" data-id="${p.id}">+</button>
+                  </div>
+                  <button class="cart_delete" onclick="removeItem('${p.id}')"><i class="uil uil-trash-alt"></i></button>
                 </div>
-                <button class="cart_delete" onclick="removeItem('${p.id}')"><i class="uil uil-trash-alt"></i></button>
+                
             </div>
           `;
       container.appendChild(el);
@@ -238,7 +241,6 @@ function renderCart() {
 }
 //------------------------------------------------ Initialisierung -----------------------------------------------------------------------------//
 document.addEventListener("DOMContentLoaded", () => {
-  
 // New products Slider
 const newProductContainer = document.querySelector('.new__products-container');
 const prevButton = document.querySelector('.prev-button');
@@ -468,8 +470,10 @@ newProductContainer.addEventListener('touchend', function(e) {
           title: product.dataset.title,
           price: parseInt(product.dataset.price),
           image: product.dataset.image,
+          color: product.dataset.color,
           _slug: product.dataset.slug
         });
+        console.log(product.dataset.id);
       })
     );
   }
@@ -503,8 +507,13 @@ const colorMap = {
   doré: "#E8C06D",
   argenté: "#C0C0C0",
 };
-const colorDots = document.querySelectorAll("#color-dot");
+const variant = document.querySelector(".variant-color").innerHTML;
+const variantColor = variant.replace("Couleur: ","");
+
+
+const colorDots = document.querySelectorAll(".color-dot");
 colorDots.forEach(dot => {
+  dot.classList.remove("active");
   if (dot.dataset.id) {
     const productColorName = dot.dataset.id;
     const hexColor = colorMap[productColorName.toLowerCase()] || "#ccc";
@@ -515,9 +524,12 @@ colorDots.forEach(dot => {
       border-radius: 50%;
       background-color: ${hexColor};
       margin-bottom: 10px;
-      outline: 3px solid black;
-      outline-offset: 4px;
     `;  
+
+    if (variantColor === dot.dataset.id) {
+    dot.classList.add("active");
+    console.log(variantColor);
+    }
   }
 })
 

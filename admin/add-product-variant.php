@@ -47,7 +47,7 @@ if (!$product) {
                     <option value="doré" <?= $product['color'] === "doré" ? 'selected' : '' ?>>Doré</option>
                 </select>
             </div>
-            <button type="submit" name="variant_submit" class="sub__btn">Edit Product</button>
+            <button type="submit" name="variant_submit" class="sub__btn">Ajouter</button>
         </form>
     </div>
 </section>

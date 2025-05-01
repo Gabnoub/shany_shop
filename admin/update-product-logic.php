@@ -50,14 +50,18 @@ $product_check_result = mysqli_query($connection, $product_check_query);
         $image2 = $_FILES['image2'];
         $image3 = $_FILES['image3'];
         $image4 = $_FILES['image4'];
-        $images = [$image1, $image2, $image3, $image4];
+        $image5 = $_FILES['image5'];
+        $image6 = $_FILES['image6'];
+        $images = [$image1, $image2, $image3, $image4, $image5, $image6];
 
         // Previous images from form
         $cur_images = [
             $_POST['current_image1'], 
             $_POST['current_image2'], 
             $_POST['current_image3'], 
-            $_POST['current_image4']
+            $_POST['current_image4'], 
+            $_POST['current_image5'], 
+            $_POST['current_image6']
         ];
 
         $upload_folder = __DIR__ . '/images/';
@@ -67,7 +71,7 @@ $product_check_result = mysqli_query($connection, $product_check_query);
         
         $allowed_exts = ['jpg', 'jpeg', 'png', 'webp'];
         
-        for ($i = 0; $i < 4; $i++) {
+        for ($i = 0; $i < 6; $i++) {
             if (!empty($images[$i]['name'])) {
                 $extension = strtolower(pathinfo($images[$i]['name'], PATHINFO_EXTENSION));
                 $size = $images[$i]['size'];
@@ -102,14 +106,14 @@ $product_check_result = mysqli_query($connection, $product_check_query);
         $sql = "UPDATE products SET
             category = ?, en_stock = ?, title = ?, material = ?, color = ?, size = ?,
             description1 = ?, bulletpoint1 = ?, bulletpoint2 = ?, bulletpoint3 = ?, bulletpoint4 = ?, description2 = ?,
-            image1 = ?, image2 = ?, image3 = ?, image4 = ?, price = ?, discount = ?, final_price = ?, slug = ?, cat_slug = ?
+            image1 = ?, image2 = ?, image3 = ?, image4 = ?, image5 = ?, image6 = ?, price = ?, discount = ?, final_price = ?, slug = ?, cat_slug = ?
             WHERE id = ?" ;
 
         $stmt = $connection->prepare($sql);
-        $stmt->bind_param("iissssssssssssssiiissi",
+        $stmt->bind_param("iissssssssssssssssiiissi",
             $category, $en_stock, $title, $material, $color, $size,
             $description1, $bulletpoint1, $bulletpoint2, $bulletpoint3, $bulletpoint4, $description2,
-            $cur_images[0], $cur_images[1], $cur_images[2], $cur_images[3],
+            $cur_images[0], $cur_images[1], $cur_images[2], $cur_images[3], $cur_images[4], $cur_images[5],
             $price, $discount, $final_price, $slug, $catslug,
             $id
         );

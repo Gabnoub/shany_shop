@@ -298,17 +298,23 @@ a.nav__link:hover::after {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    margin: 0;
     padding-left: 0.3rem;
+    border: solid 1px grey;
 
+}
+.cart__pr__price{
+    font-weight: 500;
 }
 .quantity{
     display: flex;
+    justify-content: space-between;
     padding-bottom: 0.2rem;
     color: var(--color-white);
 
 }
-.quantity button{
-    font-size: medium;
+.qty_btns button{
+    font-size: 0.8rem;
     font-weight: 500;
     padding: 0.2rem 0.5rem;
     background-color: var(--color-primary);
@@ -1100,21 +1106,25 @@ footer{
     margin: 50px 30px;
     /* margin-bottom: 40px; */
 }
-#color-dot{
+.color-dot{
     cursor: pointer;
+}
+.color-dot.active{
+    cursor: pointer;
+    outline: 3px solid black;
+    outline-offset: 4px;
 }
 .prd_variant{
     display: flex;
-    gap: 1rem;
+    gap: 3rem;
+    margin: 1.5rem 0 0 3rem;
 }
 .variant_item{
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
 }
-.variant_item div{
-    margin: 1rem 0 1rem 1rem;
-}
+
 .first__infos{
     margin-bottom: 1rem;
     border-bottom: solid 2px var(--color-primary);
@@ -1464,6 +1474,9 @@ table, th, td {
     padding: 0.5rem 1rem;
     border-radius: 0.3rem;
     font-weight: 600;
+}
+.sub__btn{
+    cursor: pointer;
 }
 /*=====================================================================================================================
 ==================================== Media Queries (Medium Devices) ===================================================================
