@@ -38,6 +38,10 @@ $fetch_products_result = mysqli_query($connection, $fetch_products_query);
     <?php elseif (isset($_SESSION['delete-error'])): ?>
     <div class="alert error"><?= $_SESSION['delete-error']; unset($_SESSION['delete-error']); ?></div>
 <?php endif; ?>
+
+<?php if (isset($_SESSION['variant-success'])): ?>
+    <div class="alert success"><?= $_SESSION['variant-success']; unset($_SESSION['variant-success']); ?></div>
+<?php endif; ?>
 <!----==========================================  Dashboard Section ============================================---->
 <section class="dashboard">
     <p style="font-size: large;"><strong>Admin-Dashboard</strong></p>
@@ -121,7 +125,7 @@ if (isset($_GET['admin_choices'])) {
                     </td>
                     <td>
                     <a href="add-product-variant.php?id=<?= $row['id'] ?>">
-                        <button style="background-color:rgb(21, 203, 94);; color:white; cursor:pointer; padding:0.5rem 1rem; border-radius:0.3rem;">Créer une variante</button>
+                        <button style="background-color:rgb(21, 203, 94);; color:white; cursor:pointer; padding:0.5rem 1rem; border-radius:0.3rem;">Gestion des variantes</button>
                     </a>
                     </td>
                 </tr>

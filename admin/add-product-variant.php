@@ -39,12 +39,21 @@ if (!$product) {
 
             <form action="add-product-variant-logic.php" method="POST" enctype="multipart/form-data">
             <input type="hidden" name="id" value="<?= $product['id'] ?>">
+            <input type="hidden" name="product_color" value="<?= $product['color'] ?>">
             <div>
                 <label class="required-label" for="color">Couleur *</label>
                 <select name="color">
                     <option value='null' <?= $product['color'] === null ? 'selected' : '' ?>></option>
                     <option value="argenté" <?= $product['color'] === "argenté" ? 'selected' : '' ?>>Argenté</option>
                     <option value="doré" <?= $product['color'] === "doré" ? 'selected' : '' ?>>Doré</option>
+                </select>
+            </div>
+            <div>
+                <label class="required-label" for="en_stock">En stock *</label>
+                <select name="en_stock" value="<?= $en_stock ?>">
+                    <option value=null <?= $product['en_stock'] === null ? 'selected' : '' ?>></option>
+                    <option value=0 <?= $product['en_stock'] === 0 ? 'selected' : '' ?>>Oui</option>
+                    <option value=1 <?= $product['en_stock'] === 1 ? 'selected' : '' ?>>Non</option>
                 </select>
             </div>
             <button type="submit" name="variant_submit" class="sub__btn">Ajouter</button>

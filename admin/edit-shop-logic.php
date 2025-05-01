@@ -95,15 +95,69 @@ if (isset($_POST['shop_submit'])) {
         }
     }
     
-    
+        // Fetch shop_infos from database
+        $check_shop_infos = "SELECT * FROM shop_infos WHERE id = ?";
+        $query_shop_infos = $connection->prepare($check_shop_infos);
+        if (!$query_shop_infos) {
+            $_SESSION['shop'] = "SQL Error: " . $connection->error;
+            header("Location: edit-shop.php");
+            exit;
+        } else {
+            $query_shop_infos->bind_param("i", $id);
+            $query_shop_infos->execute();
+            $shop_infos_result = $query_shop_infos->get_result();
+            if ($shop_infos_result->num_rows > 0) {
+                $sql = "UPDATE shop_infos SET
+                    promo = ?, decouvrir_title = ?, decouvrir_text = ?, image_car_1 = ?, image_car_2 = ?, image_car_3 = ?, image_lif_1 = ?, image_lif_2 = ?,
+                    image_lif_3 = ?, image_story = ?, category_1 = ?, category_2 = ?, category_3 = ?, category_4 = ?,
+                    category_text_1 = ?, category_text_2 = ?, category_text_3 = ?, category_text_4 = ?, text_story = ?,
+                    text_info_1 = ?, text_info_2 = ?, text_info_3 = ?, title_info_1 = ?, title_info_2 = ?, title_info_3 = ?,
+                    title_lif = ?
+                    WHERE id = ?";
+                $stmt = $connection->prepare($sql);
+                if (!$stmt) {
+                    $_SESSION['shop'] = "SQL Error: " . $connection->error;
+                    header("Location: edit-shop.php");
+                    exit;
+                }
+                $stmt->bind_param("ssssssssssssssssssssssssssi",
+                    $promo, $dec_title, $dec_text, $cur_images[0], $cur_images[1], $cur_images[2], $cur_images[3], $cur_images[4],
+                    $cur_images[5], $cur_images[6], $category_1, $category_2, $category_3, $category_4, $category_text_1, 
+                    $category_text_2, $category_text_3, $category_text_4, $text_story, $text_info_1, $text_info_2, $text_info_3,
+                    $title_info_1, $title_info_2, $title_info_3, $title_lif,
+                    $id
+                );
+            } else {
+                $sql = "INSERT INTO shop_infos (
+                    promo, decouvrir_title, decouvrir_text, image_car_1, image_car_2, image_car_3, 
+                    image_lif_1, image_lif_2, image_lif_3, image_story, 
+                    category_1, category_2, category_3, category_4,
+                    category_text_1, category_text_2, category_text_3, category_text_4,
+                    text_story, text_info_1, text_info_2, text_info_3,
+                    title_info_1, title_info_2, title_info_3, title_lif
+                    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"; 
+                $stmt = $connection->prepare($sql);
+                if (!$stmt) {
+                    $_SESSION['shop'] = "SQL Error: " . $connection->error;
+                    header("Location: edit-shop.php");
+                    exit;
+                }
+                $stmt->bind_param("ssssssssssssssssssssssssss",
+                    $promo, $dec_title, $dec_text, $cur_images[0], $cur_images[1], $cur_images[2], $cur_images[3], $cur_images[4],
+                    $cur_images[5], $cur_images[6], $category_1, $category_2, $category_3, $category_4, $category_text_1, 
+                    $category_text_2, $category_text_3, $category_text_4, $text_story, $text_info_1, $text_info_2, $text_info_3,
+                    $title_info_1, $title_info_2, $title_info_3, $title_lif
+                );
+            }
+        }
         // Prepare SQL Update
-        $sql = "UPDATE shop_infos SET
-            promo = ?, decouvrir_title = ?, decouvrir_text = ?, image_car_1 = ?, image_car_2 = ?, image_car_3 = ?, image_lif_1 = ?, image_lif_2 = ?,
-            image_lif_3 = ?, image_story = ?, category_1 = ?, category_2 = ?, category_3 = ?, category_4 = ?,
-            category_text_1 = ?, category_text_2 = ?, category_text_3 = ?, category_text_4 = ?, text_story = ?,
-            text_info_1 = ?, text_info_2 = ?, text_info_3 = ?, title_info_1 = ?, title_info_2 = ?, title_info_3 = ?,
-            title_lif = ?
-            WHERE id = ?";
+        // $sql = "UPDATE shop_infos SET
+        //     promo = ?, decouvrir_title = ?, decouvrir_text = ?, image_car_1 = ?, image_car_2 = ?, image_car_3 = ?, image_lif_1 = ?, image_lif_2 = ?,
+        //     image_lif_3 = ?, image_story = ?, category_1 = ?, category_2 = ?, category_3 = ?, category_4 = ?,
+        //     category_text_1 = ?, category_text_2 = ?, category_text_3 = ?, category_text_4 = ?, text_story = ?,
+        //     text_info_1 = ?, text_info_2 = ?, text_info_3 = ?, title_info_1 = ?, title_info_2 = ?, title_info_3 = ?,
+        //     title_lif = ?
+        //     WHERE id = ?";
 
         // $sql = "INSERT INTO shop_infos (
         //     promo, decouvrir_title, decouvrir_text, image_car_1, image_car_2, image_car_3, 
@@ -114,19 +168,19 @@ if (isset($_POST['shop_submit'])) {
         //     title_info_1, title_info_2, title_info_3, title_lif
         //     ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         
-        $stmt = $connection->prepare($sql);
-        if (!$stmt) {
-            $_SESSION['shop'] = "SQL Error: " . $connection->error;
-            header("Location: edit-shop.php");
-            exit;
-        }
-        $stmt->bind_param("ssssssssssssssssssssssssssi",
-            $promo, $dec_title, $dec_text, $cur_images[0], $cur_images[1], $cur_images[2], $cur_images[3], $cur_images[4],
-            $cur_images[5], $cur_images[6], $category_1, $category_2, $category_3, $category_4, $category_text_1, 
-            $category_text_2, $category_text_3, $category_text_4, $text_story, $text_info_1, $text_info_2, $text_info_3,
-            $title_info_1, $title_info_2, $title_info_3, $title_lif,
-            $id
-        );
+        // $stmt = $connection->prepare($sql);
+        // if (!$stmt) {
+        //     $_SESSION['shop'] = "SQL Error: " . $connection->error;
+        //     header("Location: edit-shop.php");
+        //     exit;
+        // }
+        // $stmt->bind_param("ssssssssssssssssssssssssssi",
+        //     $promo, $dec_title, $dec_text, $cur_images[0], $cur_images[1], $cur_images[2], $cur_images[3], $cur_images[4],
+        //     $cur_images[5], $cur_images[6], $category_1, $category_2, $category_3, $category_4, $category_text_1, 
+        //     $category_text_2, $category_text_3, $category_text_4, $text_story, $text_info_1, $text_info_2, $text_info_3,
+        //     $title_info_1, $title_info_2, $title_info_3, $title_lif,
+        //     $id
+        // );
 
         // $stmt->bind_param("ssssssssssssssssssssssssss",
         //     $promo, $dec_title, $dec_text, $cur_images[0], $cur_images[1], $cur_images[2], $cur_images[3], $cur_images[4],
