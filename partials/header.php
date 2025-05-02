@@ -18,6 +18,7 @@ Require 'config/database.php';
 </head>
 <body>
 <div id="app" data-root-url=<?= ROOT_URL ?>></div>
+<div id="phone" data-phone-contact=<?= $phone_contact ?>></div>
 <div id="catslug" data-cat-slug=<?= $cat_slug[0] ?>></div>
 <div id="catslug1" data-cat-slug=<?= $cat_slug[1] ?>></div>
 <div id="catslug2" data-cat-slug=<?= $cat_slug[2] ?>></div>

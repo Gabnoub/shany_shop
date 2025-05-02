@@ -31,6 +31,9 @@ $shop_infos = $stmt->get_result()->fetch_assoc();
             <label for="promo">Changer le texte de promotion</label>
             <input type="text" name="promo" value="<?= htmlspecialchars($shop_infos['promo']) ?>">
 
+            <label for="phone">Changer le numero de telephone du shop</label>
+            <input type="text" name="phone_contact" value="<?= htmlspecialchars($shop_infos['phone_contact']) ?>" placeholder="ex: +237xxxxxx">
+
             <label for="decouvrir">Changer le titre de la section "DECOUVRIR"</label>
             <input type="text" name="decouvrir_title" value="<?= htmlspecialchars($shop_infos['decouvrir_title']) ?>">
 

@@ -12,6 +12,7 @@ $stmt = $connection->prepare($sql);
 $stmt->execute();
 $shop_infos = $stmt->get_result()->fetch_assoc();
 $promo = html_entity_decode($shop_infos['promo'], ENT_QUOTES, 'UTF-8') ?? ''; 
+$phone_contact = html_entity_decode($shop_infos['phone_contact'], ENT_QUOTES, 'UTF-8') ?? ''; 
 $dec_title = html_entity_decode($shop_infos['decouvrir_title'], ENT_QUOTES, 'UTF-8') ?? ''; 
 $dec_text = html_entity_decode($shop_infos['decouvrir_text'], ENT_QUOTES, 'UTF-8') ?? ''; 
 // $dec_url = $shop_infos['decouvrir_url'] ?? '';

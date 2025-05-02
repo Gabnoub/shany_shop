@@ -176,11 +176,11 @@ a.nav__link:hover::after {
     gap: 0.2rem;
 }
 #cart__qty{
-    padding: 0.2rem;
+    /* padding: 0.2rem; */
     text-align: center;
     position: absolute;
-    top: -0.9rem;
-    right: -0.7rem;
+    top: -0.6rem;
+    right: -0.4rem;
     background-color: var(--color-primary-light);
     color: var(--color-white);
     font-size: small;
@@ -189,7 +189,7 @@ a.nav__link:hover::after {
     margin: 0; */
     border-radius: 50%;
     /* border: solid 3px var(--color-white); */
-    width: 1.3rem;
+    width: 1rem;
     aspect-ratio: 1/1;
     outline: 2px solid var(--color-white);
     outline-offset: 0.7px;
@@ -218,10 +218,10 @@ a.nav__link:hover::after {
     /* background-color: #bd552c; */
 }
 #cart__qty_new{
-    padding: 0.3rem 0;
+    /* padding: 0.3rem 0; */
     position: absolute;
-    top: -0.85rem;
-    right: -0.75rem;
+    top: -0.6rem;
+    right: -0.4rem;
     background-color: var(--color-primary-light);
     color: var(--color-white);
     font-size: small;
@@ -231,7 +231,7 @@ a.nav__link:hover::after {
     border-radius: 50%;
     outline: 2px solid var(--color-black);
     outline-offset: 0.7px;
-    width: 1.3rem;
+    width: 1rem;
     aspect-ratio: 1/1;
 }
 #cart__icon_new{
@@ -391,7 +391,8 @@ a.nav__link:hover::after {
     background-color: var(--color-white);
     position: relative;
     width: 100vw;
-    aspect-ratio: 16/9;
+    height: 90vh;
+    /* aspect-ratio: 16/9; */
     /* height: 590px; */
     overflow: hidden;
     /* box-shadow: 0 4px 10px var(--color-primary); */
@@ -619,7 +620,7 @@ a.nav__link:hover::after {
     flex-direction: column;
     background-color: var(--color-primary-variant);
     /* background: linear-gradient(180deg,rgba(242, 242, 254, 1) 0%, rgba(255, 255, 255, 1) 75%); */
-    padding-bottom: 1rem;
+    padding-bottom: 2.5rem;
     
 }
 
@@ -1506,11 +1507,6 @@ table, th, td {
     }
     h5{
         font-size: 0.8rem;
-    }
-    /*======== caroussel style ==========*/
-    .caroussel{
-        width: 100vw;
-        aspect-ratio: 16/24;
     }
     /*======== Nav style ==========*/
     #menu__icon{

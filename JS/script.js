@@ -107,6 +107,7 @@ function changeQty(id, delta) {
     renderCart();
   }
 }
+// Funktion um die Anzahl der Produkte im Warenkorb zu aktualisieren
 
 const rootUrl = document.getElementById("app").dataset.rootUrl;
 // Warenkorb rendern
@@ -185,30 +186,31 @@ function renderCart() {
     const checkoutBtn = document.getElementById("whatsappCheckout");
     if (checkoutBtn) {
       checkoutBtn.onclick = () => {
-        const phone = "+237652042276";
-        const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+        // WhatsApp-Checkout
+        const phoneContact = document.getElementById("phone").dataset.phoneContact;
+        const url = `https://wa.me/${phoneContact}?text=${encodeURIComponent(message)}`;
         window.open(url, "_blank");
-        // fetch order details
+       
         
-  // Bestellung an die Datenbank senden
-  const bestellDaten = {
-    message: message,
-  };
+        // Bestellung an die Datenbank senden
+        const bestellDaten = {
+          message: message,
+        };
 
-  fetch(`${rootUrl}admin/save_orders.php`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/x-www-form-urlencoded",
-    },
-    body: new URLSearchParams(bestellDaten),
-  })
-  .then(response => response.text())
-  .then(data => {
-    console.log("Antwort vom Server:", data);
-  })
-  .catch(error => {
-    console.error("Fehler beim Senden der Bestellung:", error);
-  });
+        fetch(`${rootUrl}admin/save_orders.php`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+          },
+          body: new URLSearchParams(bestellDaten),
+        })
+        .then(response => response.text())
+        .then(data => {
+          console.log("Antwort vom Server:", data);
+        })
+        .catch(error => {
+          console.error("Fehler beim Senden der Bestellung:", error);
+        });
 
 
         

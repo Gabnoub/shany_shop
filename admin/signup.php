@@ -27,9 +27,10 @@ Require 'config/constants.php';
             </div>
         <?php endif ?>
         <form action="<?= ROOT_URL ?>admin/signup-logic.php"  enctype="multipart/form-data" method="POST">
-            <input type="text" name="username" placeholder="Username">
-            <input type="password" name="createpassword" placeholder="Create Password">
-            <input type="password" name="confirmpassword" placeholder="Confirm Password">
+            <input type="text" name="username" placeholder="Entrez votre utilisateur" required>
+            <input type="text" name="email" placeholder="Entrez votre email" required>
+            <input type="password" name="createpassword" placeholder="Entrez votre mot de passe" required>
+            <input type="password" name="confirmpassword" placeholder="Confirmez votre mot de passe" required>
             <button type="submit" name="submit" class="sub__btn">Signup</button>
         </form>
     </section>
