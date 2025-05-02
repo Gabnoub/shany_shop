@@ -123,9 +123,35 @@ img{
     justify-self: center;
 }
 .nav__logo{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap:0;
+    position: relative;
+}
+.nav__logo span:first-child{
     font-size: x-large;
     font-weight: 600;
     color: var(--color-white);
+}
+.nav__logo span:first-child::after{
+    content: "SHANY";
+    position: absolute;
+    width: 100%;
+    left: 0;
+    color: black;
+    transform: scale(1.06);
+    transition: transform 0.3s ease-in-out;
+    z-index: -1;
+}
+.nav__logo span:last-child{
+    font-size: 0.7rem;
+    font-weight: 500;
+    color: var(--color-primary-light);
+    position: absolute;
+    top: 1.5rem;
+    font-style: italic;
 }
 .nav__links{
     display: flex;
@@ -1083,15 +1109,16 @@ footer{
 ===============*/
 .rabatt_pp{
     position: absolute;
-    top: 6.5rem;
+    top: 9.6rem;
     right: 0rem;
     background-color: #EA338D;
     /* background-color: #c5091c; */
-    padding: 0.5rem 1.5rem;
+    padding: 0.1rem 0.6rem;
     /* width: 5rem; */
     color: var(--color-white);
     text-align: center;
     font-family: "Montserrat", sans-serif;
+    font-size: 1.2rem;
 }
 
 .product__container {
@@ -1162,9 +1189,8 @@ footer{
     padding: 0.5rem 3rem;
 }
 .bullets__items ul li{
-    list-style-type: square;
+    list-style-image: url(../images/diamond.png);
     padding: 0.3rem 0rem;
-
 }
 .product-image {
     flex: 1;
@@ -1260,6 +1286,33 @@ footer{
 }
 .add-to-cart-btn:hover{
     background-color: var(--color-primary-light);
+}
+.proofs{
+    display: grid;
+    place-content: center;
+    margin: 2rem 0;
+}
+.proofs__items{
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    justify-content: center;
+}
+.proofs__item{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+}
+.proofs__item img{
+    width: 50px;
+    height: 50px;
+    align-self: center;
+    padding: 0.7rem;
+    border: 1px solid black;
+    border-radius: 50%;
+    object-fit: cover;   
+    color: black;
 }
 /*=====================================================================================================================
 ==================================== Add product Page ===================================================================
@@ -1740,6 +1793,10 @@ table, th, td {
     }
     .rabatt{
         width: 3rem;
+    }
+    .bullets__items li{
+        list-style-type: square;
+        /* padding: 0.3rem 0rem; */
     }
     .related-item img {
         width: 180px;

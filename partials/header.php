@@ -31,7 +31,8 @@ Require 'config/database.php';
   <nav class="nav__container">
       <a class="nav__logo" href="<?= ROOT_URL ?>">
           <!-- <img src="assets/logo.png" alt="Logo Shany Shop" class="nav__logo--img"> -->
-              SHANY
+              <span>SHANY</span>
+              <span>Accessories</span>
       </a>
       <ul class="nav__links">
           <li class="nav__item"><a href="<?= ROOT_URL ?>categories/<?= $cat_slug[0] ?>" class="nav__link"><?= $category_1 ?></a></li>

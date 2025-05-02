@@ -56,98 +56,115 @@ $count_related = mysqli_num_rows($relatedProducts);
     <!-- Produktdetails -->
     <div class="product-section product-card" data-id="<?= htmlspecialchars($productId) ?>" data-title="<?= html_entity_decode(htmlspecialchars($product["title"])) ?>" data-sku="<?= html_entity_decode(htmlspecialchars($product["article_number"])) ?>" data-color="<?= html_entity_decode(htmlspecialchars($productColor)) ?>" data-price="<?= htmlspecialchars($product["final_price"]) ?>" data-image="<?= ROOT_URL . 'admin/images/' . htmlspecialchars($product['image1']) ?>" data-slug="<?= ($product['slug']) ?>">
   
-    <div class="product-image product-image-wrapper">
-        <!-- <img class="main__prImage" src="images/1.jpg"> -->
-        <?php if (!empty($product["image1"])): ?>
-                <img class="main__prImage main-product-image" src="<?= ROOT_URL . 'admin/images/' . htmlspecialchars($product['image1']) ?>">
-                <button class="zoom-button"><i class="uil uil-search"></i></button>
-        <?php endif; ?>
-        <div class="thumbnail">
-          <?php for ($i = 1; $i < 4; $i++): ?>
-            <?php if (!empty($product["image$i"])): ?>
-              <img class="tn__image" src="<?= ROOT_URL . 'admin/images/' . htmlspecialchars($product["image$i"]) ?>" style="cursor:pointer;">
+        <div class="product-image product-image-wrapper">
+            <!-- <img class="main__prImage" src="images/1.jpg"> -->
+            <?php if (!empty($product["image1"])): ?>
+                    <img class="main__prImage main-product-image" src="<?= ROOT_URL . 'admin/images/' . htmlspecialchars($product['image1']) ?>">
+                    <button class="zoom-button"><i class="uil uil-search"></i></button>
             <?php endif; ?>
-          <?php endfor; ?>
-        </div>
-      </div>
-      <!-- Fullscreen Modal -->
-      <div class="product-info">
-        <div class="first__infos">
-            <div id="prd_title">
-              <?php if (!empty($product["title"])): ?>
-                  <p><?= html_entity_decode(htmlspecialchars($product["title"]), ENT_QUOTES, 'UTF-8') ?></p>
-              <?php endif; ?>
-              <!-- <div id="clone_review">clone review</div>  -->
+            <div class="thumbnail">
+            <?php for ($i = 1; $i < 4; $i++): ?>
+                <?php if (!empty($product["image$i"])): ?>
+                <img class="tn__image" src="<?= ROOT_URL . 'admin/images/' . htmlspecialchars($product["image$i"]) ?>" style="cursor:pointer;">
+                <?php endif; ?>
+            <?php endfor; ?>
             </div>
-            <?php if ($product['price'] !== $product['final_price']): ?>
-              <p style="text-decoration: 1.5px line-through; font-size:1.3rem"><del><?= number_format($product['price'], 0, ',', '.') ?></del></p>
-              <p style="font-size:1.5rem"><strong><?= number_format($product['final_price'], 0, ',', '.') ?> CFA</strong></p>
-              <p style="font-size:1.3rem" class="rabatt_pp"><strong>- <?= round(100 - (($product['final_price'] * 100) / $product['price'])) ?> %</strong></p>
-            <?php else: ?>
-              <p style="font-size:1.5rem"><strong><?= number_format($product['price'], 0, ',', '.') ?> CFA</strong></p>
-            <?php endif; ?>
-
-            <!-- <?php if (!empty($product["final_price"])): ?>
-                <h4><?= htmlspecialchars($product["final_price"]) ?></h4>
-            <?php endif; ?> -->
         </div>
-        <?php if (!empty($product["color"])): ?>
-            <p class="variant-color">Couleur: <?= html_entity_decode(htmlspecialchars($productColor), ENT_QUOTES, 'UTF-8') ?></p>
-            <div class="prd_variant">
-                <div class="variant_item">                 
-                    <a class="prd-main" href="<?= ROOT_URL ?>products/<?= $product['slug'] ?>">    
-                        <div class="color-dot" data-id="<?= html_entity_decode(htmlspecialchars($product["color"])) ?>"></div>
-                    </a>                                                
+      <!-- Fullscreen Modal -->
+        <div class="product-info">
+            <div class="first__infos">
+                <div id="prd_title">
+                <?php if (!empty($product["title"])): ?>
+                    <p><?= html_entity_decode(htmlspecialchars($product["title"]), ENT_QUOTES, 'UTF-8') ?></p>
+                <?php endif; ?>
+                <!-- <div id="clone_review">clone review</div>  -->
                 </div>
-                <?php if (!empty($variantProduct)): ?>
-                    <div class="variant_item">
-                        <a class="prd-variant" href="<?= ROOT_URL ?>products/<?= $product['slug'] ?>/variant/<?= urlencode($variantProduct['id']) ?>">    
-                            <div class="color-dot" data-id="<?= html_entity_decode(htmlspecialchars($variantProduct["color"])) ?>"></div>
+                <?php if ($product['price'] !== $product['final_price']): ?>
+                <p style="text-decoration: 1.1px line-through; font-size:1.3rem"><del><?= number_format($product['price'], 0, ',', '.') ?></del></p>
+                <p style="font-size:1.5rem"><strong><?= number_format($product['final_price'], 0, ',', '.') ?> CFA</strong></p>
+                <p class="rabatt_pp"><strong>- <?= round(100 - (($product['final_price'] * 100) / $product['price'])) ?> %</strong></p>
+                <?php else: ?>
+                <p style="font-size:1.5rem"><strong><?= number_format($product['price'], 0, ',', '.') ?> CFA</strong></p>
+                <?php endif; ?>
+
+                <!-- <?php if (!empty($product["final_price"])): ?>
+                    <h4><?= htmlspecialchars($product["final_price"]) ?></h4>
+                <?php endif; ?> -->
+            </div>
+            <?php if (!empty($product["color"])): ?>
+                <p class="variant-color">Couleur: <?= html_entity_decode(htmlspecialchars($productColor), ENT_QUOTES, 'UTF-8') ?></p>
+                <div class="prd_variant">
+                    <div class="variant_item">                 
+                        <a class="prd-main" href="<?= ROOT_URL ?>products/<?= $product['slug'] ?>">    
+                            <div class="color-dot" data-id="<?= html_entity_decode(htmlspecialchars($product["color"])) ?>"></div>
                         </a>                                                
                     </div>
-                <?php endif; ?>
-            </div>
-        <?php endif; ?>
-        <div class="specific__infos">
-            <ul>
-                <!-- <?php if (!empty($product["color"])): ?>
-                <li class="color_prd"><strong>Couleur: </strong><?= html_entity_decode(htmlspecialchars($product["color"]), ENT_QUOTES, 'UTF-8') ?></li>
-                <?php endif; ?> -->
-                <!-- <?php if (!empty($product["material"])): ?>
-                <li><strong>Matière: </strong><?= html_entity_decode(htmlspecialchars($product["material"]), ENT_QUOTES, 'UTF-8') ?></li>
-                <?php endif; ?>
-                <?php if (!empty($product["size"])): ?>
-                <li><strong>Taille: </strong><?= html_entity_decode(htmlspecialchars($product["size"]), ENT_QUOTES, 'UTF-8') ?></li>
-                <?php endif; ?> -->
-
-            </ul>
-        </div>
-
-        <button style="cursor:pointer;" class="add-to-cart-btn">Ajouter au panier</button>
-
-
-        <div class="bullets">
-            <?php if (!empty($product["description1"])): ?>
-                <p class="bullets__start"><?= html_entity_decode(htmlspecialchars($product["description1"]), ENT_QUOTES, 'UTF-8') ?></p>
+                    <?php if (!empty($variantProduct)): ?>
+                        <div class="variant_item">
+                            <a class="prd-variant" href="<?= ROOT_URL ?>products/<?= $product['slug'] ?>/variant/<?= urlencode($variantProduct['id']) ?>">    
+                                <div class="color-dot" data-id="<?= html_entity_decode(htmlspecialchars($variantProduct["color"])) ?>"></div>
+                            </a>                                                
+                        </div>
+                    <?php endif; ?>
+                </div>
             <?php endif; ?>
-            <div class="bullets__items">
+            <div class="specific__infos">
                 <ul>
-                    <?php for ($i = 1; $i <= 4; $i++): ?>
-                      <?php if (!empty($product["bulletpoint$i"])): ?>
-                        <li><?= html_entity_decode(htmlspecialchars($product["bulletpoint$i"]), ENT_QUOTES, 'UTF-8') ?></li>
-                      <?php endif; ?>
-                    <?php endfor; ?>
+                    <!-- <?php if (!empty($product["color"])): ?>
+                    <li class="color_prd"><strong>Couleur: </strong><?= html_entity_decode(htmlspecialchars($product["color"]), ENT_QUOTES, 'UTF-8') ?></li>
+                    <?php endif; ?> -->
+                    <!-- <?php if (!empty($product["material"])): ?>
+                    <li><strong>Matière: </strong><?= html_entity_decode(htmlspecialchars($product["material"]), ENT_QUOTES, 'UTF-8') ?></li>
+                    <?php endif; ?>
+                    <?php if (!empty($product["size"])): ?>
+                    <li><strong>Taille: </strong><?= html_entity_decode(htmlspecialchars($product["size"]), ENT_QUOTES, 'UTF-8') ?></li>
+                    <?php endif; ?> -->
+
                 </ul>
             </div>
-            <?php if (!empty($product["description2"])): ?>
-                <p class="bullets__end"><?= html_entity_decode(htmlspecialchars($product["description2"]), ENT_QUOTES, 'UTF-8')  ?></p>
-            <?php endif; ?>
+
+            <button style="cursor:pointer;" class="add-to-cart-btn">Ajouter au panier</button>
+
+
+            <div class="bullets">
+                <?php if (!empty($product["description1"])): ?>
+                    <p class="bullets__start"><?= html_entity_decode(htmlspecialchars($product["description1"]), ENT_QUOTES, 'UTF-8') ?></p>
+                <?php endif; ?>
+                <div class="bullets__items">
+                    <ul>
+                        <?php for ($i = 1; $i <= 4; $i++): ?>
+                        <?php if (!empty($product["bulletpoint$i"])): ?>
+                            <li><?= html_entity_decode(htmlspecialchars($product["bulletpoint$i"]), ENT_QUOTES, 'UTF-8') ?></li>
+                        <?php endif; ?>
+                        <?php endfor; ?>
+                    </ul>
+                </div>
+                <?php if (!empty($product["description2"])): ?>
+                    <p class="bullets__end"><?= html_entity_decode(htmlspecialchars($product["description2"]), ENT_QUOTES, 'UTF-8')  ?></p>
+                <?php endif; ?>
+            </div>
+
+            <div class="proofs">
+                <div class="proofs__items">
+                    <div class="proofs__item">
+                        <img src="<?= ROOT_URL ?>images/water-drop.png">
+                        <p>Résistant à l’eau</p>
+                    </div>
+                    <div class="proofs__item">
+                        <img src="<?= ROOT_URL ?>images/feather.png">
+                        <p>Respectueux de la peau</p>
+                    </div>
+                    <div class="proofs__item">
+                        <img src="<?= ROOT_URL ?>images/24-7.png">
+                        <p>Adapté au quotidien</p>
+                    </div>
+                </div>
+            </div>                    
         </div>
-
-      </div>
     </div>
-
 </div>
+
+<!----========================================== Related Products Section ============================================---->
     <!-- Ähnliche Produkte -->
 <?php if ($count_related > 0): ?>
     
