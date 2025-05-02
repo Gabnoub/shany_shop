@@ -5,8 +5,9 @@
 
 :root{
     --color-primary: #301941;
-    --color-primary-light: #EA338D;
-    --color-primary-variant: #E6E1F9;
+    --color-primary-light: #E8C06D;
+    /* --color-primary-variant1: #E6E1F9; */
+    --color-primary-variant: #f9f9f9;
     --color-red: #da0f3f;
     --color-red-light: hsl(346, 87%, 46%, 15%);
     --color-green: #00c476;
@@ -92,7 +93,58 @@ img{
     width: 100%;
     object-fit: cover;
 }
-
+.rose-gold {
+    background: linear-gradient(135deg, #f4e2d8, #e7bfb1, #b76e79, #eac0aa);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-weight: bold;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+    text-shadow: 0 1px 1px rgba(0,0,0,0.1);
+    transition: transform 0.2s ease;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+.rose-gold:hover {
+    transform: scale(1.05);
+}
+.gold {
+    background: linear-gradient(135deg, #fff8dc, #f1c27d, #d4af37, #bfa035);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-weight: bold;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+    text-shadow: 0 1px 1px rgba(0,0,0,0.1);
+    transition: transform 0.2s ease;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+.gold:hover {
+    transform: scale(1.05);
+}
+.silver {
+    background: linear-gradient(135deg, #f8f8f8, #dcdcdc, #b0b0b0, #a0a0a0);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-weight: bold;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+    text-shadow: 0 1px 1px rgba(0,0,0,0.1);
+    transition: transform 0.2s ease;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+.silver:hover {
+    transform: scale(1.05);
+}
+    
 /*=====================================================================================================================
 ==================================== Promotion STYLES ===================================================================
 ===============*/
@@ -147,8 +199,8 @@ img{
 }
 .nav__logo span:last-child{
     font-size: 0.7rem;
-    font-weight: 500;
-    color: var(--color-primary-light);
+    font-weight: 600;
+    color: #FFD700;
     position: absolute;
     top: 1.5rem;
     font-style: italic;
@@ -208,7 +260,7 @@ a.nav__link:hover::after {
     top: -0.6rem;
     right: -0.4rem;
     background-color: var(--color-primary-light);
-    color: var(--color-white);
+    color: white;
     font-size: small;
     font-weight: 600;
     /* padding: 0;
@@ -625,7 +677,7 @@ a.nav__link:hover::after {
     position: absolute;
     top: 0rem;
     left: 0rem;
-    background-color: #EA338D;
+    background-color: var(--color-primary-light);
     padding: 0.5rem 0;
     /* z-index: 10; */
     width: 4rem;
@@ -646,7 +698,7 @@ a.nav__link:hover::after {
     flex-direction: column;
     background-color: var(--color-primary-variant);
     /* background: linear-gradient(180deg,rgba(242, 242, 254, 1) 0%, rgba(255, 255, 255, 1) 75%); */
-    padding-bottom: 2.5rem;
+    padding: 3rem 0;
     
 }
 
@@ -940,9 +992,10 @@ a.nav__link:hover::after {
     font-size: 1.1rem;
     border-radius: 0.3rem;
     margin-top: 2rem;
-    background: #19002b;;
+    background: var(--color-primary-light);
     padding: 1rem 2rem;
     cursor: pointer;
+    margin-bottom: 3rem;
 }
 .open__product:hover{
     background-color: var(--color-primary);
@@ -961,7 +1014,6 @@ a.nav__link:hover::after {
     text-align: center;
     /* gap: 20px; */
     padding: 0.5rem 1rem;
-    margin-top: 3rem;
 }
 .info_item{
     padding: 1rem;
@@ -1111,7 +1163,7 @@ footer{
     position: absolute;
     top: 9.6rem;
     right: 0rem;
-    background-color: #EA338D;
+    background-color: var(--color-primary-light);
     /* background-color: #c5091c; */
     padding: 0.1rem 0.6rem;
     /* width: 5rem; */
@@ -1124,6 +1176,7 @@ footer{
 .product__container {
     max-width: 1200px;
     margin: auto;
+    position: relative;
 }
 
 .product-section {
@@ -1189,8 +1242,14 @@ footer{
     padding: 0.5rem 3rem;
 }
 .bullets__items ul li{
-    list-style-image: url(../images/diamond.png);
+    /* list-style-image: url(../images/diamond.png); */
     padding: 0.3rem 0rem;
+    list-style: none;
+}
+.uil-check-square{
+    color: var(--color-primary);
+    font-size: 1.5rem;
+    margin-right: 0.5rem;
 }
 .product-image {
     flex: 1;
@@ -1237,7 +1296,10 @@ footer{
     font-size: 16px;
     line-height: 1.5;
 }
-
+.related-products{
+    background-color: #f9f9f9;
+    padding: 3rem 0;
+}
 .related-products h2{
     text-align: center;
     margin: 2rem 0;
@@ -1291,6 +1353,7 @@ footer{
     display: grid;
     place-content: center;
     margin: 2rem 0;
+    font-weight: 500;
 }
 .proofs__items{
     display: flex;
@@ -1309,7 +1372,7 @@ footer{
     height: 50px;
     align-self: center;
     padding: 0.7rem;
-    border: 1px solid black;
+    border: 3px solid var(--color-black);
     border-radius: 50%;
     object-fit: cover;   
     color: black;
@@ -1732,7 +1795,6 @@ table, th, td {
         flex-direction: column;
         text-align: center;
         padding: 0.5rem;
-        margin-top: 2rem;
     }
     .info_item{
         padding: 0.5rem;
@@ -1818,9 +1880,8 @@ table, th, td {
 
 /*------------------------------------------------------ Reviews Section in product page ------------------------------------------------------ */
 .comments-section {
-    margin-top: 50px;
-    padding: 20px;
-    background-color: #f9f9f9;
+    padding: 3rem 0;
+    background-color: var(--color-white);
     border-radius: 5px;
     color: black;
     position: relative;
@@ -1869,7 +1930,6 @@ table, th, td {
     margin-left: 10px;
     font-size: 16px;
 }
-
 /* Bewertungsformular */
 #review{
     justify-self: center;
@@ -1976,7 +2036,7 @@ table, th, td {
 
 /* Kommentarliste */
 .comments-list {
-    margin-top: 30px;
+    padding: 0 2rem;
 }
 
 .comments-list h3 {
@@ -2229,8 +2289,8 @@ table, th, td {
   
   .zoom-button {
     position: absolute;
-    bottom: 140px;
-    right: 10px;
+    top: 0.3rem;
+    right: 0.3rem;
     background-color: rgba(255, 255, 255, 0.8);
     color: black;
     font-weight: 700;
@@ -2277,4 +2337,15 @@ table, th, td {
     color: white;
     cursor: pointer;
     font-weight: bold;
+  }
+  .manage_variants{
+    display: flex;
+    justify-content: space-between;
+    color: black;
+    padding: 2rem;
+  }
+  .manage_variants .add__products table a{
+    color: white;
+    background-color: #ca3937;
+    padding: 0.5rem 1rem;
   }

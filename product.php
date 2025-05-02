@@ -77,7 +77,7 @@ $count_related = mysqli_num_rows($relatedProducts);
                 <?php if (!empty($product["title"])): ?>
                     <p><?= html_entity_decode(htmlspecialchars($product["title"]), ENT_QUOTES, 'UTF-8') ?></p>
                 <?php endif; ?>
-                <!-- <div id="clone_review">clone review</div>  -->
+                <!-- <div class="clone_review">clone review</div>  -->
                 </div>
                 <?php if ($product['price'] !== $product['final_price']): ?>
                 <p style="text-decoration: 1.1px line-through; font-size:1.3rem"><del><?= number_format($product['price'], 0, ',', '.') ?></del></p>
@@ -134,7 +134,7 @@ $count_related = mysqli_num_rows($relatedProducts);
                     <ul>
                         <?php for ($i = 1; $i <= 4; $i++): ?>
                         <?php if (!empty($product["bulletpoint$i"])): ?>
-                            <li><?= html_entity_decode(htmlspecialchars($product["bulletpoint$i"]), ENT_QUOTES, 'UTF-8') ?></li>
+                            <li><i class="uil uil-check-square"></i><?= html_entity_decode(htmlspecialchars($product["bulletpoint$i"]), ENT_QUOTES, 'UTF-8') ?></li>
                         <?php endif; ?>
                         <?php endfor; ?>
                     </ul>
@@ -169,7 +169,7 @@ $count_related = mysqli_num_rows($relatedProducts);
 <?php if ($count_related > 0): ?>
     
     <div class="related-products">
-        <h2>Vous aimerez également:</h2>
+        <h2>Complétez votre look avec</h2>
         <div class="related-grid">
         <?php while($relProduct = $relatedProducts->fetch_assoc()): ?>
             <div class="related-item">
@@ -312,9 +312,9 @@ unset($_SESSION['review_data']);
                     <div class="comment-rating">
                         <?php for ($i = 1; $i <= 5; $i++): ?>
                             <?php if ($i <= $comment['rating']): ?>
-                                <span class="star">★</span>
+                                <span style="color: #FFD700" class="star">★</span>
                             <?php else: ?>
-                                <span class="star">☆</span>
+                                <span style="color: #FFD700" class="star">☆</span>
                             <?php endif; ?>
                         <?php endfor; ?>
                     </div>

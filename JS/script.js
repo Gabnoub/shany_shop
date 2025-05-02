@@ -518,28 +518,28 @@ const colorMap = {
   doré: "#E8C06D",
   argenté: "#C0C0C0",
 };
+
 const variant = document.querySelector(".variant-color").innerHTML;
 const variantColor = variant.replace("Couleur: ","");
-
-
 const colorDots = document.querySelectorAll(".color-dot");
 colorDots.forEach(dot => {
   dot.classList.remove("active");
   if (dot.dataset.id) {
     const productColorName = dot.dataset.id;
-    const hexColor = colorMap[productColorName.toLowerCase()] || "#ccc";
-
-    dot.style = `
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      background-color: ${hexColor};
-      margin-bottom: 10px;
-    `;  
+    if (productColorName) {
+      if (productColorName === "doré") {
+        dot.classList.add("gold");
+      }
+      if (productColorName === "argenté") {
+        dot.classList.add("silver");
+      }
+      if (productColorName === "rosé") {
+        dot.classList.add("rose-gold");
+      }
+    }
 
     if (variantColor === dot.dataset.id) {
     dot.classList.add("active");
-    console.log(variantColor);
     }
   }
 })
@@ -551,8 +551,8 @@ colorDots.forEach(dot => {
   const prd_el = document.createElement("div");
   prd_el.className = "clone_review";
   const rat_count = document.querySelector(".rating-count").innerHTML;
-  prd_el.innerHTML = reviews+rat_count.replace(" avis","");
-  // rat_html = `<div  class="rating-count">${reviews} ${rat_count}</div>`;
+  let rat_html = `<div style=\"font-size:1.1rem\"">${reviews} ${rat_count}</div>`;
+  prd_el.innerHTML = rat_html;
   prdTitle.appendChild(prd_el);
 
 //
