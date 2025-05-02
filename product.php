@@ -54,7 +54,7 @@ $count_related = mysqli_num_rows($relatedProducts);
   <img class="zoomed-image" src="" alt="Zoomed Image">
 </div>
     <!-- Produktdetails -->
-    <div class="product-section product-card" data-id="<?= htmlspecialchars($productId) ?>" data-title="<?= html_entity_decode(htmlspecialchars($product["title"])) ?>" data-color="<?= html_entity_decode(htmlspecialchars($productColor)) ?>" data-price="<?= htmlspecialchars($product["final_price"]) ?>" data-image="<?= ROOT_URL . 'admin/images/' . htmlspecialchars($product['image1']) ?>" data-slug="<?= ($product['slug']) ?>">
+    <div class="product-section product-card" data-id="<?= htmlspecialchars($productId) ?>" data-title="<?= html_entity_decode(htmlspecialchars($product["title"])) ?>" data-sku="<?= html_entity_decode(htmlspecialchars($product["article_number"])) ?>" data-color="<?= html_entity_decode(htmlspecialchars($productColor)) ?>" data-price="<?= htmlspecialchars($product["final_price"]) ?>" data-image="<?= ROOT_URL . 'admin/images/' . htmlspecialchars($product['image1']) ?>" data-slug="<?= ($product['slug']) ?>">
   
     <div class="product-image product-image-wrapper">
         <!-- <img class="main__prImage" src="images/1.jpg"> -->
@@ -84,7 +84,7 @@ $count_related = mysqli_num_rows($relatedProducts);
               <p style="font-size:1.5rem"><strong><?= number_format($product['final_price'], 0, ',', '.') ?> CFA</strong></p>
               <p style="font-size:1.3rem" class="rabatt_pp"><strong>- <?= round(100 - (($product['final_price'] * 100) / $product['price'])) ?> %</strong></p>
             <?php else: ?>
-              <p><strong><?= number_format($product['price'], 0, ',', '.') ?> CFA</strong></p>
+              <p style="font-size:1.5rem"><strong><?= number_format($product['price'], 0, ',', '.') ?> CFA</strong></p>
             <?php endif; ?>
 
             <!-- <?php if (!empty($product["final_price"])): ?>

@@ -69,6 +69,10 @@ if (!$product) {
             </div>
             <label class="required-label" for="title">Titre *</label>
             <input type="text" name="title" value="<?= htmlspecialchars($product['title']) ?>">
+
+            <label class="required-label" for="article_number">Numero d'article *</label>
+            <input type="text" name="article_number" value="<?= htmlspecialchars($product['article_number']) ?>">
+
             <label for="material">Material</label>
             <input type="text" name="material" value="<?= htmlspecialchars($product['material']) ?>">
             <!-- <label for="color">Couleur</label>

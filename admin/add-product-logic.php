@@ -6,6 +6,7 @@ if (isset($_POST['add_submit'])) {
     $category = intval(filter_var($_POST['category'], FILTER_SANITIZE_FULL_SPECIAL_CHARS));
     $en_stock = filter_var($_POST['en_stock'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     $title = filter_var($_POST['title'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+    $article_number = filter_var($_POST['article_number'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     $material = filter_var($_POST['material'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     $color = filter_var($_POST['color'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     $size = filter_var($_POST['size'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
@@ -35,6 +36,8 @@ if (isset($_POST['add_submit'])) {
         $_SESSION['add'] = "Color is required";
     } elseif (!$title) {
         $_SESSION['add'] = "Title is required";
+    } elseif (!$article_number) {
+        $_SESSION['add'] = "Article number is required"; 
     } elseif (!$description1) {
         $_SESSION['add'] = "Description 1 is required";
     } elseif (!$price) {
@@ -82,17 +85,17 @@ if (isset($_POST['add_submit'])) {
     $sql = "INSERT INTO products (
         category, en_stock, title, material, color, size,
         description1, bulletpoint1, bulletpoint2, bulletpoint3, bulletpoint4,
-        description2, image1, image2, image3, image4, image5, image6, price, discount, final_price, slug, cat_slug
-    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        description2, image1, image2, image3, image4, image5, image6, price, discount, final_price, slug, cat_slug, article_number
+    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
     $stmt = $connection->prepare($sql);
     $stmt->bind_param(
-        "iissssssssssssssssiiiss",
+        "iissssssssssssssssiiisss",
         $category, $en_stock, $title, $material, $color, $size,
         $description1, $bulletpoint1, $bulletpoint2, $bulletpoint3, $bulletpoint4,
         $description2,
         $image_names[1], $image_names[2], $image_names[3], $image_names[4], $image_names[5], $image_names[6],
-        $price, $discount, $final_price, $slug, $catslug
+        $price, $discount, $final_price, $slug, $catslug, $article_number
     );
     
 

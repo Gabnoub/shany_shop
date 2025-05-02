@@ -122,6 +122,7 @@ function renderCart() {
   let totalPrice = 0;
   
   let message = `🛍️ Nouvelle commande: \n`;
+  message += `📦 SKU | Nom du produit | Couleur | Quantité | Prix\n`;
   // 💰 Gesamtpreis berechnen
   let total_price = Object.values(cart).reduce((sum, p) => sum + p.qty * p.price, 0);
   let summe = total_price.toLocaleString('de-DE') + " CFA";
@@ -135,7 +136,14 @@ function renderCart() {
       totalItems += p.qty;
       const lineTotal = p.qty * p.price;
       totalPrice += lineTotal;
-      message += `• (${p.title}, ${p.color}) x${p.qty} = ${lineTotal.toLocaleString('de-DE')} CFA\n`;
+      // Eintrag formatieren
+      const artikelnummer = p.sku; 
+      const produktname = p.title;
+      const farbe = p.color || "-";
+      const anzahl = p.qty;
+      const gesamt = lineTotal.toLocaleString('de-DE') + " CFA";
+      // message += `• (${p.title}, ${p.color}) x${p.qty} = ${lineTotal.toLocaleString('de-DE')} CFA\n`;
+      message += `${artikelnummer} | ${produktname} | ${farbe} | ${anzahl} | ${gesamt}\n`;
 
       const el = document.createElement("div");
       el.className = "cart__product-item";
@@ -473,7 +481,8 @@ newProductContainer.addEventListener('touchend', function(e) {
           price: parseInt(product.dataset.price),
           image: product.dataset.image,
           color: product.dataset.color,
-          _slug: product.dataset.slug
+          _slug: product.dataset.slug,
+          sku: product.dataset.sku
         });
         console.log(product.dataset.id);
       })

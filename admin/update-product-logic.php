@@ -2,10 +2,11 @@
 require_once 'config/database.php';
 
 if (isset($_POST['edit_submit']) && isset($_POST['id'])) {
-    $id = filter_var($_POST['id'], FILTER_SANITIZE_NUMBER_INT);
+    $id = (int) filter_var($_POST['id'], FILTER_SANITIZE_NUMBER_INT);
     $category = filter_var($_POST['category'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     $en_stock = filter_var($_POST['en_stock'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     $title = filter_var($_POST['title'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+    $article_number = filter_var($_POST['article_number'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     $material = filter_var($_POST['material'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     $color = filter_var($_POST['color'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     $size = filter_var($_POST['size'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
@@ -22,7 +23,7 @@ if (isset($_POST['edit_submit']) && isset($_POST['id'])) {
 
 
 // check if product name already exists
-$product_check_query = "SELECT * FROM products WHERE slug='$slug'";
+$product_check_query = "SELECT * FROM products WHERE slug='$slug' AND id != $id";
 $product_check_result = mysqli_query($connection, $product_check_query);
 
     // validate input
@@ -34,6 +35,8 @@ $product_check_result = mysqli_query($connection, $product_check_query);
         $_SESSION['add'] = "Color is required";
     } elseif (!$title) {
         $_SESSION['edit'] = "Title is required";
+    } elseif (!$article_number) {
+        $_SESSION['edit'] = "Article number is required"; 
     } elseif (!$description1) {
         $_SESSION['edit'] = "Description is required";
     } elseif (!$price) {
@@ -104,14 +107,14 @@ $product_check_result = mysqli_query($connection, $product_check_query);
 
         // Prepare SQL Update
         $sql = "UPDATE products SET
-            category = ?, en_stock = ?, title = ?, material = ?, color = ?, size = ?,
+            category = ?, en_stock = ?, title = ?, article_number = ?, material = ?, color = ?, size = ?,
             description1 = ?, bulletpoint1 = ?, bulletpoint2 = ?, bulletpoint3 = ?, bulletpoint4 = ?, description2 = ?,
             image1 = ?, image2 = ?, image3 = ?, image4 = ?, image5 = ?, image6 = ?, price = ?, discount = ?, final_price = ?, slug = ?, cat_slug = ?
             WHERE id = ?" ;
 
         $stmt = $connection->prepare($sql);
-        $stmt->bind_param("iissssssssssssssssiiissi",
-            $category, $en_stock, $title, $material, $color, $size,
+        $stmt->bind_param("iisssssssssssssssssiiissi",
+            $category, $en_stock, $title, $article_number, $material, $color, $size,
             $description1, $bulletpoint1, $bulletpoint2, $bulletpoint3, $bulletpoint4, $description2,
             $cur_images[0], $cur_images[1], $cur_images[2], $cur_images[3], $cur_images[4], $cur_images[5],
             $price, $discount, $final_price, $slug, $catslug,

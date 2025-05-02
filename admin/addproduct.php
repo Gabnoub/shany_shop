@@ -5,6 +5,7 @@ Include 'partials/header.php';
 $category = $_SESSION['add-data']['category'] ?? null;
 $en_stock = $_SESSION['add-data']['en_stock'] ?? null;
 $title = $_SESSION['add-data']['title'] ?? null;
+$article_number = $_SESSION['add-data']['article_number'] ?? null;
 $material = $_SESSION['add-data']['material'] ?? null;
 $color = $_SESSION['add-data']['color'] ?? null;
 $size = $_SESSION['add-data']['size'] ?? null;
@@ -64,6 +65,8 @@ unset($_SESSION['add-data']);
             </div>
             <label class="required-label" for="title">Titre *</label>
             <input type="text" name="title" value="<?= htmlspecialchars($title) ?>" placeholder="Titre">
+            <label class="required-label" for="article_number">Titre *</label>
+            <input type="text" name="article_number" value="<?= htmlspecialchars($article_number) ?>" placeholder="Numero d'article">
             <label for="material">Material</label>
             <input type="text" name="material" value="<?= htmlspecialchars($material) ?>" placeholder="Material">
             <!-- <label for="color">Couleur</label>
