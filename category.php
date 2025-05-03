@@ -111,7 +111,7 @@ if (!$fetch_products_result) {
         <?php while($row = $fetch_products_result->fetch_assoc()): ?>
             <div class="cat__product-item">
                 <a class="cat__pr_link" href="<?= ROOT_URL ?>products/<?= $row['slug'] ?>"><img src="<?= ROOT_URL ?>admin/images/<?= htmlspecialchars($row['image1']) ?>">
-                <p class="cat__pr__title"><?= htmlspecialchars($row['title']) ?></p>
+                <p class="cat__pr__title"><?= html_entity_decode(htmlspecialchars($row['title'])) ?></p>
                 <?php if ($row['price'] !== $row['final_price']): ?>
                 <p class="cat__pr__price"><del style="text-decoration: 1.1px line-through;"><?= number_format($row['price'], 0, ',', '.') ?></del>  <strong><?= number_format($row['final_price'], 0, ',', '.') ?> CFA</strong></p>
                 <button class="rabatt">- <?= round(100 - (($row['final_price'] * 100) / $row['price'])) ?> %</button>

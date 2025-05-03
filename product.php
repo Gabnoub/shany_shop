@@ -43,7 +43,7 @@ if ($slug) {
                     $productColor = $variantColors[0];
                 } 
                 // $productColor = $variantColors[0];
-                $productId = intval($product['id']) * 10000;
+                $productId = intval($product['id']) * 1000;
             } elseif ($variant === 1) {
                 $product["image1"] = $product["image7"];
                 $product["image2"] = $product["image8"];
@@ -51,7 +51,7 @@ if ($slug) {
                 if (isset($variantColors[1])) {
                     $productColor = $variantColors[1];
                 } 
-                $productId = intval($product['id']) * 10000;
+                $productId = intval($product['id']) * 1000000;
             } 
         } 
         

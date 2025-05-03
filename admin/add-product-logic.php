@@ -18,7 +18,7 @@ if (isset($_POST['add_submit'])) {
     $description2 = filter_var($_POST['description2'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     $price = filter_var($_POST['price'], FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
     $discount = filter_var($_POST['discount'], FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
-    $image1 = $_FILES['image1'];
+    $image1 = $_FILES['image1'] ?? null;
     $slug = preg_replace('/[^a-zA-Z0-9\-_]/', '-', $title);
     $catslug = $cat_slug[$category];
 
@@ -54,8 +54,19 @@ if (isset($_POST['add_submit'])) {
 
     // Bilder
     $time = time();
-    $images = [$_FILES['image1'], $_FILES['image2'], $_FILES['image3'], $_FILES['image4'], $_FILES['image5'], $_FILES['image6'],
-            $_FILES['image7'], $_FILES['image8'], $_FILES['image9']];
+     // Process uploaded images
+    //  $image1 = $_FILES['image1'] ?? null;
+     $image2 = $_FILES['image2'] ?? null;
+     $image3 = $_FILES['image3'] ?? null;
+     $image4 = $_FILES['image4'] ?? null;
+     $image5 = $_FILES['image5'] ?? null;
+     $image6 = $_FILES['image6'] ?? null;
+     $image7 = $_FILES['image7'] ?? null;
+     $image8 = $_FILES['image8'] ?? null;
+     $image9 = $_FILES['image9'] ?? null;
+
+    // Create an array of images
+    $images = [$image1, $image2, $image3, $image4, $image5, $image6, $image7, $image8, $image9];
     $image_names[] = '';
 
 
@@ -86,7 +97,11 @@ if (isset($_POST['add_submit'])) {
     $sql = "INSERT INTO products (
         category, en_stock, title, material, color, size,
         description1, bulletpoint1, bulletpoint2, bulletpoint3, bulletpoint4,
-        description2, image1, image2, image3, image4, image5, image6, image7, image8, image9, price, discount, final_price, slug, cat_slug, article_number
+        description2, 
+        image1, image2, image3, 
+        image4, image5, image6, 
+        image7, image8, image9, 
+        price, discount, final_price, slug, cat_slug, article_number
     ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
     $stmt = $connection->prepare($sql);
@@ -95,7 +110,9 @@ if (isset($_POST['add_submit'])) {
         $category, $en_stock, $title, $material, $color, $size,
         $description1, $bulletpoint1, $bulletpoint2, $bulletpoint3, $bulletpoint4,
         $description2,
-        $image_names[1], $image_names[2], $image_names[3], $image_names[4], $image_names[5], $image_names[6], $image_names[7], $image_names[8], $image_names[9],
+        $image_names[1], $image_names[2], $image_names[3], 
+        $image_names[4], $image_names[5], $image_names[6], 
+        $image_names[7], $image_names[8], $image_names[9],
         $price, $discount, $final_price, $slug, $catslug, $article_number
     );
     

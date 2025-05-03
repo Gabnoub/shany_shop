@@ -61,6 +61,7 @@ unset($_SESSION['add-data']);
                     <option value='null' <?= $color === null ? 'selected' : '' ?>></option>
                     <option value="doré" <?= $color === "argenté" ? 'selected' : '' ?>>Argenté</option>
                     <option value="argenté" <?= $color === "doré" ? 'selected' : '' ?>>Doré</option>
+                    <option value="rosé" <?= $color === "rosé" ? 'selected' : '' ?>>Rosé</option>
                 </select>
             </div>
             <label class="required-label" for="title">Titre *</label>
