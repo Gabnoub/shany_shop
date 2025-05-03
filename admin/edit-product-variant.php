@@ -48,16 +48,6 @@ if (!$product_variants) {
             <input type="hidden" name="id" value="<?= $product_variants['id'] ?>">
             <input type="hidden" name="product_id" value="<?= $product_variants['product_id'] ?>">
             <div>
-                <label class="required-label" for="color">Couleur *</label>
-                <select name="color">
-                    <option value='null' <?= $product_variants['color'] === null ? 'selected' : '' ?>></option>
-                    <option value="argenté" <?= $product_variants['color'] === "argenté" ? 'selected' : '' ?>>Argenté</option>
-                    <option value="doré" <?= $product_variants['color'] === "doré" ? 'selected' : '' ?>>Doré</option>
-                    <option value="rosé" <?= $product_variants['color'] === "rosé" ? 'selected' : '' ?>>Rosé</option>
-                </select>
-                </select>
-            </div>
-            <div>
                 <label class="required-label" for="en_stock">En stock *</label>
                 <select name="en_stock" value="<?= $en_stock ?>">
                     <option value=null <?= $product_variants['en_stock'] === null ? 'selected' : '' ?>></option>

@@ -69,7 +69,7 @@ $product_variants = $stmt_var->get_result()->fetch_all(MYSQLI_ASSOC);
                                 <td><?= html_entity_decode(htmlspecialchars($variant['color'])) ?></td>
                                 <td><?= htmlspecialchars($variant['en_stock'] == 0 ? 'Oui' : 'Non') ?></td>
                                 <td><a href="edit-product-variant.php?id=<?= $variant['id'] ?>">Modifier</a></td>
-                                <td><a href="delete-variant.php?id=<?= $variant['id'] ?>">Supprimer</a></td>
+                                <td><a href="delete-variant.php?id=<?= $variant['id'] ?>" onclick="return confirm('Sur de vouloir supprimer ce variant?')">Supprimer</a></td>
                             </tr>
                         <?php endforeach; ?>
                     </tbody>
@@ -97,7 +97,7 @@ $product_variants = $stmt_var->get_result()->fetch_all(MYSQLI_ASSOC);
 
                 <form action="add-product-variant-logic.php" method="POST" enctype="multipart/form-data">
                 <input type="hidden" name="id" value="<?= $product['id'] ?>">
-                <input type="hidden" name="product_color" value="<?= $product['color'] ?>">
+                <input type="hidden" name="product_color" value="<?= html_entity_decode(htmlspecialchars($product['color'])) ?>">
                 <div>
                     <label class="required-label" for="color">Couleur *</label>
                     <select name="color">

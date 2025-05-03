@@ -5,7 +5,7 @@
 
 :root{
     --color-primary: #301941;
-    --color-primary-light: #E8C06D;
+    --color-primary-light: #c79a42;
     /* --color-primary-variant1: #E6E1F9; */
     --color-primary-variant: #f9f9f9;
     --color-red: #da0f3f;
@@ -1137,7 +1137,7 @@ footer{
     text-align: center;
     flex-wrap: wrap;
     /* background-color: var(--color-green); */
-    margin-top: 2rem;
+    margin: 2rem 0;
     /* padding: 0 2rem; */
     }
 .cat__product-item img{
@@ -1205,6 +1205,9 @@ footer{
     flex-direction: column;
     gap: 0.5rem;
 }
+.variant-color{
+    font-weight: 500;
+}
 .del_variant{
     color: black;
     padding: 0.5rem 1rem;
@@ -1247,7 +1250,7 @@ footer{
     list-style: none;
 }
 .uil-check-square{
-    color: var(--color-primary);
+    color: black;
     font-size: 1.5rem;
     margin-right: 0.5rem;
 }
@@ -1338,7 +1341,7 @@ footer{
 .add-to-cart-btn{
     padding: 1rem 1rem;
     width: 100%;
-    background-color: #19002b;
+    background-color: black;
     color: white;
     font-weight: 560;
     font-size: large;
@@ -2021,7 +2024,7 @@ table, th, td {
 }
 
 .submit-rating-btn {
-    background-color: #19002b;
+    background-color: black;
     color: white;
     padding: 10px 20px;
     border: none;
@@ -2031,7 +2034,7 @@ table, th, td {
 }
 
 .submit-rating-btn:hover {
-    background-color: var(--color-primary);
+    background-color: var(--color-primary-light);
 }
 
 /* Kommentarliste */
@@ -2348,4 +2351,26 @@ table, th, td {
     color: white;
     background-color: #ca3937;
     padding: 0.5rem 1rem;
+  }
+/* .dashboard .gestion table th{
+    background-color: #6161c3;
+    color: var(--color-white);
+    font-weight: 550;
+    height: 2rem;
+    width: 7rem;
+
+}
+.dashboard .gestion table td{
+    height: 50px;
+    width: 9rem;
+    text-align: center;
+    margin-bottom: 1rem;
+    color: black;
+} */
+  .table__products td{
+    height: 50px;
+    width: 9rem;
+    text-align: center;
+    margin-bottom: 1rem;
+    color: black;
   }

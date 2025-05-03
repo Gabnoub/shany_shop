@@ -4,32 +4,19 @@ require_once 'config/database.php';
 if (isset($_POST['variant_submit']) && isset($_POST['id'] )) {
     $product_id = filter_var($_POST['id'], FILTER_SANITIZE_NUMBER_INT);
     $color =  filter_var($_POST['color'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-    $en_stock = (int) $_POST['en_stock'];
+    $en_stock = filter_var($_POST['en_stock'], FILTER_SANITIZE_NUMBER_INT); 
 
     
     if (isset($_POST['product_color'])) {
        $product_color= $_POST['product_color'];
     }
-    // fetch product color from database
-    $sql_product = "SELECT color FROM products WHERE id = ?";
-    $stmt_product = $connection->prepare($sql_product);
-    if (!$stmt_product) {
-        $_SESSION['variant'] = "SQL Error: " . $connection->error;
-        header("Location: add-product-variant.php?id=" . $_POST['id']);
-        exit;
-    }
-    $stmt_product->bind_param("i", $product_id);
-    $stmt_product->execute();
-    $stmt_product->bind_result($product_color);
-    $stmt_product->fetch();
-    $stmt_product->close();
 
     // validate input
     if ($color === 'null') {
         $_SESSION['variant'] = "Color is required";
     } elseif ($en_stock === 'null') {
         $_SESSION['variant'] = "stock status is required";
-    } elseif ($color === $product_color) {
+    } elseif (html_entity_decode($color) === $product_color) {
         $_SESSION['variant'] = "Variant already exists";
     } else {
         // Fetch product variant from database

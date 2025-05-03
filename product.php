@@ -1,41 +1,67 @@
 <?php
 Include 'partials/header.php';
 $slug = $_GET['slug'] ?? '';
-$variant = $_GET['variant'] ?? null;
+$variant = isset($_GET['variant']) ? (int)$_GET['variant'] : null;
 
 
 $_en_stock = 0;
 
 // Fetch product details based on the slug
 if ($slug) {
-    $stmt = $connection->prepare("SELECT * FROM products WHERE slug = ?");
-    $stmt->bind_param("s", $slug);
+    $stmt = $connection->prepare("SELECT * FROM products WHERE slug = ? AND en_stock = ?");
+    $stmt->bind_param("si", $slug, $_en_stock);
     $stmt->execute();
     $product = $stmt->get_result()->fetch_assoc();
     // check if product variant is available
     
-    if ($product['id']) {
-        $stmtVariant = $connection->prepare("SELECT * FROM product_variants WHERE product_id = ?");
-        $stmtVariant->bind_param("i", $product['id']);
+    if (isset($product['id'])) {
+        $stmtVariant = $connection->prepare("SELECT * FROM product_variants WHERE product_id = ? AND en_stock = ?");
+        $stmtVariant->bind_param("ii", $product['id'], $_en_stock);
         $stmtVariant->execute();
         $variantProduct = $stmtVariant->get_result()->fetch_assoc();
         $productColor = $product['color'];
         $productId = $product['id'];
-        if($variant && $variantProduct) {
-            $product["image1"] = $product["image4"];
-            $product["image2"] = $product["image5"];
-            $product["image3"] = $product["image6"];
-            $productColor = $variantProduct['color'];
-            $productId = intval($product['id']) * 10000;
+        // get all variants
+        $stmtAllVariants = $connection->prepare("SELECT * FROM product_variants WHERE product_id = ? AND en_stock = ?");
+        $stmtAllVariants->bind_param("ii", $product['id'], $_en_stock);
+        $stmtAllVariants->execute();
+        $allVariants = $stmtAllVariants->get_result()->fetch_all(MYSQLI_ASSOC);
+        // get for each variant the color
+        $variantColors = [];
+        foreach ($allVariants as $variantRow) {
+            $variantColors[] = $variantRow['color'];
+        }
+        // get the number of variants
+        $variantCount = count($variantColors);
+        // set variant data infos
+        if (isset($variant)) {
+            if ($variant === 0) {
+                $product["image1"] = $product["image4"];
+                $product["image2"] = $product["image5"];
+                $product["image3"] = $product["image6"];
+                if (isset($variantColors[0])) {
+                    $productColor = $variantColors[0];
+                } 
+                // $productColor = $variantColors[0];
+                $productId = intval($product['id']) * 10000;
+            } elseif ($variant === 1) {
+                $product["image1"] = $product["image7"];
+                $product["image2"] = $product["image8"];
+                $product["image3"] = $product["image9"];
+                if (isset($variantColors[1])) {
+                    $productColor = $variantColors[1];
+                } 
+                $productId = intval($product['id']) * 10000;
+            } 
         } 
         
     }
     if (!$product) {
-        echo "Produkt nicht gefunden.";
+        echo "Aucun produit trouvé.";
         exit;
     }
 } else {
-    echo "Kein Produkt angegeben.";
+    echo "Aucun produit trouvé.";
     exit;
 }
 // Prepare and execute a query to fetch 4 random related products from the same category (excluding the current product)
@@ -92,7 +118,7 @@ $count_related = mysqli_num_rows($relatedProducts);
                 <?php endif; ?> -->
             </div>
             <?php if (!empty($product["color"])): ?>
-                <p class="variant-color">Couleur: <?= html_entity_decode(htmlspecialchars($productColor), ENT_QUOTES, 'UTF-8') ?></p>
+                <p class="variant-color"><strong>Couleur: </strong><?= html_entity_decode(htmlspecialchars($productColor), ENT_QUOTES, 'UTF-8') ?></p>
                 <div class="prd_variant">
                     <div class="variant_item">                 
                         <a class="prd-main" href="<?= ROOT_URL ?>products/<?= $product['slug'] ?>">    
@@ -100,11 +126,13 @@ $count_related = mysqli_num_rows($relatedProducts);
                         </a>                                                
                     </div>
                     <?php if (!empty($variantProduct)): ?>
-                        <div class="variant_item">
-                            <a class="prd-variant" href="<?= ROOT_URL ?>products/<?= $product['slug'] ?>/variant/<?= urlencode($variantProduct['id']) ?>">    
-                                <div class="color-dot" data-id="<?= html_entity_decode(htmlspecialchars($variantProduct["color"])) ?>"></div>
-                            </a>                                                
-                        </div>
+                        <?php for ($i = 0; $i < $variantCount; $i++): ?>
+                            <div class="variant_item">
+                                <a class="prd-variant" href="<?= ROOT_URL ?>products/<?= $product['slug'] ?>/variant/<?= $i ?>">    
+                                    <div class="color-dot" data-id="<?= html_entity_decode(htmlspecialchars($variantColors[$i])) ?>"></div>
+                                </a>                                                
+                            </div>
+                        <?php endfor; ?>
                     <?php endif; ?>
                 </div>
             <?php endif; ?>

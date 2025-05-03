@@ -54,7 +54,8 @@ if (isset($_POST['add_submit'])) {
 
     // Bilder
     $time = time();
-    $images = [$_FILES['image1'], $_FILES['image2'], $_FILES['image3'], $_FILES['image4'], $_FILES['image5'], $_FILES['image6']];
+    $images = [$_FILES['image1'], $_FILES['image2'], $_FILES['image3'], $_FILES['image4'], $_FILES['image5'], $_FILES['image6'],
+            $_FILES['image7'], $_FILES['image8'], $_FILES['image9']];
     $image_names[] = '';
 
 
@@ -85,16 +86,16 @@ if (isset($_POST['add_submit'])) {
     $sql = "INSERT INTO products (
         category, en_stock, title, material, color, size,
         description1, bulletpoint1, bulletpoint2, bulletpoint3, bulletpoint4,
-        description2, image1, image2, image3, image4, image5, image6, price, discount, final_price, slug, cat_slug, article_number
-    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        description2, image1, image2, image3, image4, image5, image6, image7, image8, image9, price, discount, final_price, slug, cat_slug, article_number
+    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
     $stmt = $connection->prepare($sql);
     $stmt->bind_param(
-        "iissssssssssssssssiiisss",
+        "iisssssssssssssssssssiiisss",
         $category, $en_stock, $title, $material, $color, $size,
         $description1, $bulletpoint1, $bulletpoint2, $bulletpoint3, $bulletpoint4,
         $description2,
-        $image_names[1], $image_names[2], $image_names[3], $image_names[4], $image_names[5], $image_names[6],
+        $image_names[1], $image_names[2], $image_names[3], $image_names[4], $image_names[5], $image_names[6], $image_names[7], $image_names[8], $image_names[9],
         $price, $discount, $final_price, $slug, $catslug, $article_number
     );
     

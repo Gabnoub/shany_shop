@@ -520,7 +520,7 @@ const colorMap = {
 };
 
 const variant = document.querySelector(".variant-color").innerHTML;
-const variantColor = variant.replace("Couleur: ","");
+const variantColor = variant.replace("<strong>Couleur: </strong>","");
 const colorDots = document.querySelectorAll(".color-dot");
 colorDots.forEach(dot => {
   dot.classList.remove("active");
@@ -537,7 +537,7 @@ colorDots.forEach(dot => {
         dot.classList.add("rose-gold");
       }
     }
-
+    console.log(variantColor);
     if (variantColor === dot.dataset.id) {
     dot.classList.add("active");
     }

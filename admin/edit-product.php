@@ -133,6 +133,27 @@ if (!$product) {
                 <?php endif; ?>
                 <input type="file" name="image6" id="image6">
                 <input type="hidden" name="current_image6" value="<?= $product['image6'] ?>">
+
+                <label for="image7">Update Image 7</label>
+                <?php if (!empty($product['image7'])): ?>
+                    <img src="images/<?= htmlspecialchars($product['image7']) ?>" style="height: 40px; width: 40px; object-fit:cover; margin-left: 35px;">
+                <?php endif; ?>
+                <input type="file" name="image7" id="image7">
+                <input type="hidden" name="current_image7" value="<?= $product['image7'] ?>">
+
+                <label for="image8">Update Image 8</label>
+                <?php if (!empty($product['image8'])): ?>
+                    <img src="images/<?= htmlspecialchars($product['image8']) ?>" style="height: 40px; width: 40px; object-fit:cover; margin-left: 35px;">
+                <?php endif; ?>
+                <input type="file" name="image8" id="image8">
+                <input type="hidden" name="current_image8" value="<?= $product['image8'] ?>">
+
+                <label for="image9">Update Image 9</label>
+                <?php if (!empty($product['image9'])): ?>
+                    <img src="images/<?= htmlspecialchars($product['image9']) ?>" style="height: 40px; width: 40px; object-fit:cover; margin-left: 35px;">
+                <?php endif; ?>
+                <input type="file" name="image9" id="image9">
+                <input type="hidden" name="current_image9" value="<?= $product['image9'] ?>">
             </div>
             <label>Prix en Fcfa *</label>
             <input type="number" step="1" name="price" value="<?= htmlspecialchars($product['price']) ?>">

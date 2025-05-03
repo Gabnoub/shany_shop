@@ -2,29 +2,38 @@
 require_once 'config/database.php';
 
 if (isset($_POST['edit_submit']) && isset($_POST['id'])) {
-    $id = (int) filter_var($_POST['id'], FILTER_SANITIZE_NUMBER_INT);
-    $category = filter_var($_POST['category'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-    $en_stock = filter_var($_POST['en_stock'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-    $title = filter_var($_POST['title'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-    $article_number = filter_var($_POST['article_number'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-    $material = filter_var($_POST['material'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-    $color = filter_var($_POST['color'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-    $size = filter_var($_POST['size'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-    $description1 = filter_var($_POST['description1'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-    $bulletpoint1 = filter_var($_POST['bulletpoint1'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-    $bulletpoint2 = filter_var($_POST['bulletpoint2'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-    $bulletpoint3 = filter_var($_POST['bulletpoint3'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-    $bulletpoint4 = filter_var($_POST['bulletpoint4'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-    $description2 = filter_var($_POST['description2'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-    $price = filter_var($_POST['price'], FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
-    $discount = filter_var($_POST['discount'], FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+    $id = (int) htmlspecialchars ($_POST['id']);
+    $category = htmlspecialchars($_POST['category']);
+    $en_stock = htmlspecialchars($_POST['en_stock']);
+    $title = htmlspecialchars($_POST['title']);
+    $article_number = htmlspecialchars($_POST['article_number']);
+    $material = htmlspecialchars($_POST['material']);
+    $color = htmlspecialchars($_POST['color']);
+    $size = htmlspecialchars($_POST['size']);
+    $description1 = htmlspecialchars($_POST['description1']);
+    $bulletpoint1 = htmlspecialchars($_POST['bulletpoint1']);
+    $bulletpoint2 = htmlspecialchars($_POST['bulletpoint2']);
+    $bulletpoint3 = htmlspecialchars($_POST['bulletpoint3']);
+    $bulletpoint4 = htmlspecialchars($_POST['bulletpoint4']);
+    $description2 = htmlspecialchars($_POST['description2']);
+    $price = htmlspecialchars($_POST['price']);
+    $discount = htmlspecialchars($_POST['discount']);
     $slug = preg_replace('/[^a-zA-Z0-9\-_]/', '-', $title);
     $catslug = $cat_slug[$category];
 
 
 // check if product name already exists
-$product_check_query = "SELECT * FROM products WHERE slug='$slug' AND id != $id";
-$product_check_result = mysqli_query($connection, $product_check_query);
+$product_check_query = "SELECT * FROM products WHERE slug = ? AND id != ?";
+// prepare statement
+$stmt_prd = $connection->prepare($product_check_query);
+// bind parameters
+$stmt_prd->bind_param("si", $slug, $id);
+// execute statement
+$stmt_prd->execute();
+// get result
+$product_check_result = $stmt_prd->get_result();
+
+
 
     // validate input
     if ($category === 'null') {
@@ -32,7 +41,7 @@ $product_check_result = mysqli_query($connection, $product_check_query);
     } elseif ($en_stock === 'null') {
         $_SESSION['edit'] = "Stock status is required";
     } elseif ($color === 'null') {
-        $_SESSION['add'] = "Color is required";
+        $_SESSION['edit'] = "Color is required";
     } elseif (!$title) {
         $_SESSION['edit'] = "Title is required";
     } elseif (!$article_number) {
@@ -49,13 +58,18 @@ $product_check_result = mysqli_query($connection, $product_check_query);
         $final_price = max($final_price, 0);
 
         // Process uploaded images
-        $image1 = $_FILES['image1'];
-        $image2 = $_FILES['image2'];
-        $image3 = $_FILES['image3'];
-        $image4 = $_FILES['image4'];
-        $image5 = $_FILES['image5'];
-        $image6 = $_FILES['image6'];
-        $images = [$image1, $image2, $image3, $image4, $image5, $image6];
+        $image1 = $_FILES['image1'] ?? null;
+        $image2 = $_FILES['image2'] ?? null;
+        $image3 = $_FILES['image3'] ?? null;
+        $image4 = $_FILES['image4'] ?? null;
+        $image5 = $_FILES['image5'] ?? null;
+        $image6 = $_FILES['image6'] ?? null;
+        $image7 = $_FILES['image7'] ?? null;
+        $image8 = $_FILES['image8'] ?? null;
+        $image9 = $_FILES['image9'] ?? null;
+
+        // Create an array of images
+        $images = [$image1, $image2, $image3, $image4, $image5, $image6, $image7, $image8, $image9];
 
         // Previous images from form
         $cur_images = [
@@ -64,7 +78,10 @@ $product_check_result = mysqli_query($connection, $product_check_query);
             $_POST['current_image3'], 
             $_POST['current_image4'], 
             $_POST['current_image5'], 
-            $_POST['current_image6']
+            $_POST['current_image6'],
+            $_POST['current_image7'], 
+            $_POST['current_image8'], 
+            $_POST['current_image9']
         ];
 
         $upload_folder = __DIR__ . '/images/';
@@ -73,8 +90,11 @@ $product_check_result = mysqli_query($connection, $product_check_query);
         }
         
         $allowed_exts = ['jpg', 'jpeg', 'png', 'webp'];
-        
-        for ($i = 0; $i < 6; $i++) {
+
+        // Validate and upload images
+        // get number of images
+        $num_images = count($images);
+        for ($i = 0; $i < $num_images; $i++) {
             if (!empty($images[$i]['name'])) {
                 $extension = strtolower(pathinfo($images[$i]['name'], PATHINFO_EXTENSION));
                 $size = $images[$i]['size'];
@@ -107,16 +127,23 @@ $product_check_result = mysqli_query($connection, $product_check_query);
 
         // Prepare SQL Update
         $sql = "UPDATE products SET
-            category = ?, en_stock = ?, title = ?, article_number = ?, material = ?, color = ?, size = ?,
+            category = ?, en_stock = ?, 
+            title = ?, article_number = ?, material = ?, color = ?, size = ?,
             description1 = ?, bulletpoint1 = ?, bulletpoint2 = ?, bulletpoint3 = ?, bulletpoint4 = ?, description2 = ?,
-            image1 = ?, image2 = ?, image3 = ?, image4 = ?, image5 = ?, image6 = ?, price = ?, discount = ?, final_price = ?, slug = ?, cat_slug = ?
+            image1 = ?, image2 = ?, image3 = ?, 
+            image4 = ?, image5 = ?, image6 = ?, 
+            image7 = ?, image8 = ?, image9 = ?, 
+            price = ?, discount = ?, final_price = ?, slug = ?, cat_slug = ?
             WHERE id = ?" ;
 
         $stmt = $connection->prepare($sql);
-        $stmt->bind_param("iisssssssssssssssssiiissi",
-            $category, $en_stock, $title, $article_number, $material, $color, $size,
+        $stmt->bind_param("iissssssssssssssssssssiiissi",
+            $category, $en_stock, 
+            $title, $article_number, $material, $color, $size,
             $description1, $bulletpoint1, $bulletpoint2, $bulletpoint3, $bulletpoint4, $description2,
-            $cur_images[0], $cur_images[1], $cur_images[2], $cur_images[3], $cur_images[4], $cur_images[5],
+            $cur_images[0], $cur_images[1], $cur_images[2], 
+            $cur_images[3], $cur_images[4], $cur_images[5],
+            $cur_images[6], $cur_images[7], $cur_images[8], 
             $price, $discount, $final_price, $slug, $catslug,
             $id
         );
