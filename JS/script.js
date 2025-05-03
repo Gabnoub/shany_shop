@@ -251,6 +251,31 @@ function renderCart() {
 }
 //------------------------------------------------ Initialisierung -----------------------------------------------------------------------------//
 document.addEventListener("DOMContentLoaded", () => {
+// zoom modal
+const zoomButton = document.querySelector('.zoom-button');
+const zoomModal = document.getElementById('zoom-modal');
+const zoomedImage = document.querySelector('.zoomed-image');
+const closeModal = document.querySelector('.close-modal');
+const mainImage = document.querySelector('.main-product-image');
+
+if(zoomButton && zoomModal && zoomedImage && closeModal && mainImage) {
+zoomButton.addEventListener('click', () => {
+  zoomedImage.src = mainImage.src; // Bild kopieren
+  zoomModal.style.display = 'flex'; // Modal sichtbar machen
+});
+
+closeModal.addEventListener('click', () => {
+  zoomModal.style.display = 'none';
+});
+
+// Optional: Modal schließen, wenn Benutzer auf den dunklen Bereich klickt
+zoomModal.addEventListener('click', (e) => {
+  if (e.target === zoomModal) {
+    zoomModal.style.display = 'none';
+  }
+});
+}
+
 // New products Slider
 const newProductContainer = document.querySelector('.new__products-container');
 const prevButton = document.querySelector('.prev-button');
@@ -519,9 +544,13 @@ const colorMap = {
   argenté: "#C0C0C0",
 };
 
-const variant = document.querySelector(".variant-color").innerHTML;
-const variantColor = variant.replace("<strong>Couleur: </strong>","");
+const variant = document.querySelector(".variant-color");
+if(variant) {
+const variantColor = variant.innerHTML.replace("<strong>Couleur: </strong>", "");
+// const variantColor = variant.replace("<strong>Couleur: </strong>","");
 const colorDots = document.querySelectorAll(".color-dot");
+if (colorDots) {
+  
 colorDots.forEach(dot => {
   dot.classList.remove("active");
   if (dot.dataset.id) {
@@ -537,26 +566,33 @@ colorDots.forEach(dot => {
         dot.classList.add("rose-gold");
       }
     }
-    console.log(variantColor);
-    if (variantColor === dot.dataset.id) {
-    dot.classList.add("active");
-    }
+ 
+      if (dot.dataset.id === variantColor) {
+      dot.classList.add("active");
+      }
   }
 })
+}
 
 
+}
 // clone review under product title
   const prdTitle = document.getElementById("prd_title");
-  const reviews = document.getElementById("rev_stars").innerHTML;
+  const reviewsSel = document.getElementById("rev_stars");
+  reviews = reviewsSel.innerHTML;
+  
   const prd_el = document.createElement("div");
   prd_el.className = "clone_review";
-  const rat_count = document.querySelector(".rating-count").innerHTML;
+  const rat_countSel = document.querySelector(".rating-count");
+  
+    rat_count = rat_countSel.innerHTML;
+  
   let rat_html = `<div style=\"font-size:1.1rem\"">${reviews} ${rat_count}</div>`;
   prd_el.innerHTML = rat_html;
-  prdTitle.appendChild(prd_el);
-
+  if (prdTitle) {
+    prdTitle.appendChild(prd_el);
+  }
 //
-
 const loadMoreBtn = document.getElementById('load-more-reviews');
     
     if (loadMoreBtn) {
@@ -618,31 +654,17 @@ const loadMoreBtn = document.getElementById('load-more-reviews');
 
 //
 });
-//------------------------------------------------ show comment form -----------------------------------------------------------------------------//
-const review = document.getElementById("review");
-const form = document.querySelector(".rating-form");
-review.addEventListener("click", () => {
-  form.classList.toggle("active");
-});
-//---------------------------------------------------------  ----------------------------------------------------------------//
-const zoomButton = document.querySelector('.zoom-button');
-const zoomModal = document.getElementById('zoom-modal');
-const zoomedImage = document.querySelector('.zoomed-image');
-const closeModal = document.querySelector('.close-modal');
-const mainImage = document.querySelector('.main-product-image');
 
-zoomButton.addEventListener('click', () => {
-  zoomedImage.src = mainImage.src; // Bild kopieren
-  zoomModal.style.display = 'flex'; // Modal sichtbar machen
-});
+//--------------------------------------------------------- Navbar fixieren  
+  window.addEventListener('scroll', function () {
+    const navbar = document.querySelector('.nav__container');
+    
+    const scrollThreshold = 70; // Pixelanzahl, ab wann die Navbar fixiert wird
 
-closeModal.addEventListener('click', () => {
-  zoomModal.style.display = 'none';
-});
+    if (window.scrollY > scrollThreshold) {
+      navbar.classList.add('fixed');
+    } else {
+      navbar.classList.remove('fixed');
+    }
+  });
 
-// Optional: Modal schließen, wenn Benutzer auf den dunklen Bereich klickt
-zoomModal.addEventListener('click', (e) => {
-  if (e.target === zoomModal) {
-    zoomModal.style.display = 'none';
-  }
-});
