@@ -251,6 +251,15 @@ function renderCart() {
 }
 //------------------------------------------------ Initialisierung -----------------------------------------------------------------------------//
 document.addEventListener("DOMContentLoaded", () => {
+// toogle review form  
+const review = document.getElementById("review");
+const form = document.querySelector(".rating-form");
+if (review) {
+  review.addEventListener("click", () => {
+    form.classList.toggle("active");
+    });
+}
+
 // zoom modal
 const zoomButton = document.querySelector('.zoom-button');
 const zoomModal = document.getElementById('zoom-modal');
@@ -574,7 +583,6 @@ colorDots.forEach(dot => {
 })
 }
 
-
 }
 // clone review under product title
   const prdTitle = document.getElementById("prd_title");
@@ -666,5 +674,6 @@ const loadMoreBtn = document.getElementById('load-more-reviews');
     } else {
       navbar.classList.remove('fixed');
     }
-  });
+  })
+    
 

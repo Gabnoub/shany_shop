@@ -93,6 +93,7 @@ echo "<script>const products = " . json_encode($cat_products) . ";</script>";
 
 <!----========================================== Lifestyle section ============================================---->
 <section class="lifestyle animation">
+        
     <h2><?= $title_lif ?></h2>    
         <!-- <div class="lifestyle__images">
             <img src="<?= ROOT_URL ?>admin/images/<?= $lifestyle_1 ?>" class="lifestyle__image">
