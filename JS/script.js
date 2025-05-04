@@ -136,6 +136,7 @@ function renderCart() {
       totalItems += p.qty;
       const lineTotal = p.qty * p.price;
       totalPrice += lineTotal;
+      const variant = p.variant || "-";
       // Eintrag formatieren
       const artikelnummer = p.sku; 
       const produktname = p.title;
@@ -147,9 +148,13 @@ function renderCart() {
 
       const el = document.createElement("div");
       el.className = "cart__product-item";
-      el.innerHTML = `
-         
-            <a class="cart__pr_link" href="${rootUrl}products/${p._slug}"><img src="${p.image}"></a>
+      let cart_html = "";
+      if (variant !== "-") {
+        cart_html += `<a class="cart__pr_link" href="${rootUrl}products/${p._slug}/variant/${p.variant}"><img src="${p.image}"></a>`;
+      } else {
+        cart_html += `<a class="cart__pr_link" href="${rootUrl}products/${p._slug}"><img src="${p.image}"></a>`;
+      }
+      cart_html += `
             <div class="cart__right">
                 <div class="cart_description">
                     <p class="cart__pr__title"><strong>${p.title}</strong></p>
@@ -167,6 +172,7 @@ function renderCart() {
                 
             </div>
           `;
+      el.innerHTML = cart_html;
       container.appendChild(el);
     }
     const el1 = document.createElement("div");
@@ -516,9 +522,9 @@ newProductContainer.addEventListener('touchend', function(e) {
           image: product.dataset.image,
           color: product.dataset.color,
           _slug: product.dataset.slug,
-          sku: product.dataset.sku
+          sku: product.dataset.sku,
+          variant: product.dataset.variant
         });
-        console.log(product.dataset.id);
       })
     );
   }

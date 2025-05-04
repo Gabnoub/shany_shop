@@ -92,7 +92,7 @@ $count_related = mysqli_num_rows($relatedProducts);
   <img class="zoomed-image" src="" alt="Zoomed Image">
 </div>
     <!-- Produktdetails -->
-    <div class="product-section product-card" data-id="<?= htmlspecialchars($productId) ?>" data-title="<?= html_entity_decode(htmlspecialchars($product["title"])) ?>" data-sku="<?= html_entity_decode(htmlspecialchars($product["article_number"])) ?>" data-color="<?= html_entity_decode(htmlspecialchars($productColor)) ?>" data-price="<?= htmlspecialchars($product["final_price"]) ?>" data-image="<?= ROOT_URL . 'admin/images/' . htmlspecialchars($product['image1']) ?>" data-slug="<?= ($product['slug']) ?>">
+    <div class="product-section product-card" data-id="<?= htmlspecialchars($productId) ?>" data-variant="<?= htmlspecialchars($variant) ?>" data-title="<?= html_entity_decode(htmlspecialchars($product["title"])) ?>" data-sku="<?= html_entity_decode(htmlspecialchars($product["article_number"])) ?>" data-color="<?= html_entity_decode(htmlspecialchars($productColor)) ?>" data-price="<?= htmlspecialchars($product["final_price"]) ?>" data-image="<?= ROOT_URL . 'admin/images/' . htmlspecialchars($product['image1']) ?>" data-slug="<?= ($product['slug']) ?>">
   
         <div class="product-image product-image-wrapper">
             <!-- <img class="main__prImage" src="images/1.jpg"> -->
