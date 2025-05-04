@@ -20,6 +20,7 @@ if (isset($_POST['edit_submit']) && isset($_POST['id'])) {
     $discount = htmlspecialchars($_POST['discount']);
     $slug = preg_replace('/[^a-zA-Z0-9\-_]/', '-', $title);
     $catslug = $cat_slug[$category];
+    $purchase_price = htmlspecialchars($_POST['purchase_price']);
 
 
 // check if product name already exists
@@ -50,6 +51,8 @@ $product_check_result = $stmt_prd->get_result();
         $_SESSION['edit'] = "Description is required";
     } elseif (!$price) {
         $_SESSION['edit'] = "Price is required";
+    } elseif (!$purchase_price) {
+        $_SESSION['edit'] = "Purchase price is required";
     } elseif (mysqli_num_rows($product_check_result) > 0) {
         $_SESSION['edit'] = "product name already exists";
     } else {
@@ -131,16 +134,16 @@ $product_check_result = $stmt_prd->get_result();
             title = ?, article_number = ?, material = ?, color = ?, size = ?,
             description1 = ?, bulletpoint1 = ?, bulletpoint2 = ?, bulletpoint3 = ?, bulletpoint4 = ?, description2 = ?,
             image1 = ?, image2 = ?, image3 = ?, image4 = ?, 
-            price = ?, discount = ?, final_price = ?, slug = ?, cat_slug = ?
+            price = ?, discount = ?, final_price = ?, slug = ?, cat_slug = ?, purchase_price = ?
             WHERE id = ?" ;
 
         $stmt = $connection->prepare($sql);
-        $stmt->bind_param("iisssssssssssssssiiissi",
+        $stmt->bind_param("iisssssssssssssssiiissdi",
             $category, $en_stock, 
             $title, $article_number, $material, $color, $size,
             $description1, $bulletpoint1, $bulletpoint2, $bulletpoint3, $bulletpoint4, $description2,
             $cur_images[0], $cur_images[1], $cur_images[2], $cur_images[3],
-            $price, $discount, $final_price, $slug, $catslug,
+            $price, $discount, $final_price, $slug, $catslug, $purchase_price,
             $id
         );
     

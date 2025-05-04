@@ -21,6 +21,7 @@ if (isset($_POST['add_submit'])) {
     $image1 = $_FILES['image1'] ?? null;
     $slug = preg_replace('/[^a-zA-Z0-9\-_]/', '-', $title);
     $catslug = $cat_slug[$category];
+    $purchase_price = filter_var($_POST['purchase_price'], FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
 
     
     // check if product name already exists
@@ -42,6 +43,8 @@ if (isset($_POST['add_submit'])) {
         $_SESSION['add'] = "Description 1 is required";
     } elseif (!$price) {
         $_SESSION['add'] = "Price is required";
+    } elseif (!$purchase_price) {
+        $_SESSION['add'] = "Purchase price is required";
     } elseif (!$image1['name']) {
         $_SESSION['add'] = "Image 1 is required";
     } elseif (mysqli_num_rows($product_check_result) > 0) {
@@ -100,17 +103,17 @@ if (isset($_POST['add_submit'])) {
         description1, bulletpoint1, bulletpoint2, bulletpoint3, bulletpoint4,
         description2, 
         image1, image2, image3, image4,
-        price, discount, final_price, slug, cat_slug, article_number
-    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        price, discount, final_price, slug, cat_slug, article_number, purchase_price
+    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
     $stmt = $connection->prepare($sql);
     $stmt->bind_param(
-        "iissssssssssssssiiisss",
+        "iissssssssssssssiiisssd",
         $category, $en_stock, $title, $material, $color, $size,
         $description1, $bulletpoint1, $bulletpoint2, $bulletpoint3, $bulletpoint4,
         $description2,
         $image_names[1], $image_names[2], $image_names[3], $image_names[4], 
-        $price, $discount, $final_price, $slug, $catslug, $article_number
+        $price, $discount, $final_price, $slug, $catslug, $article_number, $purchase_price
     );
     
 

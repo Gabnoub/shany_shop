@@ -17,7 +17,7 @@ if (isset($_GET['en_stock']) && $_GET['en_stock'] !== '') {
 }
 $where_sql = $where ? 'WHERE ' . implode(' AND ', $where) : '';
 
-$fetch_products_query = "SELECT id, title, category, en_stock, image1, price, final_price, cat_slug FROM products $where_sql";
+$fetch_products_query = "SELECT id, title, category, en_stock, image1, price, final_price, cat_slug, purchase_price FROM products $where_sql";
 $fetch_products_result = mysqli_query($connection, $fetch_products_query);
 
 
@@ -100,7 +100,7 @@ if (isset($_GET['admin_choices'])) {
                     <th>Titre</th>
                     <th>Categorie</th>
                     <th>En stock</th>
-                    <th>Prix</th>
+                    <th>Prix d'achat</th>
                     <th>Prix affiché</th>
                     
                 </tr>
@@ -115,7 +115,7 @@ if (isset($_GET['admin_choices'])) {
                     </td>
                     <td><?= $row['cat_slug'] ?></td>
                     <td><?= $shany_en_stock[htmlspecialchars($row['en_stock'])] ?></td>
-                    <td><?= $row['price'] ?></td>
+                    <td><?= $row['purchase_price'] ?></td>
                     <td><?= $row['final_price'] ?></td>
                     <td>
                     <a href="edit-product.php?id=<?= $row['id'] ?>">

@@ -159,6 +159,8 @@ if (!$product) {
             <input type="number" step="1" name="price" value="<?= htmlspecialchars($product['price']) ?>">
             <label>Rabais en Fcfa</label>
             <input type="number" step="1" name="discount" value="<?= htmlspecialchars($product['discount']) ?>">
+            <label>Prix d'achat en Fcfa *</label>
+            <input type="number" step="1" name="purchase_price" value="<?= htmlspecialchars($product['purchase_price']) ?>">
             <button type="submit" name="edit_submit" class="sub__btn">Edit Product</button>
         </form>
     </div>

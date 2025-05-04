@@ -17,6 +17,7 @@ $bulletpoint4 = $_SESSION['add-data']['bulletpoint4'] ?? null;
 $description2 = $_SESSION['add-data']['description2'] ?? null;
 $price = $_SESSION['add-data']['price'] ?? null;
 $discount = $_SESSION['add-data']['discount'] ?? null;
+$purchase_price = $_SESSION['add-data']['purchase_price'] ?? null;
 // delete session data
 unset($_SESSION['add-data']);
 ?>
@@ -110,6 +111,8 @@ unset($_SESSION['add-data']);
             <input type="number" step="1" name="price" value="<?= htmlspecialchars($price) ?>" placeholder="Prix">
             <label>Rabais en Fcfa</label>
             <input type="number" step="1" name="discount" value="<?= htmlspecialchars($discount) ?>" placeholder="Rabais">
+            <label>Prix d'achat en Fcfa *</label>
+            <input type="number" step="1" name="purchase_price" value="<?= htmlspecialchars($purchase_price) ?>" placeholder="Prix d'achat">
             <button type="submit" name="add_submit" class="sub__btn">Add Product</button>
         </form>
     </div>
