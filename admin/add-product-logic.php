@@ -59,14 +59,15 @@ if (isset($_POST['add_submit'])) {
      $image2 = $_FILES['image2'] ?? null;
      $image3 = $_FILES['image3'] ?? null;
      $image4 = $_FILES['image4'] ?? null;
-     $image5 = $_FILES['image5'] ?? null;
-     $image6 = $_FILES['image6'] ?? null;
-     $image7 = $_FILES['image7'] ?? null;
-     $image8 = $_FILES['image8'] ?? null;
-     $image9 = $_FILES['image9'] ?? null;
+    //  $image5 = $_FILES['image5'] ?? null;
+    //  $image6 = $_FILES['image6'] ?? null;
+    //  $image7 = $_FILES['image7'] ?? null;
+    //  $image8 = $_FILES['image8'] ?? null;
+    //  $image9 = $_FILES['image9'] ?? null;
 
     // Create an array of images
-    $images = [$image1, $image2, $image3, $image4, $image5, $image6, $image7, $image8, $image9];
+    $images = [$image1, $image2, $image3, $image4];
+    // $images = [$image1, $image2, $image3, $image4, $image5, $image6, $image7, $image8, $image9];
     $image_names[] = '';
 
 
@@ -98,21 +99,17 @@ if (isset($_POST['add_submit'])) {
         category, en_stock, title, material, color, size,
         description1, bulletpoint1, bulletpoint2, bulletpoint3, bulletpoint4,
         description2, 
-        image1, image2, image3, 
-        image4, image5, image6, 
-        image7, image8, image9, 
+        image1, image2, image3, image4,
         price, discount, final_price, slug, cat_slug, article_number
-    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
     $stmt = $connection->prepare($sql);
     $stmt->bind_param(
-        "iisssssssssssssssssssiiisss",
+        "iissssssssssssssiiisss",
         $category, $en_stock, $title, $material, $color, $size,
         $description1, $bulletpoint1, $bulletpoint2, $bulletpoint3, $bulletpoint4,
         $description2,
-        $image_names[1], $image_names[2], $image_names[3], 
-        $image_names[4], $image_names[5], $image_names[6], 
-        $image_names[7], $image_names[8], $image_names[9],
+        $image_names[1], $image_names[2], $image_names[3], $image_names[4], 
         $price, $discount, $final_price, $slug, $catslug, $article_number
     );
     

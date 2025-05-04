@@ -120,7 +120,7 @@ if (!$product) {
                 <input type="file" name="image4" id="image4">
                 <input type="hidden" name="current_image4" value="<?= $product['image4'] ?>">
 
-                <label for="image5">Update Image 5</label>
+                <!-- <label for="image5">Update Image 5</label>
                 <?php if (!empty($product['image5'])): ?>
                     <img src="images/<?= htmlspecialchars($product['image5']) ?>" style="height: 40px; width: 40px; object-fit:cover; margin-left: 35px;">
                 <?php endif; ?>
@@ -153,7 +153,7 @@ if (!$product) {
                     <img src="images/<?= htmlspecialchars($product['image9']) ?>" style="height: 40px; width: 40px; object-fit:cover; margin-left: 35px;">
                 <?php endif; ?>
                 <input type="file" name="image9" id="image9">
-                <input type="hidden" name="current_image9" value="<?= $product['image9'] ?>">
+                <input type="hidden" name="current_image9" value="<?= $product['image9'] ?>"> -->
             </div>
             <label>Prix en Fcfa *</label>
             <input type="number" step="1" name="price" value="<?= htmlspecialchars($product['price']) ?>">

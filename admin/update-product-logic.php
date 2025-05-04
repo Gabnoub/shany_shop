@@ -62,26 +62,26 @@ $product_check_result = $stmt_prd->get_result();
         $image2 = $_FILES['image2'] ?? null;
         $image3 = $_FILES['image3'] ?? null;
         $image4 = $_FILES['image4'] ?? null;
-        $image5 = $_FILES['image5'] ?? null;
-        $image6 = $_FILES['image6'] ?? null;
-        $image7 = $_FILES['image7'] ?? null;
-        $image8 = $_FILES['image8'] ?? null;
-        $image9 = $_FILES['image9'] ?? null;
+        // $image5 = $_FILES['image5'] ?? null;
+        // $image6 = $_FILES['image6'] ?? null;
+        // $image7 = $_FILES['image7'] ?? null;
+        // $image8 = $_FILES['image8'] ?? null;
+        // $image9 = $_FILES['image9'] ?? null;
 
         // Create an array of images
-        $images = [$image1, $image2, $image3, $image4, $image5, $image6, $image7, $image8, $image9];
+        $images = [$image1, $image2, $image3, $image4];
 
         // Previous images from form
         $cur_images = [
             $_POST['current_image1'], 
             $_POST['current_image2'], 
             $_POST['current_image3'], 
-            $_POST['current_image4'], 
-            $_POST['current_image5'], 
-            $_POST['current_image6'],
-            $_POST['current_image7'], 
-            $_POST['current_image8'], 
-            $_POST['current_image9']
+            $_POST['current_image4'] 
+            // $_POST['current_image5'], 
+            // $_POST['current_image6'],
+            // $_POST['current_image7'], 
+            // $_POST['current_image8'], 
+            // $_POST['current_image9']
         ];
 
         $upload_folder = __DIR__ . '/images/';
@@ -130,20 +130,16 @@ $product_check_result = $stmt_prd->get_result();
             category = ?, en_stock = ?, 
             title = ?, article_number = ?, material = ?, color = ?, size = ?,
             description1 = ?, bulletpoint1 = ?, bulletpoint2 = ?, bulletpoint3 = ?, bulletpoint4 = ?, description2 = ?,
-            image1 = ?, image2 = ?, image3 = ?, 
-            image4 = ?, image5 = ?, image6 = ?, 
-            image7 = ?, image8 = ?, image9 = ?, 
+            image1 = ?, image2 = ?, image3 = ?, image4 = ?, 
             price = ?, discount = ?, final_price = ?, slug = ?, cat_slug = ?
             WHERE id = ?" ;
 
         $stmt = $connection->prepare($sql);
-        $stmt->bind_param("iissssssssssssssssssssiiissi",
+        $stmt->bind_param("iisssssssssssssssiiissi",
             $category, $en_stock, 
             $title, $article_number, $material, $color, $size,
             $description1, $bulletpoint1, $bulletpoint2, $bulletpoint3, $bulletpoint4, $description2,
-            $cur_images[0], $cur_images[1], $cur_images[2], 
-            $cur_images[3], $cur_images[4], $cur_images[5],
-            $cur_images[6], $cur_images[7], $cur_images[8], 
+            $cur_images[0], $cur_images[1], $cur_images[2], $cur_images[3],
             $price, $discount, $final_price, $slug, $catslug,
             $id
         );

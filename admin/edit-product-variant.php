@@ -45,18 +45,47 @@ if (!$product_variants) {
             <?php endif; ?>
 
             <form action="edit-product-variant-logic.php" method="POST" enctype="multipart/form-data">
-            <input type="hidden" name="id" value="<?= $product_variants['id'] ?>">
-            <input type="hidden" name="product_id" value="<?= $product_variants['product_id'] ?>">
-            <div>
-                <label class="required-label" for="en_stock">En stock *</label>
-                <select name="en_stock" value="<?= $en_stock ?>">
-                    <option value=null <?= $product_variants['en_stock'] === null ? 'selected' : '' ?>></option>
-                    <option value=0 <?= $product_variants['en_stock'] === 0 ? 'selected' : '' ?>>Oui</option>
-                    <option value=1 <?= $product_variants['en_stock'] === 1 ? 'selected' : '' ?>>Non</option>
-                </select>
-            </div>
-            <button type="submit" name="variant_submit" class="sub__btn">Modifier</button>
-        </form>
+                <input type="hidden" name="id" value="<?= $product_variants['id'] ?>">
+                <input type="hidden" name="product_id" value="<?= $product_variants['product_id'] ?>">
+                <div>
+                    <label class="required-label" for="en_stock">En stock *</label>
+                    <select name="en_stock" value="<?= $en_stock ?>">
+                        <option value=null <?= $product_variants['en_stock'] === null ? 'selected' : '' ?>></option>
+                        <option value=0 <?= $product_variants['en_stock'] === 0 ? 'selected' : '' ?>>Oui</option>
+                        <option value=1 <?= $product_variants['en_stock'] === 1 ? 'selected' : '' ?>>Non</option>
+                    </select>
+                </div>
+                <div class="form__control">    
+                    <label for="image1">Update Image 1 *</label>
+                    <?php if (!empty($product_variants['image1'])): ?>
+                        <img src="images/<?= htmlspecialchars($product_variants['image1']) ?>" style="height: 40px; width: 40px; object-fit:cover; margin-left: 35px;">
+                    <?php endif; ?>
+                    <input type="file" name="image1" id="image1">
+                    <input type="hidden" name="current_image1" value="<?= $product_variants['image1'] ?>">
+
+                    <label for="image2">Update Image 2</label>
+                    <?php if (!empty($product_variants['image2'])): ?>
+                        <img src="images/<?= htmlspecialchars($product_variants['image2']) ?>" style="height: 40px; width: 40px; object-fit:cover; margin-left: 35px;">
+                    <?php endif; ?>
+                    <input type="file" name="image2" id="image2">
+                    <input type="hidden" name="current_image2" value="<?= $product_variants['image2'] ?>">
+
+                    <label for="image3">Update Image 3</label>
+                    <?php if (!empty($product_variants['image3'])): ?>
+                        <img src="images/<?= htmlspecialchars($product_variants['image3']) ?>" style="height: 40px; width: 40px; object-fit:cover; margin-left: 35px;">
+                    <?php endif; ?>
+                    <input type="file" name="image3" id="image3">
+                    <input type="hidden" name="current_image3" value="<?= $product_variants['image3'] ?>">
+
+                    <label for="image4">Update Image 4</label>
+                    <?php if (!empty($product_variants['image4'])): ?>
+                        <img src="images/<?= htmlspecialchars($product_variants['image4']) ?>" style="height: 40px; width: 40px; object-fit:cover; margin-left: 35px;">
+                    <?php endif; ?>
+                    <input type="file" name="image4" id="image4">
+                    <input type="hidden" name="current_image4" value="<?= $product_variants['image4'] ?>">
+                </div>
+                <button type="submit" name="variant_submit" class="sub__btn">Modifier</button>
+            </form>
     </div>
     
 </section>

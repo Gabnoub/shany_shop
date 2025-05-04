@@ -31,23 +31,35 @@ if ($slug) {
         foreach ($allVariants as $variantRow) {
             $variantColors[] = $variantRow['color'];
         }
+        $variantImage1 = [];
+        $variantImage2 = [];
+        $variantImage3 = [];
+        $variantImage4 = [];
+        foreach ($allVariants as $variantImageRow) {
+            $variantImage1[] = $variantImageRow['image1'];
+            $variantImage2[] = $variantImageRow['image2'];
+            $variantImage3[] = $variantImageRow['image3'];
+            $variantImage4[] = $variantImageRow['image4'];
+        }
         // get the number of variants
         $variantCount = count($variantColors);
         // set variant data infos
         if (isset($variant)) {
             if ($variant === 0) {
-                $product["image1"] = $product["image4"];
-                $product["image2"] = $product["image5"];
-                $product["image3"] = $product["image6"];
+                $product["image1"] = $variantImage1[0];
+                $product["image2"] = $variantImage2[0];
+                $product["image3"] = $variantImage3[0];
+                $product["image4"] = $variantImage4[0];
                 if (isset($variantColors[0])) {
                     $productColor = $variantColors[0];
                 } 
                 // $productColor = $variantColors[0];
                 $productId = intval($product['id']) * 1000;
             } elseif ($variant === 1) {
-                $product["image1"] = $product["image7"];
-                $product["image2"] = $product["image8"];
-                $product["image3"] = $product["image9"];
+                $product["image1"] = $variantImage1[1];
+                $product["image2"] = $variantImage2[1];
+                $product["image3"] = $variantImage3[1];
+                $product["image4"] = $variantImage4[1];
                 if (isset($variantColors[1])) {
                     $productColor = $variantColors[1];
                 } 
@@ -89,7 +101,7 @@ $count_related = mysqli_num_rows($relatedProducts);
                     <button class="zoom-button"><i class="uil uil-search"></i></button>
             <?php endif; ?>
             <div class="thumbnail">
-            <?php for ($i = 1; $i < 4; $i++): ?>
+            <?php for ($i = 1; $i < 5; $i++): ?>
                 <?php if (!empty($product["image$i"])): ?>
                 <img class="tn__image" src="<?= ROOT_URL . 'admin/images/' . htmlspecialchars($product["image$i"]) ?>" style="cursor:pointer;">
                 <?php endif; ?>

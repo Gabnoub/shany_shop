@@ -95,7 +95,7 @@ $product_variants = $stmt_var->get_result()->fetch_all(MYSQLI_ASSOC);
                     </div>
                 <?php endif; ?>
 
-                <form action="add-product-variant-logic.php" method="POST" enctype="multipart/form-data">
+            <form action="add-product-variant-logic.php" method="POST" enctype="multipart/form-data">
                 <input type="hidden" name="id" value="<?= $product['id'] ?>">
                 <input type="hidden" name="product_color" value="<?= html_entity_decode(htmlspecialchars($product['color'])) ?>">
                 <div>
@@ -115,6 +115,16 @@ $product_variants = $stmt_var->get_result()->fetch_all(MYSQLI_ASSOC);
                         <option value=0 <?= $product['en_stock'] === 0 ? 'selected' : '' ?>>Oui</option>
                         <option value=1 <?= $product['en_stock'] === 1 ? 'selected' : '' ?>>Non</option>
                     </select>
+                </div>
+                    <div class="form__control">
+                    <label for="thumbnail">Add Image 1 *</label>
+                    <input type="file" id="prImg1" name="image1">
+                    <label for="thumbnail">Add Image 2</label>
+                    <input type="file" id="prImg2" name="image2">
+                    <label for="thumbnail">Add Image 3</label>
+                    <input type="file" id="prImg3" name="image3">
+                    <label for="thumbnail">Add Image 4</label>
+                    <input type="file" id="prImg4" name="image4">
                 </div>
                 <button type="submit" name="variant_submit" class="sub__btn">Ajouter</button>
             </form>
