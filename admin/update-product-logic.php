@@ -2,25 +2,25 @@
 require_once 'config/database.php';
 
 if (isset($_POST['edit_submit']) && isset($_POST['id'])) {
-    $id = (int) htmlspecialchars ($_POST['id']);
-    $category = htmlspecialchars($_POST['category']);
-    $en_stock = htmlspecialchars($_POST['en_stock']);
-    $title = htmlspecialchars($_POST['title']);
-    $article_number = htmlspecialchars($_POST['article_number']);
-    $material = htmlspecialchars($_POST['material']);
-    $color = htmlspecialchars($_POST['color']);
-    $size = htmlspecialchars($_POST['size']);
-    $description1 = htmlspecialchars($_POST['description1']);
-    $bulletpoint1 = htmlspecialchars($_POST['bulletpoint1']);
-    $bulletpoint2 = htmlspecialchars($_POST['bulletpoint2']);
-    $bulletpoint3 = htmlspecialchars($_POST['bulletpoint3']);
-    $bulletpoint4 = htmlspecialchars($_POST['bulletpoint4']);
-    $description2 = htmlspecialchars($_POST['description2']);
-    $price = htmlspecialchars($_POST['price']);
-    $discount = htmlspecialchars($_POST['discount']);
+    $id = (int) html_entity_decode ($_POST['id']);
+    $category = html_entity_decode($_POST['category']);
+    $en_stock = html_entity_decode($_POST['en_stock']);
+    $title = html_entity_decode($_POST['title']);
+    $article_number = html_entity_decode($_POST['article_number']);
+    $material = html_entity_decode($_POST['material']);
+    $color = html_entity_decode($_POST['color']);
+    $size = html_entity_decode($_POST['size']);
+    $description1 = html_entity_decode($_POST['description1']);
+    $bulletpoint1 = html_entity_decode($_POST['bulletpoint1']);
+    $bulletpoint2 = html_entity_decode($_POST['bulletpoint2']);
+    $bulletpoint3 = html_entity_decode($_POST['bulletpoint3']);
+    $bulletpoint4 = html_entity_decode($_POST['bulletpoint4']);
+    $description2 = html_entity_decode($_POST['description2']);
+    $price = html_entity_decode($_POST['price']);
+    $discount = html_entity_decode($_POST['discount']);
     $slug = preg_replace('/[^a-zA-Z0-9\-_]/', '-', $title);
     $catslug = $cat_slug[$category];
-    $purchase_price = htmlspecialchars($_POST['purchase_price']);
+    $purchase_price = html_entity_decode($_POST['purchase_price']);
 
 
 // check if product name already exists

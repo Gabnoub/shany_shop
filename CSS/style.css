@@ -405,6 +405,11 @@ a.nav__link:hover::after {
     background-color: var(--color-primary-light);
     color: var(--color-white);
 }
+.qty_btns button:nth-child(2){
+    background-color: transparent;
+    color: var(--color-black);
+    font-weight: 600;
+}
 .cart_description{
     display: flex;
     flex-direction: column;
@@ -1272,7 +1277,7 @@ footer{
 }
 .product-image img {
     width: 100%;
-    aspect-ratio: 1/1.2;
+    aspect-ratio: 1/1;
     border-radius: 0.2rem;
     /* transition: transform 0.4s ease; */
 }
@@ -2340,7 +2345,8 @@ table, th, td {
   
   .zoom-modal img.zoomed-image {
     max-width: 90%;
-    max-height: 90%;
+    /* max-height: 90%; */
+    aspect-ratio: 1/1;
     margin: auto;
     display: block;
     border-radius: 10px;

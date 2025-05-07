@@ -168,19 +168,19 @@ $count_related = mysqli_num_rows($relatedProducts);
 
             <div class="bullets">
                 <?php if (!empty($product["description1"])): ?>
-                    <p class="bullets__start"><?= html_entity_decode(htmlspecialchars($product["description1"]), ENT_QUOTES, 'UTF-8') ?></p>
+                    <p class="bullets__start"><?= html_entity_decode($product["description1"], ENT_QUOTES, 'UTF-8') ?></p>
                 <?php endif; ?>
                 <div class="bullets__items">
                     <ul>
                         <?php for ($i = 1; $i <= 4; $i++): ?>
                         <?php if (!empty($product["bulletpoint$i"])): ?>
-                            <li><i class="uil uil-check-square"></i><?= html_entity_decode(htmlspecialchars($product["bulletpoint$i"]), ENT_QUOTES, 'UTF-8') ?></li>
+                            <li><i class="uil uil-check-square"></i><?= html_entity_decode($product["bulletpoint$i"], ENT_QUOTES, 'UTF-8') ?></li>
                         <?php endif; ?>
                         <?php endfor; ?>
                     </ul>
                 </div>
                 <?php if (!empty($product["description2"])): ?>
-                    <p class="bullets__end"><?= html_entity_decode(htmlspecialchars($product["description2"]), ENT_QUOTES, 'UTF-8')  ?></p>
+                    <p class="bullets__end"><?= html_entity_decode($product["description2"], ENT_QUOTES, 'UTF-8')  ?></p>
                 <?php endif; ?>
             </div>
 
