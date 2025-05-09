@@ -7,6 +7,8 @@ if (isset($_POST['shop_submit'])) {
     $phone_contact = filter_var($_POST['phone_contact'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     $dec_title = filter_var($_POST['decouvrir_title'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     $dec_text = filter_var($_POST['decouvrir_text'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+    $car_title = filter_var($_POST['car_title'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+    $car_text = filter_var($_POST['car_text'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     $category_1 = filter_var($_POST['category_1'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     $category_2 = filter_var($_POST['category_2'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     $category_3 = filter_var($_POST['category_3'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
@@ -115,7 +117,7 @@ if (isset($_POST['shop_submit'])) {
                     image_lif_3 = ?, image_story = ?, category_1 = ?, category_2 = ?, category_3 = ?, category_4 = ?,
                     category_text_1 = ?, category_text_2 = ?, category_text_3 = ?, category_text_4 = ?, text_story = ?,
                     text_info_1 = ?, text_info_2 = ?, text_info_3 = ?, title_info_1 = ?, title_info_2 = ?, title_info_3 = ?,
-                    title_lif = ?, phone_contact = ?
+                    title_lif = ?, phone_contact = ?, car_title = ?, car_text = ?
                     WHERE id = ?";
                 $stmt = $connection->prepare($sql);
                 if (!$stmt) {
@@ -123,11 +125,11 @@ if (isset($_POST['shop_submit'])) {
                     header("Location: edit-shop.php");
                     exit;
                 }
-                $stmt->bind_param("sssssssssssssssssssssssssssi",
+                $stmt->bind_param("sssssssssssssssssssssssssssssi",
                     $promo, $dec_title, $dec_text, $cur_images[0], $cur_images[1], $cur_images[2], $cur_images[3], $cur_images[4],
                     $cur_images[5], $cur_images[6], $category_1, $category_2, $category_3, $category_4, $category_text_1, 
                     $category_text_2, $category_text_3, $category_text_4, $text_story, $text_info_1, $text_info_2, $text_info_3,
-                    $title_info_1, $title_info_2, $title_info_3, $title_lif, $phone_contact,
+                    $title_info_1, $title_info_2, $title_info_3, $title_lif, $phone_contact, $car_title, $car_text,
                     $id
                 );
             } else {
@@ -137,19 +139,19 @@ if (isset($_POST['shop_submit'])) {
                     category_1, category_2, category_3, category_4,
                     category_text_1, category_text_2, category_text_3, category_text_4,
                     text_story, text_info_1, text_info_2, text_info_3,
-                    title_info_1, title_info_2, title_info_3, title_lif, phone_contact
-                    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"; 
+                    title_info_1, title_info_2, title_info_3, title_lif, phone_contact, car_title, car_text
+                    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"; 
                 $stmt = $connection->prepare($sql);
                 if (!$stmt) {
                     $_SESSION['shop'] = "SQL Error: " . $connection->error;
                     header("Location: edit-shop.php");
                     exit;
                 }
-                $stmt->bind_param("ssssssssssssssssssssssssss",
+                $stmt->bind_param("ssssssssssssssssssssssssssss",
                     $promo, $dec_title, $dec_text, $cur_images[0], $cur_images[1], $cur_images[2], $cur_images[3], $cur_images[4],
                     $cur_images[5], $cur_images[6], $category_1, $category_2, $category_3, $category_4, $category_text_1, 
                     $category_text_2, $category_text_3, $category_text_4, $text_story, $text_info_1, $text_info_2, $text_info_3,
-                    $title_info_1, $title_info_2, $title_info_3, $title_lif, $phone_contact
+                    $title_info_1, $title_info_2, $title_info_3, $title_lif, $phone_contact, $car_title, $car_text
                 );
             }
         }

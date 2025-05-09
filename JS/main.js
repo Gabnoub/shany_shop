@@ -21,11 +21,26 @@ function changeImage() {
     slides[index].classList.add("active");
 }
 
-const myinterval = setInterval(changeImage, 3000);
+const myinterval = setInterval(changeImage, 6000);
 
 // Activer la première barre au démarrage
 progressBars[index].classList.add("active");
 
+
+function currentSlide(i) {
+
+  // Stop automatic mode
+  clearInterval(myinterval);
+
+  progressBars.forEach(bar => bar.classList.remove("active"));
+  progressBars.forEach(bar => bar.classList.remove("active__after_clicked"));
+
+  slides.forEach(slide => slide.style.display = "none");
+  index = i;
+  progressBars[index].classList.add("active__after_clicked");
+  slides[index].style.display = "block";
+
+}
 
 // =======================================  Activate and desactivate category  ==========================================//
 // Sélection de la barre de progression

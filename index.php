@@ -43,6 +43,10 @@ echo "<script>const products = " . json_encode($cat_products) . ";</script>";
                 <img class="caroussel__image active"  src="<?= ROOT_URL ?>admin/images/<?= $caroussel_1 ?>">
                 <img class="caroussel__image"  src="<?= ROOT_URL ?>admin/images/<?= $caroussel_2 ?>">
                 <img class="caroussel__image"  src="<?= ROOT_URL ?>admin/images/<?= $caroussel_3 ?>">
+                <div class="caroussel-content">
+                    <h1 class="caroussel-title"><?= $car_title ?></h1>
+                    <h2 class="caroussel-text"><?= $car_text ?></h2>
+                </div>
         </div>
         <div class="progress-bars">
             <div class="progress-bar" onclick="currentSlide(0)"></div>

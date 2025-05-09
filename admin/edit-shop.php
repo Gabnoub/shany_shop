@@ -59,6 +59,12 @@ $shop_infos = $stmt->get_result()->fetch_assoc();
             <input type="text" name="category_4" value="<?= htmlspecialchars($shop_infos['category_4']) ?>">
             <label for="categories">Changer le texte  de la categorie 4</label>
             <input type="text" name="category_text_4" value="<?= htmlspecialchars($shop_infos['category_text_4']) ?>">
+
+            <label for="caroussel-content">Changer le titre  du caroussel</label>
+            <input type="text" name="car_title" value="<?= htmlspecialchars($shop_infos['car_title']) ?>">
+            <label for="categories">Changer le texte  du caroussel</label>
+            <input type="text" name="car_text" value="<?= htmlspecialchars($shop_infos['car_text']) ?>">
+
             
             <div class="form__control form__shop">
                 <label for="thumbnail">changer image 1 du caroussel (height: 600px)</label>

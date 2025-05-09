@@ -491,6 +491,19 @@ a.nav__link:hover::after {
     /* max-width: 2500px; */
     justify-self: center;
 }
+.caroussel-content{
+    position: absolute;
+    top: 65%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+.caroussel-content > h1{
+    color: var(--color-white);
+}
+.caroussel-content > h2{
+    color: var(--color-white);
+}
 
 .call__to-action{
     position: absolute;
@@ -523,7 +536,6 @@ a.nav__link:hover::after {
     object-fit: cover;
     object-position: center;
     overflow: hidden;
-
 }
 .progress-bars {
     position: absolute;
@@ -554,7 +566,7 @@ a.nav__link:hover::after {
     background: #fff;
     transform: scaleX(0);
     transform-origin: left;
-    animation: progress 3s linear infinite;
+    animation: progress 6s linear infinite;
 }
 .active__after_clicked{
     background-color: #fff;
@@ -586,6 +598,7 @@ a.nav__link:hover::after {
     font-weight: 500;
     /* border: solid 3px red; */
     padding: 1rem 0;
+    color: var(--color-black);
 }
 .pr__title{
     margin-top: 10px;
@@ -1721,7 +1734,12 @@ table, th, td {
         font-weight: 650;
         font-size: 0.8rem;
     }
-    
+    .caroussel-content h1{
+        font-size: 1.5rem;
+    }
+    .caroussel-content h2{
+        font-size: 1rem;
+    }
     /*======== new products/ bestsellers style ==========*/
     .new__product-item img{
         width: 220px;

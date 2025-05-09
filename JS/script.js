@@ -1,19 +1,5 @@
 // =================================== Currentslide show and stop automatic caroussel=============================================//
 
-function currentSlide(i) {
-
-    // Stop automatic mode
-    clearInterval(myinterval);
-
-    progressBars.forEach(bar => bar.classList.remove("active"));
-    progressBars.forEach(bar => bar.classList.remove("active__after_clicked"));
-
-    slides.forEach(slide => slide.style.display = "none");
-    index = i;
-    progressBars[index].classList.add("active__after_clicked");
-    slides[index].style.display = "block";
-
-}
 // =======================================  Activate and desactivate drop-down menu  ==========================================//
 
 const navLinks = document.querySelector(".nav__links");
