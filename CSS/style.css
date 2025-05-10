@@ -500,9 +500,19 @@ a.nav__link:hover::after {
 }
 .caroussel-content > h1{
     color: var(--color-white);
+    text-shadow: 
+    1px 1px 0 var(--color-primary-variant-gold), 
+    -1px 1px 0 var(--color-primary-variant-gold), 
+    1px -1px 0 var(--color-primary-variant-gold), 
+    -1px -1px 0 var(--color-primary-variant-gold);
 }
 .caroussel-content > h2{
     color: var(--color-white);
+    text-shadow: 
+    1px 1px 0 var(--color-primary-variant-gold), 
+    -1px 1px 0 var(--color-primary-variant-gold), 
+    1px -1px 0 var(--color-primary-variant-gold), 
+    -1px -1px 0 var(--color-primary-variant-gold);
 }
 
 .call__to-action{
@@ -511,7 +521,7 @@ a.nav__link:hover::after {
     left: 50%;
     transform: translate(-50%, 0);
     border-radius: 0.2rem;
-    background-color:  var(--color-primary-light);
+    background-color:  rgba(1, 52, 45, 0.85);
     color: var(--color-white);
     padding: 1rem 2rem;
     text-align: center;
