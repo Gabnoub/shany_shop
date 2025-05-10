@@ -74,7 +74,7 @@ echo "<script>const products = " . json_encode($cat_products) . ";</script>";
         <div class="new__product-item icon_wrapper">
           <a class="pr_link" href="<?= ROOT_URL ?>products/<?= $product['slug'] ?>">  
           <img src="admin/images/<?= htmlspecialchars($product['image1']) ?>" class="pr_image">
-            <p class="pr__title"><?= html_entity_decode(htmlspecialchars($product['title'])) ?></p>
+            <p class="pr__title"><strong><?= html_entity_decode(htmlspecialchars($product['title'])) ?></strong></p>
             <p class="pr__price">
               <?php if ($product['price'] !== $product['final_price']): ?>
                 <del style="text-decoration: 1.1px line-through;"><?= number_format($product['price'], 0, ',', '.') ?></del>
@@ -140,7 +140,7 @@ echo "<script>const products = " . json_encode($cat_products) . ";</script>";
         <div class="best__sellers-item icon_wrapper">
           <a class="pr_link" href="<?= ROOT_URL ?>products/<?= $product['slug'] ?>">  
           <img src="admin/images/<?= htmlspecialchars($product['image1']) ?>" class="pr_image">
-            <p class="pr__title"><?= html_entity_decode(htmlspecialchars($product['title'])) ?></p>
+            <p class="pr__title"><strong><?= html_entity_decode(htmlspecialchars($product['title'])) ?></strong></p>
             <p class="pr__price">
               <?php if ($product['price'] !== $product['final_price']): ?>
                 <del style="text-decoration: 1.1px line-through;"><?= number_format($product['price'], 0, ',', '.') ?></del>

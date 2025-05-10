@@ -82,7 +82,7 @@ function currentCat(index) {
             <a class="pr_link" href="products/${item.slug}">
               <img src="${item.image}" class="pr_image">
             
-            <p class="pr__title">${item.title}</p>
+            <p class="pr__title"><strong>${item.title}</strong></p>
             <p class="pr__price">
               ${hasDiscount
                 ? `<del style="text-decoration: line-through;">${item.price}</del> 
