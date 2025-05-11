@@ -713,12 +713,12 @@ a.nav__link:hover::after {
     top: 0rem;
     left: 0rem;
     background-color: var(--color-primary-variant-gold);
-    padding: 0.5rem 0;
+    padding: 0.3rem 0;
     /* z-index: 10; */
     width: 3rem;
     color: var(--color-white);
     font-weight: 600;
-    border-radius: 2px 0px 10px 0px;
+    border-radius: 10px 0px 10px 0px;
 }
 /*=====================================================================================================================
 ==================================== Lifestyle Style ===================================================================
@@ -1147,6 +1147,10 @@ footer{
     justify-content: space-between;
     padding: 1rem 2rem;
     color: black;
+}
+.cat_filter form select{
+    font-weight: 600;
+    font-size: 0.9rem;
 }
 /*========  category Listing ==========*/
 .num__products_null{
@@ -1830,6 +1834,9 @@ table, th, td {
         gap: 15px;
         /* padding: 1rem; */
     }
+    .cat_filter p{
+        display: none;
+    }
     /*======== Info section style ==========*/
     .info__section{
         width: 100%;
@@ -1898,6 +1905,7 @@ table, th, td {
     }
     .rabatt{
         width: 3rem;
+        padding: 0.1rem 0;
     }
     .bullets__items li{
         list-style-type: square;

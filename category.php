@@ -92,7 +92,7 @@ if (!$fetch_products_result) {
                     <?php endif; ?>
                     <form class="form__category" method="GET" action="">
                         <input type="hidden" name="id" value="<?= $id ?>">
-                        <label for="sort">Trier par:</label>
+                        <label style="opacity: 80%;" for="sort">Trier par</label>
                         <select name="sort" id="sort" onchange="this.form.submit()">
                             <option value="default" <?= (!isset($_GET['sort']) || $_GET['sort'] == 'default') ? 'selected' : '' ?>>Standard</option>
                             <option value="discount_desc" <?= (isset($_GET['sort']) && $_GET['sort'] == 'discount_desc') ? 'selected' : '' ?>>En promotion</option>
