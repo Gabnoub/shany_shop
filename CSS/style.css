@@ -9,6 +9,7 @@
     --color-primary-variant1: #f9f9f9;
     --color-primary-variant: white;
     --color-primary-variant-gold: rgb(160, 114, 40);
+    /* --color-rabatt: rgb(232, 38, 38); */
     --color-red: #da0f3f;
     --color-red-light: hsl(346, 87%, 46%, 15%);
     --color-green: #00c476;
@@ -712,7 +713,7 @@ a.nav__link:hover::after {
     position: absolute;
     top: 0rem;
     left: 0rem;
-    background-color: var(--color-primary-variant-gold);
+    background-color: var(--color-red);
     padding: 0.3rem 0;
     /* z-index: 10; */
     width: 3rem;
@@ -989,7 +990,7 @@ a.nav__link:hover::after {
     transition: all 0.3s ease-in-out;
 }
 .product-container{
-    margin-top: 3rem;
+    margin-top: 5rem;
     width: 100%;
     display: flex;
     flex-wrap: wrap;
@@ -1028,7 +1029,7 @@ a.nav__link:hover::after {
     background: var(--color-primary-light);
     padding: 1rem 2rem;
     cursor: pointer;
-    margin-bottom: 3rem;
+    margin-bottom: 10rem;
 }
 .open__product:hover{
     background-color: var(--color-green);
@@ -1176,7 +1177,7 @@ footer{
     text-align: center;
     flex-wrap: wrap;
     /* background-color: var(--color-green); */
-    margin: 2rem 0;
+    margin: 2rem 0 10rem 0;
     /* padding: 0 2rem; */
     }
 .cat__product-item img{
@@ -1202,7 +1203,7 @@ footer{
     position: absolute;
     top: 9.6rem;
     right: 0rem;
-    background-color: var(--color-primary-variant-gold);
+    background-color: var(--color-red);
     /* background-color: #c5091c; */
     padding: 0.1rem 0.6rem;
     /* width: 5rem; */
