@@ -468,12 +468,16 @@ a.nav__link:hover::after {
 #commander .uil-whatsapp{
     font-size: 1.5rem;
 }
-#whatsappCheckout:hover{
+/* #whatsappCheckout:hover{
     background-color: var(--color-primary-light);
     color: var(--color-white);
-}
+} */
 .uil-trash-alt{
     background-color: transparent;
+    color: gray;
+}
+.uil-trash-alt:hover{
+    color: var(--color-black);
 }
 /*=====================================================================================================================
 ==================================== Caroussel STYLES ===================================================================
@@ -531,7 +535,7 @@ a.nav__link:hover::after {
     font-size: 1.1rem;
 }
 .call__to-action:hover{
-    background-color: var(--color-green);
+    background-color: var(--color-primary-light);
     color: var(--color-white);
 }
 .caroussel__container{
@@ -1031,10 +1035,10 @@ a.nav__link:hover::after {
     cursor: pointer;
     margin-bottom: 10rem;
 }
-.open__product:hover{
+/* .open__product:hover{
     background-color: var(--color-green);
     color: var(--color-white);
-}
+} */
 /*=====================================================================================================================
 ==================================== Info Section ===================================================================
 ===============*/
@@ -1389,9 +1393,9 @@ footer{
     justify-content: center;
     text-align: center;
 }
-.add-to-cart-btn:hover{
+/* .add-to-cart-btn:hover{
     background-color: var(--color-green);
-}
+} */
 .proofs{
     display: grid;
     place-content: center;
@@ -2087,9 +2091,9 @@ table, th, td {
     font-size: 16px;
 }
 
-.submit-rating-btn:hover {
+/* .submit-rating-btn:hover {
     background-color: var(--color-green);
-}
+} */
 
 /* Kommentarliste */
 .comments-list {
