@@ -1193,6 +1193,7 @@ footer{
 }
 .cat__product-item{
     position: relative;
+    margin-bottom: 3rem;
     /* box-shadow: 0 0px 1.5px var(--color-primary);
     border-radius: 10px;
     transition: box-shadow 0.3s ease;    */
@@ -1900,10 +1901,10 @@ table, th, td {
         justify-content: center;
         place-content: center;
         }
-    .cat__product-item{
+    /* .cat__product-item{
         padding-bottom: 0.8rem;
 
-    }
+    } */
     .cat__product-item img{
         width: 170px;
         height: 170px;
