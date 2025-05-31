@@ -113,7 +113,10 @@ if (!$fetch_products_result) {
                 <a class="cat__pr_link" href="<?= ROOT_URL ?>products/<?= $row['slug'] ?>"><img src="<?= ROOT_URL ?>admin/images/<?= htmlspecialchars($row['image1']) ?>">
                 <p class="cat__pr__title"><strong><?= html_entity_decode(htmlspecialchars($row['title'])) ?></strong></p>
                 <?php if ($row['price'] !== $row['final_price']): ?>
-                <p class="cat__pr__price"><del style="text-decoration: 1.1px line-through;"><?= number_format($row['price'], 0, ',', '.') ?></del>  <strong><?= number_format($row['final_price'], 0, ',', '.') ?> CFA</strong></p>
+                <p class="cat__pr__price">
+                    <strong style="color:#da0f3f;"><?= number_format($row['final_price'], 0, ',', '.') ?> CFA</strong>
+                    <del style="text-decoration: 1.1px line-through;"><?= number_format($row['price'], 0, ',', '.') ?></del>
+                </p>
                 <button class="rabatt">- <?= round(100 - (($row['final_price'] * 100) / $row['price'])) ?> %</button>
                 <?php else: ?>
                 <p class="cat__pr__price"><strong><?= $row['price'] ?> CFA</strong></p>

@@ -119,7 +119,7 @@ $count_related = mysqli_num_rows($relatedProducts);
                 </div>
                 <?php if ($product['price'] !== $product['final_price']): ?>
                 <p style="text-decoration: 1.1px line-through; font-size:1.3rem"><del><?= number_format($product['price'], 0, ',', '.') ?></del></p>
-                <p style="font-size:1.5rem"><strong><?= number_format($product['final_price'], 0, ',', '.') ?> CFA</strong></p>
+                <p style="font-size:1.5rem"><strong style="color:#da0f3f;"><?= number_format($product['final_price'], 0, ',', '.') ?> CFA</strong></p>
                 <p class="rabatt_pp"><strong>- <?= round(100 - (($product['final_price'] * 100) / $product['price'])) ?> %</strong></p>
                 <?php else: ?>
                 <p style="font-size:1.5rem"><strong><?= number_format($product['price'], 0, ',', '.') ?> CFA</strong></p>
@@ -218,8 +218,8 @@ $count_related = mysqli_num_rows($relatedProducts);
             <p><?= htmlspecialchars($relProduct['title']) ?></p>
             <p >
                 <?php if ($relProduct['price'] !== $relProduct['final_price']): ?>
+                <strong style="color:#da0f3f;"><?= number_format($relProduct['final_price'], 0, ',', '.') ?> CFA</strong>
                 <del style="text-decoration: line-through;"><?= number_format($relProduct['price'], 0, ',', '.') ?></del>
-                <strong><?= number_format($relProduct['final_price'], 0, ',', '.') ?> CFA</strong>
                 <button class="rabatt">- <?= round(100 - (($relProduct['final_price'] * 100) / $relProduct['price'])) ?> %</button>
                 <?php else: ?>
                 <strong><?= number_format($relProduct['price'], 0, ',', '.') ?> CFA</strong>

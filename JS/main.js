@@ -85,10 +85,10 @@ function currentCat(index) {
             <p class="pr__title"><strong>${item.title}</strong></p>
             <p class="pr__price">
               ${hasDiscount
-                ? `<del style="text-decoration: line-through;">${item.price}</del> 
-             <strong>${item.finalprice} CFA</strong>
-             <button class="rabatt">-${discount} %</button>` 
-          : `<strong>${item.finalprice} CFA</strong>`
+                ? `<strong style="color:#da0f3f;">${item.finalprice} CFA</strong>
+                   <del style="text-decoration: line-through;">${item.price}</del> 
+                   <button class="rabatt">-${discount} %</button>` 
+                : `<strong>${item.finalprice} CFA</strong>`
               }
             </p>
             </a>
